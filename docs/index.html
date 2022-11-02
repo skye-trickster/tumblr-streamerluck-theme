@@ -150,27 +150,39 @@
 		</div>
 	</main>
 
-	<div id="sidebar">
-		<div>
-			<div>&lt;==</div>
-			<h2 class="subtitle">Swayshock</h2>
-			<div>==&gt;</div>
-		</div>
-		<div>
-			<p>Indie Iono blog from Pokémon Scarlet and Violet.</p>
-			<p>Highly Selective. Mutuals only.</p>
-		</div>
-		<nav>
-			<h3>Categories</h3>
-			<ul>
-				<li><a>Link 1</a></li>
-				<li><a>Link 2</a></li>
-				<li><a>Link 3</a></li>
-			</ul>
-		</nav>
-		<div>
-			<form>
+	<!-- TODO (mobile): consider putting the menu on the top of the blog that scrolls down with main. -->
+	<!-- Will help with preventing design issues with clicking the links-->
+	<!-- Also will help accessibility -->
+	<div id="sidebar" class="enabled">
+		<div class="wrapper">
+			<div class="side-title">
+				<div class="pagination"><a class="bi bi-arrow-left"></a></div>
+				<h2 class="subtitle">Swayshock</h2>
+				<div class="pagination"><a class="bi bi-arrow-right"></a></div>
+			</div>
+			<div class="details">
+				<p>Indie Iono blog from Pokémon Scarlet and Violet.</p>
+				<p>Highly Selective. Mutuals only.</p>
+			</div>
+			<nav>
+				<h3>Categories</h3>
+				<ul>
+					<li><a href="#">Link 1</a></li>
+					<li><a href="#">Link 2</a></li>
+					<li><a href="#">Link 3</a></li>
+				</ul>
+			</nav>
+			<nav>
+				<h3>Links</h3>
+				<ul>
+					<li><a>Link 4</a></li>
+					<li><a>Link 5</a></li>
+					<li><a>Link 6</a></li>
+				</ul>
+			</nav>
+			<form class="search">
 				<input name="search" placeholder="Search this blog...">
+				<button type="submit">Q</button>
 			</form>
 		</div>
 	</div>

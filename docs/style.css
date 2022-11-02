@@ -227,6 +227,83 @@ main {
 	display: none;
 }
 
+#sidebar.enabled {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 75px;
+    left: 0;
+    right: 0;
+    bottom: 60px;
+    padding: 10px;
+    overflow: none;
+}
+
+#sidebar > .wrapper {
+    width: 75%;
+    background-color: var(--tag-background-color);
+    border-radius: 5px;
+    border: 2px solid black;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 75%;
+}
+
+#sidebar > .wrapper::after {
+    content: " ";
+    position: absolute;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+    bottom: 0;
+    right: 50%;
+}
+
+.pagination, .details, .side-title { display: none; }
+
+#sidebar nav {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-top: 2px solid black;
+}
+
+#sidebar nav h3 {
+    display: block;
+    text-transform: uppercase;
+    text-align: center;
+    border-bottom: 1px solid white;
+    padding: 3px;
+    font-size: 1.5em;
+}
+
+#sidebar nav li {
+    list-style: none;
+}
+
+#sidebar nav li a {
+    display: block;
+    padding: 4px;
+}
+
+#sidebar nav li:nth-child(2n) a {
+    background-color: #222;
+}
+
+#sidebar nav li a:hover {
+    background-color: #666;
+}
+
+
+.search {
+    order: -1;
+}
+
 .disabled {
     color: var(--disable-color);
     cursor: default;
