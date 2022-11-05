@@ -15,7 +15,7 @@
 	--avatar-border: 3px solid var(--avatar-border-color);
     --disable-color: grey;
 
-    --mobile-header-height: 60px;
+    --mobile-header-height: 50px;
     --mobile-nav-height: 50px;
 }
 
@@ -296,7 +296,7 @@ main {
 #sidebar nav li a {
     display: block;
     padding: 4px;
-    font-size: 1.7em;
+    font-size: 1.4em;
     font-weight: bold;
     color: #eee;
     text-shadow: -2px 3px 3px black;

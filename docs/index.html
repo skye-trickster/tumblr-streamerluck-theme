@@ -49,7 +49,7 @@
 			<ul>
 				<li><a href="/"><i class="bi bi-house"></i>Home</a></li>
 				<li><a href="/ask"><i class="bi bi-question-circle"></i>Ask</a></li>
-				<li><a class="links" role="button"><i class="bi bi-plus-circle"></i>Links</a></li>
+				<li><a id="link-list" onclick="toggleSidebar(event)" class="links" role="button"><i class="bi bi-plus-circle"></i>Links</a></li>
 				<li><a href="/submit"><i class="bi bi-postcard"></i>Submit</a></li>
 				<li><a href="/archive"><i class="bi bi-folder"></i>Archive</a></li>
 			</ul>
@@ -157,7 +157,7 @@
 	<!-- TODO (mobile): also consider making it a carosel that's at the bottom of the page -->
 		<!-- have it right above "Links" as like a row of links that you can scroll through -->
 		<!-- or two rows: one for categories and one for links -->
-	<div id="sidebar" class="enabled">
+	<div id="sidebar">
 		<div class="wrapper">
 			<div class="side-title">
 				<div class="pagination"><a class="bi bi-arrow-left"></a></div>
@@ -205,6 +205,13 @@
 <!-- JQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+<script>
+	function toggleSidebar(event) {
+		event.preventDefault();
+		const sidebar = document.getElementById("sidebar");
+		if (sidebar) sidebar.classList.toggle("enabled");
+	}
+</script>
 
 <noscript>This page requires JavaScript.</noscript>
 
