@@ -1,0 +1,136 @@
+/* FOR DESKTOP */
+@media all and (min-width: 700px) {
+	:root {
+		--desktop-intro-height: 15%;
+	}
+
+	/* HEADER INTRO */
+	.header-intro {
+		top: initial;
+		bottom: 0px;
+		height: var(--desktop-intro-height);
+        justify-content: flex-start;
+        right: 20%;
+	}
+
+	.intro-info {
+		display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        padding: 10px;
+        flex-basis: 100%;
+	}
+
+    .intro-info > * {
+        margin-bottom: 5px;
+    }
+
+    .intro-info > *:last-child { margin-bottom: 0;}
+
+	.tagline {
+		display: block;
+        font-size: 1.2rem;
+	}
+
+    .title {
+        font-size: 2rem;
+    }
+
+	.auxillary {
+		display: block;
+        width: 100%;
+    }
+
+    .player {
+        margin-right: 10px;
+    }
+
+    .player, .taglist-common {
+        display: inline-block;
+    }
+    
+    .taglist-common .tag {
+        margin: 0;
+    }
+
+    .actions { 
+        display: flex;
+        align-items: flex-start;
+        height: 100%;
+        padding: 1%;
+    }
+
+    .actions > * { 
+        display: block;
+        min-width: 0;
+        min-height: 0; 
+        background-color: yellow;
+        color: black;
+        border-radius: 3px;
+        text-align: center;
+        min-height: 0;
+        min-width: 0;
+        margin: 0 3px;
+        padding: 2px 5px;
+    }
+
+	/* NAVIGATION */
+	.navigation {
+		top: 0px;
+		bottom: initial;
+		height: 5%;
+	}
+
+	.navigation .bi {
+		display: none;
+	}
+
+	.navigation ul {
+		text-transform: uppercase;
+		font-weight: bold;
+		display: block;
+		width: 100%;
+		margin: auto;
+		text-align: start;
+		padding: 0 1%;
+	}
+
+	.navigation ul li {
+		display: inline-block;
+		list-style: none;
+		min-height: 0;
+		min-width: 0;
+		width: auto;
+		padding-right: 1%;
+		font-size: 1.2em;
+	}
+
+	.navigation ul li:last-child {
+		padding-right: 0px;
+	}
+
+	.navigation li a {
+		text-align: left;
+	}
+
+	#link-list {
+		display: none;
+	}
+
+
+    /* SIDEBAR */
+    #sidebar {
+        display: flex;
+        position: absolute;
+        top: 50px;
+        right: 0;
+        bottom: 0;
+        left: initial;
+        width: 20%;
+    }
+
+    #sidebar >  .wrapper {
+        background-color: #18181b;
+    }
+}

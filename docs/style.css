@@ -229,6 +229,11 @@ main {
 /* SIDEBAR */
 #sidebar {
 	display: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: var(--mobile-header-height);
+    left: 0;
+    right: 0;
+    bottom: var(--mobile-nav-height);
 }
 
 #sidebar.enabled {
@@ -236,11 +241,7 @@ main {
     justify-content: center;
     align-items: flex-end;
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.5);
-    top: var(--mobile-header-height);
-    left: 0;
-    right: 0;
-    bottom: var(--mobile-nav-height);
+
 }
 
 #sidebar > .wrapper {

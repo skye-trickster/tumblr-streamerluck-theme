@@ -18,6 +18,7 @@
 	<!--link rel="stylesheet" type="text/css" media="all" href="https://static.tumblr.com/7ijwq6x/iFbrbfm6l/style-mobile.css" />
 		<link rel="stylesheet" type="text/css" media="all" href="https://static.tumblr.com/7ijwq6x/nJOrbfm6p/style.css" /-->
 	<link rel="stylesheet" type="text/css" media="all" href="style.css">
+	<link rel="stylesheet" type="text/css" media="all" href="style-desktop.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 	<!-- /LINKS -->
 </head>
@@ -32,11 +33,12 @@
 				<div class="auxillary">
 					<span class="player">Playing: <a>Pokémon Scarlet</a></span>
 					<div class="taglist-common">
-						<div>mxstball</div>
-						<div>headcanon</div>
+						<a class="tag">mxstball</a>
+						<a class="tag">headcanon</a>
 					</div>
 				</div>
 			</div>
+
 			<div class="actions">
 				<a href="/" role="button">
 					<div class="bi-code-slash credit"></div>
@@ -49,7 +51,7 @@
 			<ul>
 				<li><a href="/"><i class="bi bi-house"></i>Home</a></li>
 				<li><a href="/ask"><i class="bi bi-question-circle"></i>Ask</a></li>
-				<li><a id="link-list" onclick="toggleSidebar(event)" class="links" role="button"><i class="bi bi-plus-circle"></i>Links</a></li>
+				<li id="link-list"><a onclick="toggleSidebar(event)" class="links" role="button"><i class="bi bi-plus-circle"></i>Links</a></li>
 				<li><a href="/submit"><i class="bi bi-postcard"></i>Submit</a></li>
 				<li><a href="/archive"><i class="bi bi-folder"></i>Archive</a></li>
 			</ul>
