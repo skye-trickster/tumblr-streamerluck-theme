@@ -1,7 +1,8 @@
 /* FOR DESKTOP */
-@media all and (min-width: 700px) {
+@media all and (min-width: 700px) and (min-height: 600px) {
 	:root {
 		--desktop-intro-height: 15%;
+        --desktop-sidebar-width: 25%;
 	}
 
 	/* HEADER INTRO */
@@ -10,31 +11,35 @@
 		bottom: 0px;
 		height: var(--desktop-intro-height);
         justify-content: flex-start;
-        right: 20%;
+        right: var(--desktop-sidebar-width);
 	}
 
 	.intro-info {
 		display: flex;
         flex-direction: column;
         justify-content: center;
+
         height: 100%;
         padding: 10px;
         flex-basis: 100%;
 	}
 
     .intro-info > * {
-        margin-bottom: 5px;
+        height: 100%;
     }
 
-    .intro-info > *:last-child { margin-bottom: 0;}
-
 	.tagline {
-		display: block;
-        font-size: 1.2rem;
+		display: flex;
+        align-items: center;
 	}
 
-    .title {
+    .tagline h2 {
+        font-size: 1.2rem;
+    }
+
+    .headline .title {
         font-size: 2rem;
+        margin: 0;
     }
 
 	.auxillary {
@@ -67,12 +72,13 @@
         min-height: 0; 
         background-color: yellow;
         color: black;
-        border-radius: 3px;
+        border-radius: 5px;
         text-align: center;
         min-height: 0;
         min-width: 0;
         margin: 0 3px;
-        padding: 2px 5px;
+        padding: 3px 10px;
+        font-weight: bold;
     }
 
 	/* NAVIGATION */
@@ -119,6 +125,12 @@
 	}
 
 
+    /* MAIN ELEMENT */
+    main {
+        right: var(--desktop-sidebar-width);
+        bottom: var(--desktop-intro-height);
+    }
+
     /* SIDEBAR */
     #sidebar {
         display: flex;
@@ -127,10 +139,70 @@
         right: 0;
         bottom: 0;
         left: initial;
-        width: 20%;
+        width: var(--desktop-sidebar-width);
     }
 
     #sidebar >  .wrapper {
         background-color: #18181b;
+    }
+
+    #sidebar .side-title {
+        display: flex; 
+        justify-content: space-between;
+        width: 100%;
+        padding: 5px;
+        align-items: center;
+        border-bottom: 2px solid black;
+    }
+
+    .side-title .pagination {
+        display: flex;
+    }
+
+    .pagination div {
+        margin: auto;
+    }
+
+    .subtitle a {
+        color: var(--text-color);
+    }
+
+    .details {
+        display: block;
+        width: 100%;
+        padding: 5px;
+    }
+
+    #sidebar nav {
+        display: block;
+        padding: 5px 0;
+    }
+
+    #sidebar nav h3 {
+        display: block;
+        text-shadow: -2px 3px 3px black;
+    }
+
+    #sidebar nav ul {
+        display: block;
+        overflow: initial;
+        white-space: initial;
+        text-align: left;
+        margin: 0;
+        width: 100%;
+        padding: 5px;
+    }
+
+    #sidebar nav li {
+        display: block;
+        width: 100%;
+        padding-right: 0px;
+    }
+    #sidebar nav li a {
+        display: block;
+        width: 100%;
+        font-size: 1.1rem;
+        color: var(--link-color);
+        text-shadow: none;
     }
 }

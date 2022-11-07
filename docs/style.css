@@ -43,7 +43,23 @@ html {
     overflow: none;
 }
 
-/* HEADER INTRO */
+.intro-info {
+    width: 100%;
+    padding: 0 10px;
+}
+
+/* HEADLINE */
+.headline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.headline .title {
+    margin: auto;
+}
+
 .header-intro {
 	background-color: var(--intro-background-color);
 	display: flex;
