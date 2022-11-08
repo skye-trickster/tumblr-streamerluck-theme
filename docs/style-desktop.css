@@ -4,6 +4,25 @@
 		--desktop-intro-height: 15vh;
 		--desktop-sidebar-width: 25vw;
 		--desktop-nav-height: 5vh;
+		--desktop-wrapper-color: #18181b;
+	}
+
+	html.mobile-disabled {
+		overflow: initial;
+	}
+
+	body::-webkit-scrollbar {
+		background-color: var(--desktop-wrapper-color);
+		width: 15px;
+	}
+
+	body::-webkit-scrollbar-thumb {
+		background-color: var(--post-border-color);
+	}
+
+	body::-webkit-scrollbar-track {
+		background-color: var(--intro-background-color);
+		width: 5px;
 	}
 
 	/* HEADER INTRO */
@@ -185,7 +204,7 @@
 	}
 
 	#sidebar > .wrapper {
-		background-color: #18181b;
+		background-color: var(--desktop-wrapper-color);
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -274,8 +293,24 @@
 		padding-bottom: 0px;
 	}
 
-	#sidebar .side-links::-webkit-scrollbar {
-		display: none;
+	#sidebar .side-links ul::-webkit-scrollbar {
+		width: 0px;
+	}
+
+	#sidebar .side-links ul::-webkit-scrollbar-track {
+		background-color: var(--desktop-wrapper-color);
+	}
+
+	#sidebar .side-links ul::-webkit-scrollbar-thumb {
+		background-color: var(--background-color);
+		width: 30px;
+		border-right: 2px solid var(--desktop-wrapper-color);
+		border-left: 2px solid var(--desktop-wrapper-color);
+	}
+
+	#sidebar:hover .side-links ul::-webkit-scrollbar {
+		width: 15px;
+		border: 2px solid var(--desktop-wrapper-color);
 	}
 
 	#sidebar .side-actions {

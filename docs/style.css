@@ -40,7 +40,10 @@ html {
 	color: white;
 	background-size: 100%;
 	background-color: var(--background-color);
-	overflow: none;
+}
+
+html.mobile-disabled {
+	overflow: hidden;
 }
 
 .intro-info {

@@ -368,30 +368,6 @@
 					<li><a href="#">Link 7</a></li>
 					<li><a href="#">Link 8</a></li>
 					<li><a href="#">Link 9</a></li>
-					<li><a href="#">Link 10</a></li>
-					<li><a href="#">Link 11</a></li>
-					<li><a href="#">Link 12</a></li>
-					<li><a href="#">Link 13</a></li>
-					<li><a href="#">Link 14</a></li>
-					<li><a href="#">Link 15</a></li>
-					<li><a href="#">Link 7</a></li>
-					<li><a href="#">Link 8</a></li>
-					<li><a href="#">Link 9</a></li>
-					<li><a href="#">Link 10</a></li>
-					<li><a href="#">Link 11</a></li>
-					<li><a href="#">Link 12</a></li>
-					<li><a href="#">Link 13</a></li>
-					<li><a href="#">Link 14</a></li>
-					<li><a href="#">Link 15</a></li>
-					<li><a href="#">Link 7</a></li>
-					<li><a href="#">Link 8</a></li>
-					<li><a href="#">Link 9</a></li>
-					<li><a href="#">Link 10</a></li>
-					<li><a href="#">Link 11</a></li>
-					<li><a href="#">Link 12</a></li>
-					<li><a href="#">Link 13</a></li>
-					<li><a href="#">Link 14</a></li>
-					<li><a href="#">Link 15</a></li>
 				</ul>
 			</nav>
 		</div>
@@ -438,7 +414,10 @@
 	function toggleSidebar(event) {
 		event.preventDefault();
 		const sidebar = document.getElementById("sidebar");
-		if (sidebar) sidebar.classList.toggle("enabled");
+		if (sidebar) {
+			sidebar.classList.toggle("enabled");
+			document.getElementsByTagName("html")[0].classList.toggle("mobile-disabled");
+		}
 	}
 </script>
 
