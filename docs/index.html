@@ -410,7 +410,8 @@
 
 <script>
 
-	document.addEventListener("DOMContentLoaded", () => {
+	function scaleTags () {
+		if (window.innerWidth >= 1250 ) {
 			const posts = document.getElementsByClassName("post");
 			for (var i of posts) {
 				let body = i.getElementsByClassName('post-body')[0];
@@ -418,7 +419,19 @@
 
 				tagList.style.maxHeight = `${body.clientHeight}px`;
 			}
-	});
+		}
+
+	}
+
+	function main() {
+		scaleTags();
+		window.addEventListener("resize", scaleTags)
+	}
+
+	document.addEventListener("DOMContentLoaded", main);
+
+
+
 </script>
 
 <script>
