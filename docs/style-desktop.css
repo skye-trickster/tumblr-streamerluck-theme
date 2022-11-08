@@ -291,11 +291,12 @@
 
 	#sidebar .search input {
 		background-color: grey;
+        font-size: 1.1rem;
 		color: black;
 		width: 100%;
 		border-radius: 3px;
 		border: 1px solid grey;
-		padding: 3px;
+		padding: 5px;
 		text-align: center;
 	}
 
@@ -318,6 +319,10 @@
 
     @media all and (min-width: 1250px) {
         
+        :root {
+            --desktop-sidebar-width: 300px;
+        }
+
         main { margin-top: var(--desktop-nav-height);}
 
         .posts {
@@ -349,7 +354,6 @@
         }
 
         .post-tags {
-            max-height: 100%;
             opacity: 1;
             display: none;
             white-space: initial;

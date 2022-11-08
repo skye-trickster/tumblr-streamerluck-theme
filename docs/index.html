@@ -409,6 +409,19 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script>
+
+	document.addEventListener("DOMContentLoaded", () => {
+			const posts = document.getElementsByClassName("post");
+			for (var i of posts) {
+				let body = i.getElementsByClassName('post-body')[0];
+				let tagList = i.getElementsByClassName('post-tags')[0];
+
+				tagList.style.maxHeight = `${body.clientHeight}px`;
+			}
+	});
+</script>
+
+<script>
 	function toggleSidebar(event) {
 		event.preventDefault();
 		const sidebar = document.getElementById("sidebar");
