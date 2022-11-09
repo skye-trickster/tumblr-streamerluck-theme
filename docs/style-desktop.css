@@ -426,11 +426,7 @@
 			align-items: flex-start;
 		}
 
-		.post:hover .post-tags {
-			display: block;
-			opacity: 1;
-			transition: 1s;
-		}
+
 
 		.post-body {
 			border-radius: 4px;
@@ -443,14 +439,24 @@
 			border-top: 2px solid var(--post-border-color);
 		}
 
-		.post-tags {
+		.post:hover .post-tags {
+			display: block;
 			opacity: 1;
-			display: none;
+			transition: 1s;
+			user-select: auto;
+			pointer-events: auto;
+		}
+
+		.post-tags {
+			opacity: 0;
+			user-select: none;
+			pointer-events: none;
 			white-space: initial;
 			text-align: left;
 			padding: 0;
 			margin: 0;
 			overflow: auto;
+			transition: 1s;
 		}
 
 		.post-tags .tag {
