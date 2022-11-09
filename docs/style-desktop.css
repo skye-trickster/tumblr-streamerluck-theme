@@ -155,7 +155,8 @@
 
 	.main-wrapper {
 		width: 100%;
-		overflow: auto;
+		overflow-y: auto;
+		overflow-x: hidden;
 		height: 100%;
 	}
 
@@ -173,6 +174,8 @@
 
 	.background {
 		background-image: url("./img/background.png");
+		background-size: cover;
+		background-repeat: no-repeat;
 		right: var(--desktop-sidebar-width);
 		bottom: var(--desktop-intro-height);
 		top: var(--desktop-nav-height);
@@ -187,6 +190,7 @@
 		right: calc(var(--desktop-sidebar-width) + 15px);
 		flex-direction: column-reverse;
 		z-index: 20;
+		transition: z-index 3s, opacity 3s;
 	}
 
 	.featured-icon figure {
@@ -197,9 +201,21 @@
 		width: 100%;
 	}
 
+	.featured-icon:hover {
+		z-index: -10;
+		transition: 1s;
+	}
+
+	.featured-icon:hover img {
+		user-select: none;
+		pointer-events: none;
+		opacity: 0.1;
+		transition: opacity 1s
+	}
+
 	.posts {
 		margin: 0;
-		height: 100%;
+		min-height: 100%;
 	}
 
 	/* SIDEBAR */
@@ -374,6 +390,13 @@
 		color: white;
 	}
 
+	@media all and (min-height: 1000px) {
+		:root {
+			--desktop-intro-height: 150px;
+			--desktop-nav-height: 50px;
+		}
+	}
+
 	@media all and (min-width: 1250px) {
 		:root {
 			--desktop-sidebar-width: 300px;
@@ -382,6 +405,14 @@
 		.featured-icon {
 			z-index: -20;
 			right: var(--desktop-sidebar-width);
+		}
+
+		.featured-icon:hover {
+			z-index: -20;
+		}
+	
+		.featured-icon:hover img {
+			opacity: 1;
 		}
 
 		.posts {
