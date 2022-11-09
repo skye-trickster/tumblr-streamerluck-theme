@@ -7,22 +7,14 @@
 		--desktop-wrapper-color: #18181b;
 	}
 
+	html,
 	html.mobile-disabled {
-		overflow: initial;
+		overflow: hidden;
 	}
 
 	body::-webkit-scrollbar {
 		background-color: var(--desktop-wrapper-color);
 		width: 15px;
-	}
-
-	body::-webkit-scrollbar-thumb {
-		background-color: var(--post-border-color);
-	}
-
-	body::-webkit-scrollbar-track {
-		background-color: var(--intro-background-color);
-		width: 5px;
 	}
 
 	/* HEADER INTRO */
@@ -109,6 +101,8 @@
 		height: var(--desktop-nav-height);
 		box-shadow: -2px 2px 2px black;
 		border-bottom: 1px solid black;
+		min-height: var(--desktop-nav-height);
+		z-index: 10;
 	}
 
 	.navigation .bi {
@@ -150,41 +144,69 @@
 	/* MAIN ELEMENT */
 
 	main {
-		padding-bottom: var(--desktop-intro-height);
-        margin-right: var(--desktop-sidebar-width);
+		position: fixed;
+		bottom: var(--desktop-intro-height);
+		right: var(--desktop-sidebar-width);
+		overflow-y: auto;
+		top: var(--desktop-nav-height);
+		left: 0;
+		padding-top: 0;
+	}
+
+	.main-wrapper {
+		width: 100%;
+		overflow: auto;
+		height: 100%;
+	}
+
+	.main-wrapper::-webkit-scrollbar {
+		width: 10px;
+		background-color: rgba(0, 0, 0, 0.2);
+	}
+
+	.main-wrapper::-webkit-scrollbar-thumb {
+		background-color: var(--post-border-color);
+		box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+		border-radius: 2px;
+		width: 100%;
 	}
 
 	.background {
 		background-image: url("./img/background.png");
 		right: var(--desktop-sidebar-width);
 		bottom: var(--desktop-intro-height);
+		top: var(--desktop-nav-height);
 	}
 
-    .featured-icon {
-        display: flex;
-        width: 25vw;
-        max-width: 300px;
-        position: fixed;
-        bottom: var(--desktop-intro-height);
-        right: var(--desktop-sidebar-width);
-        flex-direction: column-reverse;
-    }
+	.featured-icon {
+		display: flex;
+		width: 25vw;
+		max-width: 300px;
+		position: fixed;
+		bottom: var(--desktop-intro-height);
+		right: calc(var(--desktop-sidebar-width) + 15px);
+		flex-direction: column-reverse;
+		z-index: 20;
+	}
 
-    .featured-icon figure {
-        display: flex;
-    }
+	.featured-icon figure {
+		display: flex;
+	}
 
-    .featured-icon img { width: 100%; }
+	.featured-icon img {
+		width: 100%;
+	}
 
 	.posts {
-		margin-bottom: 0;
+		margin: 0;
+		height: 100%;
 	}
 
 	/* SIDEBAR */
 	#sidebar {
 		display: flex;
 		position: fixed;
-		top: 50px;
+		top: var(--desktop-nav-height);
 		right: 0;
 		bottom: 0;
 		left: initial;
@@ -326,7 +348,7 @@
 
 	#sidebar .search input {
 		background-color: grey;
-        font-size: 1.1rem;
+		font-size: 1.1rem;
 		color: black;
 		width: 100%;
 		border-radius: 3px;
@@ -352,55 +374,57 @@
 		color: white;
 	}
 
-    @media all and (min-width: 1250px) {
-        
-        :root {
-            --desktop-sidebar-width: 300px;
-        }
+	@media all and (min-width: 1250px) {
+		:root {
+			--desktop-sidebar-width: 300px;
+		}
 
-        main { margin-top: var(--desktop-nav-height);}
+		.featured-icon {
+			z-index: -20;
+			right: var(--desktop-sidebar-width);
+		}
 
-        .posts {
-            width: 1000px;
-            margin: auto;
-            padding-top: 2vh;
-        }
+		.posts {
+			width: 1000px;
+			margin: auto;
+			padding-top: 2vh;
+		}
 
-        .post { 
-            display: flex; 
-            align-items: flex-start;
-        }
+		.post {
+			display: flex;
+			align-items: flex-start;
+		}
 
-        .post:hover .post-tags {
-            display: block;
-            opacity: 1;
-            transition: 1s;
-        }
+		.post:hover .post-tags {
+			display: block;
+			opacity: 1;
+			transition: 1s;
+		}
 
-        .post-body {
-            border-radius: 4px;
-            border: 2px solid var(--post-border-color);
-            width: 700px;
-            margin-right: 15px;
-        }
+		.post-body {
+			border-radius: 4px;
+			border: 2px solid var(--post-border-color);
+			width: 700px;
+			margin-right: 15px;
+		}
 
-        .post:first-child .post-body {
-            border-top: 2px solid var(--post-border-color);
-        }
+		.post:first-child .post-body {
+			border-top: 2px solid var(--post-border-color);
+		}
 
-        .post-tags {
-            opacity: 1;
-            display: none;
-            white-space: initial;
-            text-align: left;
-            padding: 0;
-            margin: 0;
-            overflow: auto;
-        }
+		.post-tags {
+			opacity: 1;
+			display: none;
+			white-space: initial;
+			text-align: left;
+			padding: 0;
+			margin: 0;
+			overflow: auto;
+		}
 
-        .post-tags .tag {
-            display: block;
-            padding-bottom: 5px;
-        }
-    }
+		.post-tags .tag {
+			display: block;
+			padding-bottom: 5px;
+		}
+	}
 }
