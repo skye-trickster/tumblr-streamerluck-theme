@@ -207,6 +207,7 @@
 	}
 
 	.featured-icon:hover img {
+		-webkit-user-select: none;
 		user-select: none;
 		pointer-events: none;
 		opacity: 0.1;
@@ -216,6 +217,10 @@
 	.posts {
 		margin: 0;
 		min-height: 100%;
+	}
+
+	.post:first-child > .post-body {
+		border-top: 1px solid var(--post-border-color);
 	}
 
 	/* SIDEBAR */
@@ -435,7 +440,7 @@
 			margin-right: 15px;
 		}
 
-		.post:first-child .post-body {
+		.post:first-child > .post-body {
 			border-top: 2px solid var(--post-border-color);
 		}
 
@@ -443,12 +448,14 @@
 			display: block;
 			opacity: 1;
 			transition: 1s;
+			-webkit-user-select: auto;
 			user-select: auto;
 			pointer-events: auto;
 		}
 
 		.post-tags {
 			opacity: 0;
+			-webkit-user-select: none;
 			user-select: none;
 			pointer-events: none;
 			white-space: initial;

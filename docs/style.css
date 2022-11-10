@@ -157,7 +157,7 @@ html.mobile-disabled {
 }
 
 .featured-icon {
-    display: none;
+	display: none;
 }
 
 .posts {
@@ -180,18 +180,94 @@ html.mobile-disabled {
 	border-top: none;
 }
 
+.post-body .title {
+	margin-top: 3px;
+	text-align: center;
+	text-shadow: -2px 2px black;
+	font-size: 2rem;
+}
+
+/* REBLOG STYLING  */
+.reblog-item {
+	border-bottom: 1px solid var(--post-border-color);
+}
+
+.reblog-item:last-child {
+	border-bottom: none;
+}
+
+.post.reblog .post-content {
+	display: none;
+}
+
+.post-reblog-header {
+	border-bottom: 1px solid rgba(128, 128, 128, 0.4);
+	padding: 10px 0;
+}
+
+.post-reblog-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.reblog-avatar {
+	display: inline;
+	height: 30px;
+}
+
+.reblog-avatar img {
+	height: 100%;
+	border-radius: 15px;
+	box-shadow: -2px 2px 2px black;
+}
+
+.reblog-username {
+	margin-left: 10px;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 1.5em;
+	text-shadow: -2px 2px 2px black;
+}
+
+.post.reblog .reblog-list .post-content {
+	display: block;
+}
+
+/* TEXT POST CONTENT */
+
 .post-content {
 	padding: 5px 10px 15px 10px;
 }
 
 .post-content > * {
-	margin-bottom: 7px;
+	margin-top: 7px;
+}
+
+.post-content h2 {
+	font-weight: normal;
+}
+
+.post-content ul {
+	list-style: disc inside;
+}
+
+.post-content ol {
+	list-style: decimal inside;
+}
+
+.post-content blockquote {
+	border-left: 3px solid #eee;
+	margin: 1em 0;
+	padding-left: 15px;
+	padding-right: 10px;
 }
 
 .post-content figure img {
 	border: 1px solid var(--post-border-color);
 }
 
+/* POST FOOTER */
 .post-footer {
 	background-color: var(--post-footer-color);
 	display: flex;
@@ -199,6 +275,12 @@ html.mobile-disabled {
 	align-items: center;
 	font-weight: bold;
 	padding: 5px;
+}
+
+.post-footer .reblog-from,
+.post-footer .reblog-from a {
+	color: white;
+	display: inline;
 }
 
 .post-meta {
@@ -230,7 +312,9 @@ html.mobile-disabled {
 	display: none;
 }
 
-.tag { display: inline-block; }
+.tag {
+	display: inline-block;
+}
 
 .tag a {
 	background-color: var(--tag-background-color);
