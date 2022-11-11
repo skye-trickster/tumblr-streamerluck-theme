@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+    
     if (localStorage.getItem('dark') === null) {
         localStorage.setItem('dark', true);
     }
@@ -8,7 +8,7 @@ $(document).ready(function() {
 
 
     function setMode(lightMode) {
-        $(".scheme").text(lightMode ? "light_mode" : "dark_mode");
+        $(".scheme div").text(lightMode ? "light_mode" : "dark_mode");
         $(":root").toggleClass("light-mode", lightMode);
     }
 

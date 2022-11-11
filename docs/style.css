@@ -1,28 +1,78 @@
 :root {
 	--background-color: #441d6e;
-	--text-color: white;
+	--text-color: white; /* Unused right now */
+	--text-shadow-color: black;
+	--blockquote-color: #eeeeee;
+
 	--intro-background-color: #0e0e10;
-	--header-nav-color: #18181b;
+
+	--link-color: #ffff00;
+	--link-blend-color: white;
+	--link-hover-color: #cc0;
+
+	--action-link-color: var(--link-color);
+	--action-link-hover-color: var(--link-hover-color);
+
 	--post-background-color: #362176;
 	--post-color: white;
 	--post-border-color: #ff7ed0;
-	--link-color: #ffff00;
-	--link-hover-color: #cccc00;
 	--post-footer-color: #2b069a;
+	--reblog-header-border-color: rgba(128, 128, 128, 0.4);
+	--reblog-avatar-shadow-color: black;
+
 	--tag-background-color: #333333;
-	--follow-button-color: #ffff00;
-	--blockquote-color: #eeeeee;
+	--tag-background-color-hover: black;
+	--tag-shadow-color: black;
+	
+	--sidebar-background-color: rgba(0, 0, 0, 0.5);
+	--sidebar-wrapper-background-color: #333;
+	--side-link-color: #eee;
+	--sidebar-link-shadow: black;
+	--sidebar-link-background-color: #666;
+	--sidebar-border-color: black;
+
 	--avatar-border-color: white;
 	--avatar-border: 3px solid var(--avatar-border-color);
-	--disable-color: grey;
 
+	--header-nav-color: #18181b; /* Unused right now */
 	--mobile-header-height: 50px;
 	--mobile-nav-height: 60px;
 }
 
 :root.light-mode{
-	--post-background-color: white;
+	--background-color: #cdb4db;
+	--text-color: black; /* Unused right now */
+	--text-shadow-color: transparent;
+	--blockquote-color: #333;
+
+	--intro-background-color: #ffafcc;
+
+	--link-color: #00d;
+	--link-blend-color: black;
+	--link-hover-color: #000033;
+
+	--action-link-color: yellow;
+	--action-link-hover-color: white;
+	
+	--post-background-color: #ffc8dd;
 	--post-color: black;
+	--post-border-color: #a2d2ff;
+	--post-footer-color: #bde0fe;
+	--reblog-header-border-color: rgba(0, 0, 0, 0.4);
+	--reblog-avatar-shadow-color: black;
+
+	--tag-background-color: yellow;
+	--tag-background-color-hover: white;
+	--tag-shadow-color: black;
+
+	--sidebar-background-color: rgba(0, 0, 0, 0.5);
+	--sidebar-wrapper-background-color: #ffc8dd;
+	--side-link-color: #222;
+	--sidebar-link-shadow: transparent;
+	--sidebar-link-background-color: #fff;
+	--sidebar-border-color: #a9259d;
+
+	--avatar-border-color: #333;
 }
 
 .material-icons {
@@ -134,7 +184,7 @@ html.mobile-disabled {
 	align-items: center;
 	justify-content: center;
 	text-decoration: none;
-	color: var(--text-color);
+	color: var(--link-blend-color);
 }
 
 .navigation li a:hover {
@@ -147,6 +197,22 @@ html.mobile-disabled {
 }
 
 /* ELEMENTS HIDING ON MOBILE */
+
+.actions > a:hover {
+	cursor: pointer;
+	-webkit-user-select: none;
+	user-select: none;
+}
+
+.actions .material-icons {
+	color: var(--action-link-color);
+}
+
+.actions .material-icons:hover {
+	color: var(--action-link-hover-color);
+	transition: 1s;
+}
+
 
 .tagline,
 .auxillary,
@@ -194,7 +260,7 @@ html.mobile-disabled {
 .post-body .title {
 	margin-top: 3px;
 	text-align: center;
-	text-shadow: -2px 2px black;
+	text-shadow: -2px 2px var(--text-shadow-color);
 	font-size: 2rem;
 }
 
@@ -212,7 +278,7 @@ html.mobile-disabled {
 }
 
 .post-reblog-header {
-	border-bottom: 1px solid rgba(128, 128, 128, 0.4);
+	border-bottom: 1px solid var(--reblog-header-border-color);
 	padding: 10px 0;
 	margin: 0 5%;
 }
@@ -231,15 +297,15 @@ html.mobile-disabled {
 .reblog-avatar img {
 	height: 100%;
 	border-radius: 15px;
-	box-shadow: -2px 2px 2px black;
+	box-shadow: -2px 2px 2px var(--reblog-avatar-shadow-color);
 }
 
 .reblog-username {
 	margin-left: 10px;
 	text-transform: uppercase;
 	font-weight: bold;
-	font-size: 1.5em;
-	text-shadow: -2px 2px 2px black;
+	font-size: 1.6em;
+	text-shadow: -2px 2px 2px var(--text-shadow-color);
 }
 
 .post.reblog .reblog-list .post-content {
@@ -307,7 +373,7 @@ html.mobile-disabled {
 
 .post-footer .reblog-from,
 .post-footer .reblog-from a {
-	color: white;
+	color: var(--link-blend-color);
 	display: inline;
 }
 
@@ -321,11 +387,16 @@ html.mobile-disabled {
 }
 
 .post-notes {
-	color: white;
+	color: var(--link-blend-color);
 }
 
 .post-notes:hover {
 	color: var(--link-color);
+}
+
+.post-reblog {
+	display: inline;
+	font-size: 1em;
 }
 
 .post-tags {
@@ -352,7 +423,7 @@ html.mobile-disabled {
 	border-radius: 24px;
 	font-size: 1em;
 	margin-left: 10px;
-	box-shadow: 0 2px 2px black;
+	box-shadow: 0 2px 2px var(--tag-shadow-color);
 }
 
 .tag a:first-child {
@@ -360,14 +431,14 @@ html.mobile-disabled {
 }
 
 .tag a:hover {
-	background-color: black;
-	color: yellow;
+	background-color: var(--tag-background-color-hover);
+	color: var(--link-color);
 }
 
 /* SIDEBAR */
 #sidebar {
 	display: none;
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: var(--sidebar-background-color);
 	top: var(--mobile-header-height);
 	left: 0;
 	right: 0;
@@ -383,7 +454,7 @@ html.mobile-disabled {
 }
 
 #sidebar > .wrapper {
-	background-color: var(--tag-background-color);
+	background-color: var(--sidebar-wrapper-background-color);
 	overflow: hidden;
 	width: 100%;
 }
@@ -398,18 +469,13 @@ html.mobile-disabled {
 	display: flex;
 	flex-direction: row;
 	width: 100%;
-	border-top: 2px solid black;
+	border-top: 2px solid var(--sidebar-border-color);
 	align-items: center;
 	justify-content: space-between;
 }
 
 #sidebar nav h3 {
 	display: none;
-	text-transform: uppercase;
-	text-align: center;
-	border-right: 1px solid black;
-	padding-right: 5px;
-	font-size: 1.5em;
 }
 
 #sidebar nav ul {
@@ -427,6 +493,7 @@ html.mobile-disabled {
 	padding-right: 10px;
 	min-height: 0;
 	min-width: 0;
+
 }
 
 #sidebar nav li:last-child {
@@ -438,24 +505,18 @@ html.mobile-disabled {
 	padding: 4px;
 	font-size: 1.4em;
 	font-weight: bold;
-	color: #eee;
-	text-shadow: -2px 3px 3px black;
+	color: var(--side-link-color);
+	text-shadow: -2px 3px 3px var(--sidebar-link-shadow);
 }
 
 #sidebar nav li a:hover {
-	background-color: #666;
+
+	background-color: var(--sidebar-link-background-color);
 	cursor: pointer;
 }
 
 .search {
 	display: none;
-}
-
-.disabled {
-	color: var(--disable-color);
-	cursor: default;
-	pointer-events: none;
-	text-decoration: none;
 }
 
 @media screen and (min-width: 600px) {

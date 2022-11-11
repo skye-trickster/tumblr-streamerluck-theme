@@ -1,3 +1,15 @@
+:root {
+    --ask-border-color: black;
+    --ask-background-color: black;
+    --ask-barrier-color: grey;
+}
+
+:root.light-mode {
+    --ask-border-color: #a9259d;
+    --ask-background-color: #ffafcc;
+    --ask-barrier-color: #a9259d;
+}
+
 .post-question .post-body {
     padding-top: 5px;
 }
@@ -27,8 +39,9 @@
 }
 
 .asker-content, .answer-content {
-    background-color: black;
+    background-color: var(--ask-background-color);
     width: 100%;
+    border: 2px solid var(--ask-border-color);
 }
 
 .asker-content, .answer-content {
@@ -46,7 +59,7 @@
 	width: 0;
 	height: 0;
 	border: 10px solid transparent;
-	border-right-color: black;
+	border-right-color: var(--ask-border-color);
 	border-left: 0;
 	margin-top: -10px;
 	margin-left: -10px;
@@ -60,7 +73,7 @@
     width: 0;
     height: 0;
     border: 10px solid transparent;
-    border-left-color: black;
+    border-left-color: var(--ask-border-color);
     border-right: 0;
     margin-top: -10px;
     margin-right: -10px;
@@ -70,7 +83,7 @@
     text-transform: uppercase;
     font-weight: bold;
     font-size: 1.3em;
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid var(--ask-barrier-color);
     padding: 5px 0;
     text-align: center;
     margin-bottom: 5px;
