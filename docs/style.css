@@ -11,12 +11,22 @@
 	--post-footer-color: #2b069a;
 	--tag-background-color: #333333;
 	--follow-button-color: #ffff00;
+	--blockquote-color: #eeeeee;
 	--avatar-border-color: white;
 	--avatar-border: 3px solid var(--avatar-border-color);
 	--disable-color: grey;
 
 	--mobile-header-height: 50px;
-	--mobile-nav-height: 50px;
+	--mobile-nav-height: 60px;
+}
+
+:root.light-mode{
+	--post-background-color: white;
+	--post-color: black;
+}
+
+.material-icons {
+	font-size: 2em;
 }
 
 * {
@@ -37,7 +47,7 @@ a:hover {
 }
 
 html {
-	color: white;
+	color: var(--post-color);
 	background-size: 100%;
 	background-color: var(--background-color);
 }
@@ -74,6 +84,7 @@ html.mobile-disabled {
 	left: 0px;
 	right: 0px;
 	height: var(--mobile-header-height);
+	z-index: 100;
 }
 
 .header-image {
@@ -102,6 +113,7 @@ html.mobile-disabled {
 	right: 0px;
 	min-height: var(--mobile-nav-height);
 	height: var(--mobile-nav-height);
+	z-index: 100;
 }
 
 .navigation > ul {
@@ -138,7 +150,6 @@ html.mobile-disabled {
 
 .tagline,
 .auxillary,
-.scheme,
 .follow {
 	display: none;
 }
@@ -258,7 +269,7 @@ html.mobile-disabled {
 }
 
 .post-content blockquote {
-	border-left: 3px solid #eee;
+	border-left: 3px solid var(--blockquote-color);
 	margin: 1em 0;
 	padding-left: 15px;
 	padding-right: 10px;
@@ -368,6 +379,7 @@ html.mobile-disabled {
 	justify-content: center;
 	align-items: flex-end;
 	position: fixed;
+	z-index: 50;
 }
 
 #sidebar > .wrapper {
@@ -401,7 +413,7 @@ html.mobile-disabled {
 }
 
 #sidebar nav ul {
-	overflow-x: scroll;
+	overflow-x: auto;
 	overflow-y: hidden;
 	padding: 0 10px;
 	white-space: nowrap;

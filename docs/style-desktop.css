@@ -6,6 +6,9 @@
 		--desktop-nav-height: 5vh;
 		--desktop-wrapper-color: #18181b;
 	}
+	.material-icons {
+		font-size: 1em;
+	}
 
 	html,
 	html.mobile-disabled {
