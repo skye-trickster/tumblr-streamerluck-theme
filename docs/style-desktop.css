@@ -380,6 +380,20 @@
 		padding: 5px;
 	}
 
+	#sidebar .updates {
+		display: block;
+		border-top: 2px solid var(--side-border-color);
+		padding: 5px;
+	}
+
+	.update-title {
+		text-align: center;
+		margin-bottom: 10px;
+		padding-bottom: 5px;
+		font-size: 1.2em;
+		border-bottom: 1px solid var(--side-border-color);
+	}
+
 	#sidebar nav {
 		padding: 5px 0;
 		display: flex;
