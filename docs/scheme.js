@@ -18,4 +18,18 @@ $(document).ready(function () {
 		setMode(!darkDefault);
 		localStorage.setItem("dark", darkDefault);
 	});
+
+    const tags = `
+        muse zinnia, 
+        muse rayquaza, 
+        muse latias
+    `;
+    const tagList = tags.split(',').map(x => x.trim());
+    tagList.forEach(function(tag) {
+        $(".taglist-common").append(`
+            <div class="tag">
+                <a href="#">${tag}</a>
+            </div>
+        `)
+    })
 });

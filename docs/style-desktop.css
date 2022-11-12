@@ -87,6 +87,7 @@
 		flex-direction: column;
 		justify-content: center;
 
+		min-width: 0;
 		height: 100%;
 		padding: 10px;
 		flex-basis: 100%;
@@ -111,8 +112,14 @@
 	}
 
 	.auxillary {
-		display: block;
+		display: inline;
+		white-space: nowrap;
 		width: 100%;
+	}
+
+	.aux-wrapper {
+		display:flex;
+		align-items: center;
 	}
 
 	.player {
@@ -124,6 +131,11 @@
 		display: inline-block;
 	}
 
+	.taglist-common {
+		overflow-x: auto;
+		min-height: 2em;
+	}
+
 	.taglist-common .tag {
 		margin: 0;
 	}
@@ -132,7 +144,6 @@
 		display: flex;
 		align-items: center;
 		height: 100%;
-		padding-right: 1%;
 	}
 
 	.actions > *[role="button"]:hover {
@@ -462,6 +473,17 @@
 		font-size: 1.1rem;
 		color: var(--sidebar-link-color);
 		text-shadow: none;
+	}
+
+	#sidebar .categories ul {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-evenly;
+	}
+
+	/* TWO COLUMNS */ 
+	#sidebar .categories ul li {
+		flex-basis: 50%;
 	}
 
 	#sidebar .side-links {
