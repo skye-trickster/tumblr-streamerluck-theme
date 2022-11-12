@@ -32,7 +32,7 @@
 	--sidebar-border-color: black;
 
 	--avatar-border-color: white;
-	--avatar-border: 3px solid var(--avatar-border-color);
+	--avatar-border: 2px solid var(--avatar-border-color);
 
 	--header-nav-color: #18181b; /* Unused right now */
 	--mobile-header-height: 50px;
@@ -42,12 +42,12 @@
 :root.light-mode{
 	--background-color: #cdb4db;
 	--text-color: black; /* Unused right now */
-	--text-shadow-color: transparent;
+	--text-shadow-color: #bbb;
 	--blockquote-color: #333;
 
 	--intro-background-color: #ffafcc;
 
-	--link-color: #00d;
+	--link-color: #4D36C4;
 	--link-blend-color: black;
 	--link-hover-color: #000033;
 
@@ -68,7 +68,7 @@
 	--sidebar-background-color: rgba(0, 0, 0, 0.5);
 	--sidebar-wrapper-background-color: #ffc8dd;
 	--side-link-color: #222;
-	--sidebar-link-shadow: transparent;
+	--sidebar-link-shadow: #bbb;
 	--sidebar-link-background-color: #fff;
 	--sidebar-border-color: #a9259d;
 
@@ -93,14 +93,35 @@ a {
 
 a:hover {
 	color: var(--link-hover-color);
+	text-decoration: underline;
 	transition: 1s;
 }
 
 html {
 	color: var(--post-color);
 	background-size: 100%;
-	background-color: var(--background-color);
+	background-color: none;
 }
+
+html {
+	visibility: hidden;
+}
+
+main { 
+	opacity: 0; 
+}
+
+.loaded main {
+	opacity: 1;
+	transition: opacity 1s;
+}
+
+html.loaded {
+	visibility: visible;
+	background-color: var(--background-color);
+	transition: background-color 1s;
+}
+
 
 html.mobile-disabled {
 	overflow: hidden;
@@ -109,6 +130,10 @@ html.mobile-disabled {
 .intro-info {
 	width: 100%;
 	padding: 0 10px;
+}
+
+.player {
+	font-weight: bold;
 }
 
 /* HEADLINE */
@@ -197,6 +222,11 @@ html.mobile-disabled {
 }
 
 /* ELEMENTS HIDING ON MOBILE */
+
+.actions > * {
+	background: none;
+	border: none;
+}
 
 .actions > a:hover {
 	cursor: pointer;
@@ -433,6 +463,7 @@ html.mobile-disabled {
 .tag a:hover {
 	background-color: var(--tag-background-color-hover);
 	color: var(--link-color);
+	text-decoration: none;
 }
 
 /* SIDEBAR */
@@ -511,7 +542,7 @@ html.mobile-disabled {
 }
 
 #sidebar nav li a:hover {
-
+	text-decoration: none;
 	background-color: var(--sidebar-link-background-color);
 	cursor: pointer;
 }

@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    
+    $("html").addClass('loaded');
     if (localStorage.getItem('dark') === null) {
         localStorage.setItem('dark', true);
     }
@@ -19,4 +19,13 @@ $(document).ready(function() {
         setMode(!darkDefault);
         localStorage.setItem('dark', darkDefault)
     })
+/*
+    // TODO: delete this.
+    $(".follow").click(function() {
+        $(":root").toggleClass('side-flip');
+    })
+
+    $(".credit").click(function() {
+        $(":root").toggleClass('post-flip');
+    })*/
 });
