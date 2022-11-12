@@ -148,6 +148,15 @@ html.mobile-disabled {
 	margin: auto;
 }
 
+.headline .title a {
+	color: inherit;
+
+}
+
+.headline .title a:hover {
+	text-decoration: none;
+}
+
 .header-intro {
 	background-color: var(--intro-background-color);
 	display: flex;
