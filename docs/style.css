@@ -23,7 +23,7 @@
 	--tag-background-color: #333333;
 	--tag-background-color-hover: black;
 	--tag-shadow-color: black;
-	
+
 	--sidebar-background-color: rgba(0, 0, 0, 0.5);
 	--sidebar-wrapper-background-color: #333;
 	--side-link-color: #eee;
@@ -39,7 +39,7 @@
 	--mobile-nav-height: 60px;
 }
 
-:root.light-mode{
+:root.light-mode {
 	--background-color: #cdb4db;
 	--text-color: black; /* Unused right now */
 	--text-shadow-color: #bbb;
@@ -47,13 +47,13 @@
 
 	--intro-background-color: #ffafcc;
 
-	--link-color: #4D36C4;
+	--link-color: #4d36c4;
 	--link-blend-color: black;
 	--link-hover-color: #000033;
 
 	--action-link-color: yellow;
 	--action-link-hover-color: white;
-	
+
 	--post-background-color: #ffc8dd;
 	--post-color: black;
 	--post-border-color: #a2d2ff;
@@ -107,8 +107,8 @@ html {
 	visibility: hidden;
 }
 
-main { 
-	opacity: 0; 
+main {
+	opacity: 0;
 }
 
 .loaded main {
@@ -122,6 +122,9 @@ html.loaded {
 	transition: background-color 1s;
 }
 
+html.no-scroll {
+	overflow: hidden;
+}
 
 html.mobile-disabled {
 	overflow: hidden;
@@ -150,7 +153,6 @@ html.mobile-disabled {
 
 .headline .title a {
 	color: inherit;
-
 }
 
 .headline .title a:hover {
@@ -251,7 +253,6 @@ html.mobile-disabled {
 	color: var(--action-link-hover-color);
 	transition: 1s;
 }
-
 
 .tagline,
 .auxillary,
@@ -400,6 +401,24 @@ html.mobile-disabled {
 	width: 100%;
 }
 
+.showing {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.4);
+	z-index: 1000;
+}
+
+.showing img {
+	max-width: 100%;
+	border: 2px solid var(--post-border-color);
+}
+
 /* POST FOOTER */
 .post-footer {
 	background-color: var(--post-footer-color);
@@ -534,7 +553,6 @@ html.mobile-disabled {
 	padding-right: 10px;
 	min-height: 0;
 	min-width: 0;
-
 }
 
 #sidebar nav li:last-child {
