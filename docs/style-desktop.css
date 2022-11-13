@@ -349,6 +349,34 @@
 		border-top: 1px solid var(--post-background-color);
 	}
 
+	.pages-mobile {
+		margin-right: 25vw;
+		margin-top: 15px;
+		padding-bottom: 0;
+	}
+
+	.pages-wrapper {
+		justify-content: space-evenly;
+		align-items: stretch;
+		padding: 0 10px;
+	}
+
+	.pages-wrapper .pagination {
+		align-items: center;
+	}
+
+	.pages-wrapper .page-back, .pages-wrapper .page-next {
+		display: none;
+	}
+
+	.pages-wrapper .page-number {
+		display: block;
+	}
+
+	.fast-forward, .fast-reverse {
+		display: block;
+	}
+
 	/* SIDEBAR */
 	#sidebar,
 	#sidebar.enabled {
@@ -645,6 +673,20 @@
 		.post-tags .tag {
 			display: block;
 			padding-bottom: 5px;
+		}
+
+		.pages-mobile {
+			width: 1000px;
+			margin: auto;
+			padding: 0;
+		}
+
+		.pages-wrapper {
+			width: 700px;
+		}
+		
+		.pages-wrapper .page-back, .pages-wrapper .page-next {
+			display: block;
 		}
 	}
 }
