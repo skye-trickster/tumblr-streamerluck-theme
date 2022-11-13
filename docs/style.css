@@ -295,11 +295,54 @@ html.mobile-disabled {
 	margin-bottom: 15px;
 }
 
-.post-body {
+.post-body,
+.note-wrapper {
 	background-color: var(--post-background-color);
 	border-top: 3px solid var(--post-border-color);
 	border-bottom: 3px solid var(--post-border-color);
 	box-shadow: 0px 3px 3px black;
+}
+
+.note-info {
+	margin-bottom: var(--mobile-nav-height);
+	padding-bottom: 15px;
+}
+
+.note-count {
+	display: block;
+	text-align: center;
+	padding: 10px 5px;
+	background-color: var(--intro-background-color);
+	font-size: 1.3em;
+	font-weight: bold;
+}
+
+.notes {
+	padding: 10px 5px;
+	list-style: none;
+}
+
+.note {
+	display: flex;
+	align-items: center;
+	margin-bottom: 5px;
+}
+
+.note:last-child {
+	margin-bottom: 0;
+}
+
+.avatar_frame {
+	width: 64px;
+	margin-right: 10px;
+}
+
+.avatar {
+	width: 100%;
+}
+
+.hidden {
+	display: none;
 }
 
 .post:first-child > .post-body {
@@ -444,8 +487,9 @@ html.mobile-disabled {
 	justify-content: flex-start;
 }
 
-.post-footer .post-info .pinned {
+.pinned {
 	margin-right: 5px;
+	font-size: 1em;
 }
 
 .post-footer .reblog-from,
@@ -513,6 +557,10 @@ html.mobile-disabled {
 	text-decoration: none;
 }
 
+.pagination:hover {
+	text-decoration: none;
+}
+
 .pages-mobile {
 	padding-bottom: var(--mobile-nav-height);
 }
@@ -533,13 +581,23 @@ html.mobile-disabled {
 	color: var(--text-color);
 	padding: 5px 10px;
 	box-shadow: 0px 2px 2px black;
+	transition: 0s;
 }
 
-.pages-wrapper .pagination:hover {
-	text-decoration: none;
+.pages-wrapper .pagination:active {
+	background-color: var(--post-border-color);
+	color: var(--link-color);
+	transition: 0s;
 }
 
-.pages-wrapper .pagination .first, .pages-wrapper .pagination .last, .pages-wrapper .pagination .current {
+.pages-wrapper .pagination.page-number:active {
+	background-color: var(--post-background-color);
+	color: var(--text-color);
+}
+
+.pages-wrapper .pagination .first,
+.pages-wrapper .pagination .last,
+.pages-wrapper .pagination .current {
 	display: inline-block;
 }
 
@@ -547,7 +605,8 @@ html.mobile-disabled {
 	font-size: 1em;
 }
 
-.fast-forward, .fast-reverse {
+.fast-forward,
+.fast-reverse {
 	display: none;
 }
 
