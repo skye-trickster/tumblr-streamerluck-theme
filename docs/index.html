@@ -687,14 +687,9 @@
 
 <script>
 	function toggleSidebar(event) {
-		event.preventDefault();
-		const sidebar = document.getElementById("sidebar");
-		if (sidebar) {
-			sidebar.classList.toggle("enabled");
-			document
-				.getElementsByTagName("html")[0]
-				.classList.toggle("mobile-disabled");
-		}
+		const enabled = $("#sidebar").hasClass("enabled")
+		$("#sidebar").toggleClass("enabled", !enabled);
+		$("html").toggleClass("mobile-disabled", !enabled);
 	}
 </script>
 
