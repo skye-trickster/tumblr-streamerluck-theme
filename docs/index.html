@@ -37,6 +37,41 @@
 	<link rel="stylesheet" type="text/css" media="all" href="style-side-left.css" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" />
 
+	<style>
+
+		.slideshow {
+			display: flex;
+			max-width: 500px;
+			flex-direction: column;
+		}
+
+		.slideshow .row {
+			display: flex;
+			margin-top: 5px;
+		}
+
+		.slideshow .row:first-child{
+			margin-top: 0;
+		}
+
+		.slideshow .row .image {
+			width: 100%;
+			display: flex;
+			margin-left: 5px;
+		}
+
+		.slideshow .row .image:first-child {
+			margin-left: 0;
+		}
+
+		.slideshow img {
+			width: 100%;
+			object-fit: cover;
+		}
+
+
+	</style>
+
 	<!-- /LINKS -->
 </head>
 
@@ -116,6 +151,76 @@
 	<main>
 		<div class="main-wrapper">
 			<div class="posts">
+
+				<article class="post post-photo">
+					<div class="post-body">
+						<div class="photoset">
+							<div 
+								class="slideshow"
+								data-layout="231"
+							>
+								<figure class="image" data-test="1">
+									<img 
+										loading="lazy" 
+										alt="Caption 1"
+										src="https://64.media.tumblr.com/7f9ee9b5455d4e234dec92dc690d27f5/6037aed5af7069bf-32/s100x200/d106ae0a99a3797eee6ecc5e5f661dd9b7377602.png"
+									>
+								</figure>
+								<figure class="image">
+									<img 
+										loading="lazy" 
+										alt="Caption 2"
+										src="https://64.media.tumblr.com/f781289b43372d7e551dcc616b8b2803/b63da43d5930b8e5-74/s250x400/f07a9f47cb69d77c40d6edc9ee1cd84dae544afd.gif"
+									>
+								</figure>
+								<figure class="image">
+									<img 
+										loading="lazy" 
+										alt="Caption 3"
+										src="https://64.media.tumblr.com/35eb1bab97626b6ff4da48dd533c2097/6037aed5af7069bf-a7/s100x200/7be8f444b4f091b2fe367526b70f3141ba42c8a3.png"
+									>
+								</figure>
+								<figure class="image">
+									<img 
+										loading="lazy" 
+										alt="Caption 4"
+										src="https://64.media.tumblr.com/4d9174bacd0e28f683d74ef4cef780e4/6037aed5af7069bf-16/s100x200/5d45333221484353c79ab464b69bfbc937dfd5d6.png"
+									>
+								</figure>
+								<figure class="image">
+									<img 
+										loading="lazy" 
+										alt="Caption 5"
+										src="https://64.media.tumblr.com/d371c75958c26a03907c42eae17efb23/6037aed5af7069bf-2e/s100x200/478457cfb386650e994a208415da1fc9d78efa05.png"
+									>
+								</figure>
+								<figure class="image">
+									<img 
+										loading="lazy" 
+										alt="Caption 6"
+										src="img/iono_sprite.gif"
+									>
+								</figure>
+							</div>
+						</div>
+						<div class="post-footer">
+							<div>Posted: <a href="#">23 Oct 2022</a></div>
+							<div class="post-meta">
+								<a href="#" class="post-notes">69</a>
+								<a href="#" class="post-reblog material-icons">loop</a>
+							</div>
+						</div>
+					</div>
+					<div class="post-tags">
+						<div class="tag">
+							<a href="#">photo</a>
+						</div>
+						<div class="tag">
+							<a href="#">self promo</a>
+						</div>
+					</div>
+				</article>
+
 				<article class="post post-question">
 					<div class="post-body">
 						<div class="ask-header">
@@ -691,6 +796,41 @@
 		$("#sidebar").toggleClass("enabled", !enabled);
 		$("html").toggleClass("mobile-disabled", !enabled);
 	}
+</script>
+
+<script>
+	$(document).ready(function () {
+		$(".slideshow").each(function(e) {
+			const show = $(this)
+
+			function addRow(columns) {
+				const d = $("<div></div>").appendTo(show).addClass(`row-${columns}`).addClass("row");
+				return d;
+			}
+			
+			const layout = JSON.stringify(show.data("layout")).split("").map(x => parseInt(x));
+			let row = 0, column = 0;
+			let div = addRow(layout[row])
+			$(this).children(".image").each(function(e) {
+				if (column >= layout[row]) {
+					div = addRow(layout[++row]);
+					column = 0;
+				}
+
+				$(this).appendTo(div);
+				column++;
+			})
+		})
+
+		$('.slideshow img').click(function(e) {
+			const imageList = $(this).closest( '.slideshow' ).find( 'img' )
+
+			const t = imageList.map(function(e) {
+				return {alt: $(this).attr('alt')}
+			})
+			console.log(t);
+		})
+	})
 </script>
 
 <noscript>This page requires JavaScript.</noscript>

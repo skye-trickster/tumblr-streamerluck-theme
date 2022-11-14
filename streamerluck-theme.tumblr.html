@@ -9,6 +9,9 @@
     GET THE THEME: 
     TEXT ICON CREDIT: GOOGLE MATERIAL
     
+    Credits:
+        - Lightbox tutorial by shythemes: https://shythemes.tumblr.com/post/140444996328/tutorial-lightboxes
+    
     Please do not remove the credit.
 -->
 <html lang="en">
@@ -495,7 +498,7 @@
         	margin-top: 3px;
         	text-align: center;
         	text-shadow: var(--text-shadow);
-        	font-size: 2rem;
+        	font-size: 2em;
         }
         
         .post-content a, .post-caption a {
@@ -587,21 +590,39 @@
         	max-width: 100%;
         }
 
-        /* HIGH RES */
+        /* SUBMISSION STYLING */
+        .submission-header {
+            padding: 10px;
+            background-color: var(--post-footer-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 5px;
+            border-bottom: 1px solid var(--post-border-color);
+        }
+        
+        .submission-header > * {
+            margin-right: 10px;
+        }
+        
+        .submitter-avatar {
+            width: 2em;
+        }
         
         /* PHOTO TYPE */
         .post.photo .photo-header {
-        	margin-bottom: 10px;
+        	margin: 5px;
         	display: flex;
-        	border-bottom: 1px solid var(--post-border-color);
         }
+        
+        
         
         .post.photo .featured {
         	display: flex;
         	justify-content: center;
         	border: 2px solid var(--post-border-color);
         	border-radius: 3px;
-        	margin: 5px auto;
+        	margin: 0px auto;
         	flex-direction: column;
         }
         
@@ -627,31 +648,97 @@
             text-decoration: underline;
         }
         
+        .post.photo .post-caption {
+            margin: 10px;
+        }
+        
         .post * {
             max-width: 100%;
         }
-        /*
-        .showing {
-        	position: fixed;
-        	top: 0;
-        	left: 0;
-        	right: 0;
-        	bottom: 0;
-        	display: flex;
-        	justify-content: center;
-        	align-items: center;
-        	background-color: rgba(0, 0, 0, 0.4);
-        	z-index: 1000;
-        }
-        
-        .showing img {
-        	max-width: 100%;
-        	border: 2px solid var(--post-border-color);
-        }
-        */
 
         .high-res .featured-image:hover {
             cursor: pointer;
+        }
+        
+        /* PHOTOSET STYLING */
+        .photoset {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 10px 0;
+        }
+        
+        .slideshow {
+			display: flex;
+			max-width: 500px;
+			flex-direction: column;
+		}
+
+		.slideshow .row {
+			display: flex;
+			margin-top: 5px;
+		}
+
+		.slideshow .row:first-child{
+			margin-top: 0;
+		}
+
+		.slideshow .row .image {
+			width: 100%;
+			display: flex;
+			margin-left: 5px;
+			flex-direction: column;
+		}
+		
+		.slideshow .image figcaption {
+		    text-align: center;
+		    padding: 5px;
+		    border: 1px solid var(--post-border-color);
+		}
+
+		.slideshow .row .image:first-child {
+			margin-left: 0;
+		}
+
+		.slideshow img {
+			width: 100%;
+			object-fit: cover;
+		}
+		
+		.photoset .caption {
+		    margin-top: 10px;
+		    text-align: center;
+		}
+        
+        /* QUOTE STYLING */
+        .post.quote .quote blockquote {
+            font-size: 1.5em;
+            text-align: center;
+            margin: 10px;
+            margin-bottom: 5px;
+            text-shadow: var(--text-shadow);
+        }
+
+        .post.quote .quote blockquote:before {
+            content: "❝";
+        }
+        
+        .post.quote .quote blockquote:after {
+            content: "❞";
+        }
+        
+        .post.quote .quote .source {
+            margin: 10px;
+            text-shadow: var(--text-shadow);
+            text-align: center;
+        }
+        
+        .post.quote .quote .source:before {
+            content: "—";
+        }
+        
+        .post.quote .quote .source a {
+            font-weight: bold;
         }
         
         /* POST ANSWER STYLING */
@@ -998,6 +1085,7 @@
         	display: flex;
         	align-items: center;
         	margin-bottom: 5px;
+        	flex-wrap: wrap;
         }
         
         .note:last-child {
@@ -1017,6 +1105,8 @@
         .no-search {
             display: none;
         }
+
+        
         {CustomCSS}
     </style>
 
@@ -1037,9 +1127,9 @@
                             <div class="material-icons">light_mode</div>
                         </button>
                         {/block:IfEnableDarkMode}
-                        <button class="credit" role="button">
+                        <a href="https://skyetrick-streamerluck.tumblr.com/" class="credit" role="button">
                             <div class="material-icons">code</div>
-                        </button>
+                        </a>
                         <button class="follow" role="button">
                             <div>Follow</div>
                         </button>
@@ -1121,11 +1211,15 @@
                     <div class="post-body">
                         {block:Submission}
                         <div class="submission-header">
-                            <h3>
+                            <figure class="submitter-avatar">
                                 <a href="{SubmitterURL}" alt="{Submitter}">
                                     <img src="{SubmitterPortraitURL-40}" alt="{Submitter}">
-                                    {Submitter}
-                                </a> submitted:
+                                </a>
+                            </figure>
+                            <h3 class="submitter-title">
+                                <a href="{SubmitterURL}" alt="{Submitter}">
+                                    {lang:Submitted By}
+                                </a>
                             </h3>
                         </div>
                         {/block:Submission}
@@ -1162,22 +1256,48 @@
                                 </figure>
                                 
                             </div>
-                            <figcaption class="post-caption">
-                                {Caption}
-                            </figcaption>
+                            <figcaption class="post-caption">{Caption}</figcaption>
                         </figure>
 
                         {/block:Photo}
 
                         {block:Photoset}
-                        {Photoset-700}
+                        <div class="photoset">
+                            <div 
+                                class="slideshow"
+                                data-layout="{PhotosetLayout}">
+                                {block:Photos}
+                                <figure 
+                                    class="image"
+                                    data-full-width="{PhotoWidth-HighRes}"
+                                    data-full-height="{PhotoHeight-HighRes}"
+                                    data-full-url="{PhotoURL-HighRes}"
+                                    data-orig-url="{PhotoURL-500}"
+                                >
+                                    <img
+                                        loading="lazy"
+                                        alt="{PhotoAlt}"
+                                        src="{PhotoURL-500}"
+                                    >
+                                    {block:Caption}
+                                    <figcaption>
+                                        {Caption}
+                                    </figcaption>
+                                    {/block:Caption}
+                                </figure>
+                                {/block:Photos}
+                            </div>
+                            {block:Caption}
+                            <div class="caption">
+                                {Caption}
+                            </div>
+                            {/block:Caption}
+                        </div>
                         {/block:Photoset}
 
                         {block:quote}
                         <div class="quote">
-                            <blockquote>
-                                ❝{Quote}❞
-                            </blockquote>
+                            <blockquote>{Quote}</blockquote>
                             <div class="source">
                                 {Source}
                             </div>
@@ -1549,105 +1669,152 @@
             </div>
         </div>
     </aside> <!-- SIDENAV --> 
-</body>
-<!-- / BODY -->
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-<script>
-    function colorMode() {
-        if (localStorage.getItem("dark") === null) {
-            let dark = false;
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        
+        <script>
+            function colorMode() {
+                if (localStorage.getItem("dark") === null) {
+                    let dark = false;
+                    
+                    {block:IfDarkModeByDefault}
+                    let d = true;
+                    {/block:IfDarkModeByDefault}
+                    localStorage.setItem("dark", false);
+                }
+        
+                let darkDefault = localStorage.getItem("dark") === "true";
+        
+                {block:IfNotEnableDarkMode}
+                darkDefault = false;
+                {/block:IfNotEnableDarkMode}
+        
+                function setMode(lightMode) {
+                    $(".scheme div").text(lightMode ? "light_mode" : "dark_mode");
+                    $(":root").toggleClass("dark-mode", !lightMode);
+                }
+        
+                setMode(!darkDefault);
+        
+                $(".scheme").click(function () {
+                    darkDefault = !darkDefault;
+                    setMode(!darkDefault);
+                    localStorage.setItem("dark", darkDefault);
+                });
+            }
+        
+            function scaleTags() {
+                if (window.innerWidth >= 1250) {
+                    const posts = document.getElementsByClassName("post");
+                    for (var i of posts) {
+                        let body = i.getElementsByClassName("post-body")[0];
+                        let tagList = i.getElementsByClassName("post-tags")[0];
+        
+                        if (tagList) {
+                            tagList.style.maxHeight = `${body.clientHeight}px`;
+                        }
+                    }
+                } else {
+                    const tagList = document.getElementsByClassName("post-tags");
+                    for (const tag of tagList) {
+                        tag.style.maxHeight = "";
+                    }
+                }
+            }
             
-            {block:IfDarkModeByDefault}
-            let d = true;
-            {/block:IfDarkModeByDefault}
-            localStorage.setItem("dark", false);
-        }
-
-        let darkDefault = localStorage.getItem("dark") === "true";
-
-        {block:IfNotEnableDarkMode}
-        darkDefault = false;
-        {/block:IfNotEnableDarkMode}
-
-        function setMode(lightMode) {
-            console.log('switching color to', lightMode)
-            $(".scheme div").text(lightMode ? "light_mode" : "dark_mode");
-            $(":root").toggleClass("dark-mode", !lightMode);
-        }
-
-        setMode(!darkDefault);
-
-        $(".scheme").click(function () {
-            darkDefault = !darkDefault;
-            setMode(!darkDefault);
-            localStorage.setItem("dark", darkDefault);
-        });
-    }
-
-    function scaleTags() {
-        if (window.innerWidth >= 1250) {
-            const posts = document.getElementsByClassName("post");
-            for (var i of posts) {
-                let body = i.getElementsByClassName("post-body")[0];
-                let tagList = i.getElementsByClassName("post-tags")[0];
-
-                if (tagList) {
-                    tagList.style.maxHeight = `${body.clientHeight}px`;
-                }
+            function openLightbox(e) {
+                const featured = $(this).parent();
+                Tumblr.Lightbox.init(
+                    [
+                        {
+                            width: featured.data( "full-width" ),
+                            height: featured.data( "full-height" ),
+                            low_res: featured.data( "full-url" ),
+                            high_res: featured.data( "orig-url" ),
+                            caption: $(this).attr("alt"),
+                        }
+                ]);
+                $( 'body' ).toggleClass( 'tumblr_lightbox_active' );
+                
+                return false;
             }
-        } else {
-            const tagList = document.getElementsByClassName("post-tags");
-            for (const tag of tagList) {
-                tag.style.maxHeight = "";
+            
+        	function toggleSidebar(e) {
+        	    const enabled = $( '#sidebar' ).hasClass( 'enabled' );
+        		$( '#sidebar' ).toggleClass( 'enabled', !enabled );
+        		$( 'html' ).toggleClass( 'mobile-disabled', !enabled );
+        	}
+        	
+        	function disableCheck(event) {
+        	    if (event.target === this) toggleSidebar(event);
+        	}
+        	
+            function setPhotosetLayout(e) {
+    			const show = $(this)
+    
+    			function addRow(columns) {
+    				const d = $("<div></div>").appendTo(show).addClass("row");
+    				return d;
+    			}
+    			
+    			const layout = JSON.stringify(show.data("layout")).split("").map(x => parseInt(x));
+    			let row = 0, column = 0;
+    			count = 0
+    			let div = addRow(layout[row])
+    			$(this).children(".image").each(function(e) {
+    				if (column >= layout[row]) {
+    					div = addRow(layout[++row]);
+    					column = 0;
+    				}
+                    $(this).data("index", ++count);
+    				$(this).appendTo(div);
+    				column++;
+    			})
+    		}
+            function startSlideshow(e) {
+
+                const imageList = $(this).closest( '.slideshow' ).find( 'img' )
+                
+                const image = $(this).find('img')
+                
+                const index = $(this).data("index");
+                
+                const t = imageList.map(function(i) {
+                    const figure = $(imageList[i]).parent()
+
+                    return {
+                        caption: figure.find('figcaption').text().trim(),
+                        width: figure.data( "full-width" ),
+                        height: figure.data( "full-height" ),
+                        low_res: figure.data( "full-url" ),
+                        high_res: figure.data( "orig-url" ),
+                    }
+                })
+
+                Tumblr.Lightbox.init( t, index ? index : 0 );
+                $( 'body' ).toggleClass( 'tumblr_lightbox_active' );
             }
-        }
-    }
-    
-    function openLightbox(e) {
-        const featured = $(this).parent();
-        Tumblr.Lightbox.init(
-            [
-                {
-                    width: featured.data( "full-width" ),
-                    height: featured.data( "full-height" ),
-                    low_res: featured.data( "full-url" ),
-                    high_res: featured.data( "orig-url" )
-                }
-        ]);
-        $( 'body' ).toggleClass( 'tumblr_lightbox_active' );
         
-        return false;
-    }
-    
-	function toggleSidebar(e) {
-	    const enabled = $( '#sidebar' ).hasClass( 'enabled' );
-		$( '#sidebar' ).toggleClass( 'enabled', !enabled );
-		$( 'html' ).toggleClass( 'mobile-disabled', !enabled );
-	}
-	
-	function disableCheck(event) {
-	    if (event.target === this) toggleSidebar(event);
-	}
-
-    function main() {
-        const root = document.getElementsByTagName("html")[0];
-        root.classList.add("loaded");
-
-        scaleTags();
-        colorMode();
-        window.addEventListener("resize", scaleTags);
+            function main() {
+                const root = document.getElementsByTagName("html")[0];
+                root.classList.add("loaded");
         
-        $(".high-res .featured-image").click(openLightbox)
-        $("#link-list").click(toggleSidebar);
+                scaleTags();
+                colorMode();
+                window.addEventListener("resize", scaleTags);
+                
+                $(".high-res .featured-image").click(openLightbox)
+                $("#link-list").click(toggleSidebar);
+                
+                $( '#sidebar' ).click(disableCheck);
+                $( '.slideshow' ).each(setPhotosetLayout);
+                $( '.slideshow .image' ).click(startSlideshow);
+            }
         
-        $( '#sidebar' ).click(disableCheck);
-    }
+            document.addEventListener("DOMContentLoaded", main);
+        </script>
 
-    document.addEventListener("DOMContentLoaded", main);
-</script>
+        <noscript>This page requires JavaScript.</noscript>
 
-<noscript>This page requires JavaScript.</noscript>
-
+    </body>
 </html>
