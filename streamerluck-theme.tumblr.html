@@ -19,7 +19,8 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{Title}</title>
+    <title>{Title}{block:TagPage} - Tagged: {URLSafeTag}{/block:TagPage}{block:PostTitle} - {PostTitle}{/block:PostTitle}</title>
+
 
     <!-- VARIABLES -->
     <meta name="text:Tagline" content="Caught in my Electroweb">
@@ -514,6 +515,16 @@
         
         .post {
             margin-bottom: 15px;
+        }
+        
+        .search-result {
+            text-align: center;
+            padding: 10px;
+            font-size: 1.5em;
+        }
+        
+        .search_query, .tag {
+            font-weight: bold;
         }
         
         .post-body,
@@ -1081,11 +1092,11 @@
         	text-align: center;
         }
         
-        .tag {
+        .tag-item {
         	display: inline-block;
         }
         
-        .tag a {
+        .tag-item a {
         	background-color: var(--tag-background-color);
         	color: var(--text-color);
         	padding: 3px 10px;
@@ -1096,11 +1107,11 @@
         	box-shadow: 0 2px 2px black;
         }
         
-        .tag a:first-child {
+        .tag-item a:first-child {
         	margin-left: 0px;
         }
         
-        .tag a:hover {
+        .tag-item a:hover {
         	background-color: var(--tag-background-color-hover);
         	color: var(--link-color);
         	text-decoration: none;
@@ -1189,6 +1200,7 @@
         
         .pagination,
         .details,
+        .side-actions,
         .updates,
         .side-title {
         	display: none;
@@ -1241,10 +1253,6 @@
         	text-decoration: none;
         	background-color: var(--sidebar-link-background-color);
         	cursor: pointer;
-        }
-        
-        .search {
-        	display: none;
         }
 
         /* NOTES STYLING */
@@ -1390,7 +1398,24 @@
     <main>
         <div class="main-wrapper">
             <div class="posts">
-
+                {block:SearchPage}
+                <article class="post">
+                    <div class="post-body">
+                        <div class="search-result">
+                            {lang:Your search for SearchQuery returned SearchResultCount results 2}
+                        </div>
+                    </div>
+                </article>
+                {/block:SearchPage}
+                {block:TagPage}
+                <article class="post">
+                    <div class="post-body">
+                        <div class="search-result">
+                            {lang:Showing TagResultCount posts tagged Tag 3}
+                        </div>
+                    </div>
+                </article>
+                {/block:TagPage}
                 {block:Posts}
 
                 <article class="post {PostType} {block:RebloggedFrom}reblog{/block:RebloggedFrom}">
@@ -1685,12 +1710,11 @@
                                 </span>
                                 {/block:PinnedPostLabel}
                                 <span>
-                                    Posted:
                                     <a 
                                         href="{Permalink}"
-                                        title="{DayOfWeek}, {DayOfMonth} {Month} {Year}, {12Hour}:{Minutes}:{Seconds} {CapitalAmPm}"
+                                        title="{lang:Posted on DayOfWeek the DayOfMonthWithSuffix of Month Year at FormattedTime}"
                                     > 
-                                        {TimeAgo}
+                                        {lang:Posted TimeAgo}
                                     </a>
                                 </span>
                             </div>
@@ -1727,7 +1751,7 @@
             {block:HasTags}
             <div class="post-tags">
                 {block:Tags}
-                <div class="tag">
+                <div class="tag-item">
                     <a aria-label="{URLSafeTag}" href="{TagURL}">
                         {Tag}
                     </a>
@@ -1901,7 +1925,7 @@
             </div>
             <div class="side-actions">
                 <form class="{block:HideFromSearchEnabled}no-search{/block:HideFromSearchEnabled} search" action="/search" method="get">
-                    <input name="search" placeholder="Search this blog..." />
+                    <input type="text" name="q" placeholder="Search this blog..." />
                 </form>
             </div>
         </div>
