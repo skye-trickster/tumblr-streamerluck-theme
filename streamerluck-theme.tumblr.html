@@ -4,7 +4,7 @@
     AUTHOR: © SKYE TRICKSTER (Vincent)
     TUMBLR: @mxstball
     GITHUB: @skye-trickster
-    VERSION: 0.5.0
+    VERSION: 1.0.0
     RELEASE DATE: 
     GET THE THEME: 
     TEXT ICON CREDIT: GOOGLE MATERIAL
@@ -27,6 +27,8 @@
     <meta name="text:Status Name" content="Playing">
     <meta name="text:Status" content="Pokémon Scarlet">
     <meta name="text:Status URL" content="https://scarletviolet.pokemon.com/en-us/">
+    <meta name="text:Subtitle" content="Swayshock">
+    <meta name="text:Description" content="This is a description."
     
     <meta name="text:Updates Title" content="Updates">
     <meta name="text:Updates Link" content="">
@@ -56,6 +58,10 @@
     
     <meta name="text:Link 8 Name" content="">
     <meta name="text:Link 8 URL" content=""> 
+    
+    <meta name="text:Common Tag 1" content="tag1">
+    <meta name="text:Common Tag 2" content="tag2">    
+    <meta name="text:Common Tag 3" content="tag3">
 
     <meta name="font:Title Font" content="Helvetica Neue">
     <meta name="font:Body Font" content="Arial, Helvetica, sans-serif">
@@ -96,14 +102,14 @@
 
 
     <!-- LIKE AND REBLOG BUTTON COLORS -->
-    <meta name="select:Like and Reblog Colors" content="black" title="Black">
-    <meta name="select:Like and Reblog Colors" content="grey" title="Grey">
-    <meta name="select:Like and Reblog Colors" content="white" title="White">
+    <meta name="if:Black Like and Reblog Button" content="0">
 
     <meta name="if:Enable Dark Mode" content="1">
     <meta name="if:Dark Mode By Default" content="0">
     <meta name="if:Text Shadow" content="1">
     <meta name="if:Dark Text Shadow" content="0">
+    <meta name="if:Flip Sidebar" content="0">
+    <meta name="if:Flip Post Orientation" content="0">
 
     <meta name="color:Dark Background Color" content="#441d6e">
     <meta name="color:Dark Text Color" content="#fff">
@@ -134,9 +140,7 @@
     <meta name="color:Dark Mobile Sidebar Border Color" content="#000">
     
     <!-- DARK MODE LIKE AND REBLOG BUTTON COLORS -->
-    <meta name="select:Dark Like and Reblog Colors" content="white" title="White">
-    <meta name="select:Dark Like and Reblog Colors" content="grey" title="Grey">
-    <meta name="select:Dark Like and Reblog Colors" content="black" title="Black">
+    <meta name="if:Dark Mode Black Like and Reblog Button" content="0">
 
     <meta name="select:Font Size" content="16px" title="16px (Default)">    
     <meta name="select:Font Size" content="14px" title="14">
@@ -1300,13 +1304,755 @@
             display: none;
         }
 
+
+
+        /* MEDIA QUERIES */
+        /* FOR DESKTOP */
+        @media all and (min-width: 700px) and (min-height: 600px) {
+            
+            :root {
+        		--desktop-nav-shadow-color: transparent;
+        		--desktop-wrapper-color: #ffc8dd;
+        		--side-border-color: #a9259d;
         
+        		--sidebar-link-color: darkblue;
+        
+        		--sidebar-shadow-color: #aaa;
+        
+        		--search-background-color: #a2d2ff;
+        		--search-color: black;
+        		--search-border-color: #a9259d;
+        		--search-placeholder-color: #444;
+        
+        		--actions-shadow-color: black;
+        		--actions-click-color: black;
+        		--actions-click-border-color: black;
+        		--actions-click-background-color: white;
+        		--actions-hover-background-color: #ff8;
+        
+        		--scrollbar-background-color: rgba(255, 255, 255, 0.2);
+        		
+                --desktop-intro-height: 15vh;
+        		--desktop-sidebar-width: 25vw;
+        		--desktop-nav-height: 5vh;
+        		--scrollbar-width: 10px;
+        		--actions-background-color: yellow;
+        	}
+            
+        	:root.dark-mode {
+
+        
+        		--desktop-nav-shadow-color: black;
+        
+        		--desktop-wrapper-color: #18181b;
+        
+        		--side-border-color: black;
+        		--sidebar-shadow-color: black;
+        		--sidebar-link-color: var(--link-color);
+        
+        		--search-background-color: #aaa;
+        		--search-color: black;
+        		--search-border-color: grey;
+        		--search-placeholder-color: #222;
+        
+        		--scrollbar-background-color: rgba(0, 0, 0, 0.2);
+        		--actions-background-color: yellow;
+        		--actions-color: black;
+        		--actions-shadow-color: transparent;
+        		--actions-click-color: black;
+        		--actions-click-border-color: black;
+        		--actions-click-background-color: white;
+        		--actions-hover-background-color: #ff8;
+        
+        		
+        	}
+        
+
+        
+        	.material-icons {
+        		font-size: 1em;
+        	}
+        
+        	html,
+        	html.mobile-disabled {
+        		overflow: hidden;
+        	}
+        
+        	body::-webkit-scrollbar {
+        		background-color: var(--desktop-wrapper-color);
+        		width: var(--scrollbar-width);
+        	}
+        
+        	/* HEADER INTRO */
+        	.header-intro {
+        		top: initial;
+        		bottom: 0px;
+        		height: var(--desktop-intro-height);
+        		justify-content: flex-start;
+        		right: var(--desktop-sidebar-width);
+        		border-top: 1px solid var(--side-border-color);
+        	}
+        
+        	.side-flip .header-intro {
+        		right: 0;
+        		left: var(--desktop-sidebar-width);
+        	}
+        
+        	.intro-info {
+        		display: flex;
+        		flex-direction: column;
+        		justify-content: center;
+        
+        		min-width: 0;
+        		height: 100%;
+        		padding: 10px;
+        		flex-basis: 100%;
+        	}
+        
+        	.intro-info > * {
+        		height: 100%;
+        	}
+        
+        	.tagline {
+        		display: flex;
+        		align-items: center;
+        	}
+        
+        	.tagline h2 {
+        		font-size: 1.2rem;
+        	}
+        
+        	.headline .title {
+        		font-size: 2rem;
+        		margin: 0;
+        	}
+        
+        	.auxillary {
+        		display: flex;
+        		white-space: nowrap;
+        		min-height: 2em;
+        	}
+        
+        	.aux-wrapper {
+        		display: flex;
+        		align-items: center;
+        	}
+        
+        	.status {
+        		margin-right: 10px;
+        	}
+        
+        	.taglist-common {
+        		overflow-x: auto;
+        		overflow-y: hidden;
+        	}
+        
+        	.taglist-common .tag-item {
+        		margin: 0;
+        	}
+        
+        	.actions {
+        		display: flex;
+        		align-items: center;
+        		height: 100%;
+        	}
+        
+        	.actions > *[role="button"]:hover {
+        		cursor: pointer;
+        	}
+        
+        	.actions > * {
+        		display: flex;
+        		align-items: center;
+        		height: 70%;
+        		min-width: 0;
+        		min-height: 0;
+        		background-color: var(--actions-background-color);
+        		color: var(--actions-color);
+        		box-shadow: -2px 2px 2px var(--actions-shadow-color);
+        		border: 1px solid var(--actions-background-color);
+        		border-radius: 5px;
+        		text-align: center;
+        		min-height: 0;
+        		min-width: 0;
+        		margin: 0 3px;
+        		padding: 3px 10px;
+        		font-weight: bold;
+        		transition: 0s;
+        	}
+        
+        	.actions > *:hover {
+        		transition-duration: 0s;
+        		color: var(--actions-color);
+        		background-color: var(--actions-hover-background-color);
+        	}
+        
+        	.actions > *:active {
+        		transition-duration: 0s;
+        		box-shadow: none;
+        		background-color: var(--actions-click-background-color);
+        		border: 1px solid var(--actions-click-border-color);
+        		color: var(--actions-click-color);
+        	}
+        
+        	.actions .material-icons,
+        	.actions .follow > * {
+        		color: var(--actions-color);
+        	}
+        
+        	.actions .material-icons:hover,
+        	.actions .follow:hover > * {
+        		color: var(--actions-color);
+        		transition: color 1s;
+        	}
+        
+        	/* NAVIGATION */
+        	.navigation {
+        		top: 0px;
+        		bottom: initial;
+        		height: var(--desktop-nav-height);
+        		box-shadow: -2px 2px 2px var(--desktop-nav-shadow-color);
+        		border-bottom: 1px solid var(--side-border-color);
+        		min-height: var(--desktop-nav-height);
+        		z-index: 10;
+        	}
+        
+        	.navigation .material-icons {
+        		display: none;
+        	}
+        
+        	.navigation ul {
+        		text-transform: uppercase;
+        		font-weight: bold;
+        		display: block;
+        		width: 100%;
+        		margin: auto;
+        		text-align: start;
+        		padding: 0 1%;
+        	}
+        
+        	.navigation ul li {
+        		display: inline-block;
+        		list-style: none;
+        		min-height: 0;
+        		min-width: 0;
+        		width: auto;
+        		padding-right: 1%;
+        		font-size: 1.2em;
+        	}
+        
+        	.navigation ul li:last-child {
+        		padding-right: 0px;
+        	}
+        
+        	.navigation li a {
+        		text-align: left;
+        	}
+        
+        	#link-list {
+        		display: none;
+        	}
+        
+        	/* MAIN ELEMENT */
+        
+        	main {
+        		position: fixed;
+        		bottom: var(--desktop-intro-height);
+        		right: var(--desktop-sidebar-width);
+        		overflow-y: auto;
+        		top: var(--desktop-nav-height);
+        		left: 0;
+        		padding-top: 0;
+        	}
+        
+        	.side-flip main {
+        		right: 0;
+        		left: var(--desktop-sidebar-width);
+        	}
+        
+        	.main-wrapper {
+        		width: 100%;
+        		overflow-y: auto;
+        		overflow-x: hidden;
+        		height: 100%;
+        		margin-bottom: 0;
+        		padding-bottom: 15px;
+        	}
+        
+        	.main-wrapper::-webkit-scrollbar {
+        		width: var(--scrollbar-width);
+        		background-color: var(--scrollbar-background-color);
+        	}
+        
+        	.main-wrapper::-webkit-scrollbar-thumb {
+        		background-color: var(--post-border-color);
+        		border-radius: 2px;
+        		border: 1px solid var(--side-border-color);
+        		width: var(--scrollbar-width);
+        	}
+        
+        	.no-scroll .main-wrapper {
+        		overflow: hidden;
+        	}
+        	
+        	.background {
+        		background-image: {image:Background Image};
+        		background-size: cover;
+        		background-repeat: no-repeat;
+        		right: var(--desktop-sidebar-width);
+        		bottom: var(--desktop-intro-height);
+        		top: var(--desktop-nav-height);
+        	}
+        
+        	.side-flip .background {
+        		right: 0;
+        		left: var(--desktop-sidebar-width);
+        	}
+        
+        	.featured-icon {
+        		display: flex;
+        		width: 25vw;
+        		max-width: 300px;
+        		position: fixed;
+        		bottom: var(--desktop-intro-height);
+        		right: calc(var(--desktop-sidebar-width) + var(--scrollbar-width));
+        		flex-direction: column-reverse;
+        		z-index: 20;
+        		transition: z-index 3s, opacity 3s;
+        	}
+        
+        	.side-flip .featured-icon {
+        		right: var(--scrollbar-width);
+        	}
+        
+        	.post-flip .featured-icon {
+        		right: 0;
+        		left: 0;
+        	}
+        
+        	.side-flip.post-flip .featured-icon {
+        		left: var(--desktop-sidebar-width);
+        	}
+        
+        	.featured-icon figure {
+        		display: flex;
+        	}
+        
+        	.featured-icon img {
+        		width: 100%;
+        	}
+        
+        	.featured-icon:hover {
+        		z-index: -10;
+        		transition: 1s;
+        	}
+        
+        	.featured-icon:hover img {
+        		-webkit-user-select: none;
+        		user-select: none;
+        		pointer-events: none;
+        		opacity: 0.1;
+        		transition: opacity 1s;
+        	}
+        
+        	.posts {
+        		margin: 0;
+        		min-height: 100%;
+        	}
+        
+        	.post:first-child > .post-body {
+        		border-top: 1px solid var(--post-background-color);
+        	}
+        
+        	.note-info {
+        		margin-bottom: 15px;
+        		padding-bottom: 0;
+        	}
+        
+        	.pages-mobile {
+        		margin-right: 25vw;
+        		margin-top: 15px;
+        		padding-bottom: 0;
+        	}
+        
+        	.post-flip .pages-mobile {
+        		margin-left: 25vw;
+        		margin-right: 0;
+        	}
+        
+        	.pages-wrapper {
+        		justify-content: space-evenly;
+        		align-items: stretch;
+        		padding: 0 10px;
+        	}
+        
+        	.pages-wrapper .pagination {
+        		align-items: center;
+        	}
+        
+        	.pages-wrapper .page-number {
+        		display: block;
+        	}
+        
+        	.fast-forward,
+        	.fast-reverse {
+        		display: block;
+        	}
+        
+        	/* SIDEBAR */
+        	#sidebar,
+        	#sidebar.enabled {
+        		display: flex;
+        		justify-content: initial;
+        		align-items: initial;
+        		position: fixed;
+        		top: var(--desktop-nav-height);
+        		right: 0;
+        		bottom: 0;
+        		left: initial;
+        		width: var(--desktop-sidebar-width);
+        		border-left: 2px solid var(--side-border-color);
+        	}
+        
+        	.side-flip #sidebar {
+        		left: 0;
+        		border-right: 2px solid var(--side-border-color);
+        		border-left: none;
+        	}
+        
+        	#sidebar > .wrapper {
+        		background-color: var(--desktop-wrapper-color);
+        		display: flex;
+        		flex-direction: column;
+        		align-items: center;
+        		justify-content: space-between;
+        	}
+        
+        	#sidebar .side-title {
+        		display: flex;
+        		justify-content: space-around;
+        		width: 100%;
+        		padding: 5px;
+        		align-items: center;
+        		border-bottom: 2px solid var(--side-border-color);
+        	}
+        
+        	.side-title .pagination {
+        		display: flex;
+        	}
+        
+        	.pagination div {
+        		margin: auto;
+        		font-size: 1.1em;
+        	}
+        
+        	.subtitle {
+        		font-size: 1.4em;
+        	}
+        
+        	.subtitle a {
+        		color: var(--text-color);
+        	}
+        
+        	#sidebar .information {
+        		overflow: hidden;
+        		width: 100%;
+        		margin: 0;
+        		padding: 0;
+        		display: flex;
+        		flex-direction: column;
+        		border-bottom: 2px solid var(--side-border-color);
+        	}
+        
+        	#sidebar .details {
+        		display: block;
+        		width: 100%;
+        		padding: 5px;
+        	}
+        
+        	#sidebar .updates {
+        		display: block;
+        		border-top: 2px solid var(--side-border-color);
+        		padding: 5px;
+        	}
+        
+        	.update-title {
+        		text-align: center;
+        		margin-bottom: 10px;
+        		padding-bottom: 5px;
+        		font-size: 1.2em;
+        		border-bottom: 1px solid var(--side-border-color);
+        	}
+        
+        	#sidebar nav {
+        		padding: 5px 0;
+        		display: flex;
+        		flex-direction: column;
+        		border-top-color: var(--side-border-color);
+        	}
+        
+        	#sidebar nav h3 {
+        		display: block;
+        		text-transform: uppercase;
+        		text-align: center;
+        		padding-right: 5px;
+        		font-size: 1.5em;
+        		text-shadow: -2px 3px 3px var(--sidebar-shadow-color);
+        		border: none;
+        	}
+        
+        	#sidebar nav ul {
+        		display: block;
+        		overflow: auto;
+        		white-space: initial;
+        		text-align: left;
+        		margin: 0;
+        		width: 100%;
+        		padding: 5px;
+        	}
+        
+        	#sidebar nav li {
+        		display: block;
+        		width: 100%;
+        		padding-right: 0px;
+        	}
+        
+        	#sidebar nav li a {
+        		display: block;
+        		width: 100%;
+        		font-size: 1.1rem;
+        		color: var(--sidebar-link-color);
+        		text-shadow: none;
+        	}
+        
+        	#sidebar .categories ul {
+        		display: flex;
+        		flex-wrap: wrap;
+        		justify-content: space-evenly;
+        	}
+        
+        	/* TWO COLUMNS */
+        	#sidebar .categories ul li {
+        		flex-basis: 50%;
+        	}
+        
+        	#sidebar .side-links {
+        		overflow: auto;
+        		padding-bottom: 0px;
+        	}
+        
+        	#sidebar .side-links ul::-webkit-scrollbar {
+        		width: var(--scrollbar-width);
+        	}
+        
+        	#sidebar .side-links ul::-webkit-scrollbar-track {
+        		background-color: var(--desktop-wrapper-color);
+        	}
+        
+        	#sidebar .side-links ul::-webkit-scrollbar-thumb {
+        		background-color: var(--background-color);
+        		width: var(--scrollbar-width);
+        		border-right: 2px solid var(--desktop-wrapper-color);
+        		border-left: 2px solid var(--desktop-wrapper-color);
+        	}
+        
+        	#sidebar:hover .side-links ul::-webkit-scrollbar {
+        		width: var(--scrollbar-width);
+        		border: 2px solid var(--desktop-wrapper-color);
+        	}
+        
+        	#sidebar .side-actions {
+        		padding: 5px 5px 5vh 5px;
+        		width: 100%;
+        		text-align: center;
+        	}
+        
+        	#sidebar .search {
+        		display: block;
+        		justify-self: flex-end;
+        	}
+        
+        	#sidebar .search input {
+        		background-color: var(--search-background-color);
+        		font-size: 1.1rem;
+        		color: var(--search-color);
+        		width: 100%;
+        		border-radius: 3px;
+        		border: 1px solid var(--search-border-color);
+        		padding: 5px;
+        		text-align: center;
+        	}
+        
+        	#sidebar .search input::placeholder {
+        		/* Chrome, Firefox, Opera, Safari 10.1+ */
+        		color: var(--search-placeholder-color);
+        		opacity: 0.5;
+        		text-align: center;
+        	}
+        
+        	#sidebar .search input::-ms-input-placeholder {
+        		/* Internet Explorer 10-11 */
+        		color: var(--search-placeholder-color);
+        	}
+        
+        	#sidebar .search input::-ms-input-placeholder {
+        		/* Microsoft Edge */
+        		color: var(--search-placeholder-color);
+        	}
+        
+        	@media all and (min-height: 1000px) {
+        		:root {
+        			--desktop-intro-height: 150px;
+        			--desktop-nav-height: 50px;
+        		}
+        	}
+        
+        	@media all and (min-width: 1250px) {
+        		:root {
+        			--desktop-sidebar-width: 300px;
+        		}
+        
+        		.featured-icon {
+        			z-index: -20;
+        			right: var(--desktop-sidebar-width);
+        		}
+        
+        		.side-flip .featured-icon {
+        			right: 0;
+        		}
+        
+        		.post-flip .featured-icon {
+        			right: 0;
+        			left: 0;
+        		}
+        
+        		.featured-icon:hover {
+        			z-index: -20;
+        		}
+        
+        		.featured-icon:hover img {
+        			opacity: 1;
+        		}
+        
+        		.posts {
+        			width: 700px; /*1000px*/
+        			margin: auto;
+        			padding-top: 2vh;
+        			margin-left: 15%;
+        		}
+                /*
+        		.post {
+        			display: flex;
+        			flex-direction: row;
+        		}
+        
+        		.post-flip .post {
+        			flex-direction: row-reverse;
+        		}*/
+        
+        		.post-body,
+        		.note-wrapper {
+        			border-radius: 4px;
+        			border: 2px solid var(--post-border-color);
+        			/*width: 700px;
+        			margin-right: 15px;*/
+        		}
+        
+        		.post:first-child > .post-body {
+        			border-top: 2px solid var(--post-border-color);
+        		}
+        
+        		.post-flip .post-body {
+        			margin-right: 0;
+        			margin-left: 15px;
+        		}
+        
+        		.post-flip .note-info {
+        			display: flex;
+        			flex-direction: row-reverse;
+        		}
+        		.post-flip .note-wrapper {
+        			margin-right: 0;
+        		}
+        
+        		.post-flip .pages-mobile {
+        			width: 700px;
+        		}
+        
+        		.post:hover .post-tags {
+        			display: block;
+        			opacity: 1;
+        			transition: 1s;
+        			-webkit-user-select: auto;
+        			user-select: auto;
+        			pointer-events: auto;
+        		}
+        
+                /*
+        		.post-tags {
+        			opacity: 0;
+        			-webkit-user-select: none;
+        			user-select: none;
+        			pointer-events: none;
+        			white-space: initial;
+        			text-align: left;
+        			padding: 0;
+        			margin: 0;
+        			overflow: auto;
+        			transition: 1s;
+        			text-align: start;
+        		}
+                
+        		.post-flip .post-tags {
+        			text-align: end;
+        		}
+        
+        		.post-tags .tag-item {
+        			display: block;
+        			padding-bottom: 5px;
+        		}
+                    */
+        		.pages-mobile {
+        			width: 700px;
+        			margin: auto;
+        			padding: 0;
+        		}
+        
+        		.pages-wrapper {
+        			width: 700px;
+        		}
+
+        	}
+    		@media all and (min-width: 1750px) {
+    		    .posts {
+    		        margin: auto;
+    		    }
+    		}
+        }
+
+        .post-meta .light-button {
+            display: block;
+        }
+        
+        .post-meta .dark-button {
+            display: none;
+        }
+        
+        .dark-mode .post-meta .light-button {
+            display: none;
+        }
+        
+         .dark-mode .post-meta .dark-button {
+            display: block;
+        }
+        
+        /* END MEDIA QUERIES */
         {CustomCSS}
     </style>
 
 </head>
 
-<body>
+<body class="{block:IfFlipSidebar}side-flip {/block:IfFlipSidebar}{block:IfFlipPostOrientation}post-flip{/block:IfFlipPostOrientation}">
     <header>
         <div class="header-intro">
             <a class="header-image" href="/">
@@ -1344,7 +2090,27 @@
                         {block:IfNotStatusURL}
                     </span>
                     <div class="taglist-common">
-                        <!--reserved for taglist script-->
+                        {block:IfCommonTag1}
+                        <div class="tag-item">
+                            <a href="/tagged/{text:Common Tag 1}">
+                                {text:Common Tag 1}
+                            </a>
+                        </div>
+                        {/block:IfCommonTag1}
+                        {block:IfCommonTag2}
+                        <div class="tag-item">
+                            <a href="/tagged/{text:Common Tag 2}">
+                                {text:Common Tag 2}
+                            </a>
+                        </div>
+                        {/block:IfCommonTag2}
+                        {block:IfCommonTag3}
+                        <div class="tag-item">
+                            <a href="/tagged/{text:Common Tag 3}">
+                                {text:Common Tag 3}
+                            </a>
+                        </div>
+                        {/block:IfCommonTag3}
                     </div>
                 </div>
             </div>
@@ -1388,13 +2154,10 @@
     </header>
     <div class="background"></div>
 
-
-    {block:IfFeaturedIcon}
-    <div aria-hidden="true" class="featured-icon">
+    <div class="featured-icon">
         <figure><img src="{image:Featured Icon}"></figure>
     </div>
-    {/block:IfFeaturedIcon}
-    
+
     <main>
         <div class="main-wrapper">
             <div class="posts">
@@ -1713,40 +2476,36 @@
                                     <a 
                                         href="{Permalink}"
                                         title="{lang:Posted on DayOfWeek the DayOfMonthWithSuffix of Month Year at FormattedTime}"
-                                    > 
-                                        {lang:Posted TimeAgo}
-                                    </a>
+                                    > {lang:Posted TimeAgo}</a>
                                 </span>
+                                {block:RebloggedFrom} 
+                                <i aria-title="Reblogged from " class="post-reblog material-icons">loop</i>
+                                <a href="{ReblogParentURL}" title="{ReblogParentTitle}">{ReblogParentName}</a>
+                                {/block:RebloggedFrom}
                             </div>
                             <ul class="post-meta dark_{select:Dark Like and Reblog Colors} light_{select:Like and Reblog Colors}">
                                 <li><a href="{Permalink}" title="{NoteCountWithLabel}">{NoteCount}</a></li>
-                                <li class="like_button_list">
-                                    <span class="like_button_white">
-                                        {ReblogButton color="white"}
-                                    </span>
-                                    <span class="like_button_grey">
-                                        {ReblogButton color="grey"}
-                                    </span>
-                                    <span class="like_button_black">
-                                        {ReblogButton color="black"}
-                                    </span>
+                                <li class="light-button">
+                                    {block:IfBlackLikeAndReblogButton}
+                                    {ReblogButton color="black"}
+                                    {/block:IfBlackLikeAndReblogButton}
+                                    {block:IfNotBlackLikeAndReblogButton}
+                                    {ReblogButton color="white"}
+                                    {/block:IfNotBlackLikeAndReblogButton}
                                 </li>
-                                <li class="like_button_list">
-                                    <span class="like_button_white">
-                                        {LikeButton color="white"}
-                                    </span>
-                                    <span class="like_button_grey">
-                                        {LikeButton color="grey"}
-                                    </span>
-                                    <span class="like_button_black">
-                                        {LikeButton color="black"}
-                                    </span>
+                                <li class="dark-button">
+                                
+                                    {block:IfDarkModeBlackLikeAndReblogButton}
+                                    {ReblogButton color="black"}
+                                    {/block:IfDarkModeBlackLikeAndReblogButton}
+                                    {block:IfNotDarkModeBlackLikeAndReblogButton}
+                                    {ReblogButton color="white"}
+                                    {/block:IfNotDarkModeBlackLikeAndReblogButton}
                                 </li>
                             </ul>
                         </div>
                     {/block:Date}
             </div> 
-            <!-- /body -->
             
             {block:HasTags}
             <div class="post-tags">
@@ -1775,7 +2534,7 @@
             {/block:PostNotes}
 
             {/block:Posts}
-
+            </div>
             {block:Pagination}
             <div class="pages-mobile">
                 <div class="pages-wrapper">
@@ -1799,6 +2558,7 @@
                 </div>
             </div>
             {/block:Pagination}
+            
         </div> <!-- / MAIN-WRAPPER -->
     </main> <!-- / MAIN -->
 
@@ -1811,17 +2571,14 @@
                         <div class="material-icons">arrow_back</div>
                     </a>
                     {/block:PreviousPage}
-                    <h2 class="subtitle"><a href="/">Swayshock</a></h2>
+                    <h2 class="subtitle"><a href="/">{text:Subtitle}</a></h2>
                     {block:NextPage}
                     <a href="{NextPage}" class="pagination">
                         <div class="material-icons">arrow_forward</div>
                     </a>
                     {/block:NextPage}
                 </div>
-                <div class="details">
-                    <p>Indie Iono blog from Pokémon Scarlet and Violet.</p>
-                    <p>Highly Selective. Mutuals only.</p>
-                </div>
+                <div class="details"><p>{text:Description}</p></div>
                 {block:IfUpdatesText}
                 <div class="updates">
                     {block:IfUpdatesTitle}
@@ -1986,16 +2743,22 @@
                 {/block:IfEnableDarkMode}
                 
             }
-        
+            /*
             function scaleTags() {
                 if (window.innerWidth >= 1250) {
+                    
                     const posts = document.getElementsByClassName("post");
                     for (var i of posts) {
                         let body = i.getElementsByClassName("post-body")[0];
-                        let tagList = i.getElementsByClassName("post-tags")[0];
+                        let tagList = i.querySelector(".post-tags");
         
                         if (tagList) {
+                            console.log(i, body, tagList);
                             tagList.style.maxHeight = `${body.clientHeight}px`;
+
+                            $(body).bind("heightChange", function() {
+                                console.log('hello');
+                            })
                         }
                     }
                 } else {
@@ -2004,7 +2767,7 @@
                         tag.style.maxHeight = "";
                     }
                 }
-            }
+            }*/
             
             function openLightbox(e) {
                 const featured = $(this).parent();
@@ -2104,9 +2867,9 @@
                 const root = document.getElementsByTagName("html")[0];
                 root.classList.add("loaded");
         
-                scaleTags();
+                //scaleTags();
                 colorMode();
-                window.addEventListener("resize", scaleTags);
+                //window.addEventListener("resize", scaleTags);
                 
                 $(".high-res .featured-image").click(openLightbox)
                 $("#link-list").click(toggleSidebar);

@@ -136,7 +136,7 @@
 		min-height: 2em;
 	}
 
-	.taglist-common .tag {
+	.taglist-common .tag-item {
 		margin: 0;
 	}
 
@@ -692,7 +692,7 @@
 			text-align: end;
 		}
 
-		.post-tags .tag {
+		.post-tags .tag-item {
 			display: block;
 			padding-bottom: 5px;
 		}

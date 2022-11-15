@@ -27,7 +27,7 @@ $(document).ready(function () {
     const tagList = tags.split(',').map(x => x.trim());
     tagList.forEach(function(tag) {
         $(".taglist-common").append(`
-            <div class="tag">
+            <div class="tag-item">
                 <a href="#">${tag}</a>
             </div>
         `)

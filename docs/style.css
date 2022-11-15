@@ -533,11 +533,11 @@ html.mobile-disabled {
 	display: none;
 }
 
-.tag {
+.tag-item {
 	display: inline-block;
 }
 
-.tag a {
+.tag-item a {
 	background-color: var(--tag-background-color);
 	color: var(--post-color);
 	padding: 3px 10px;
@@ -548,11 +548,11 @@ html.mobile-disabled {
 	box-shadow: 0 2px 2px var(--tag-shadow-color);
 }
 
-.tag a:first-child {
+.tag-item a:first-child {
 	margin-left: 0px;
 }
 
-.tag a:hover {
+.tag-item a:hover {
 	background-color: var(--tag-background-color-hover);
 	color: var(--link-color);
 	text-decoration: none;
