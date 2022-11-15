@@ -4,13 +4,14 @@
     AUTHOR: © SKYE TRICKSTER (Vincent)
     TUMBLR: @mxstball
     GITHUB: @skye-trickster
-    VERSION: 1.0.0
+    VERSION: 0.5.0
     RELEASE DATE: 
     GET THE THEME: 
     TEXT ICON CREDIT: GOOGLE MATERIAL
     
     Credits:
         - Lightbox tutorial by shythemes: https://shythemes.tumblr.com/post/140444996328/tutorial-lightboxes
+        - Audio Player tutorial by octomoosey: https://octomoosey.tumblr.com/post/165373017577/hi-g-im-in-the-process-of-creating-my-own-theme
     
     Please do not remove the credit.
 -->
@@ -55,8 +56,9 @@
     <meta name="text:Link 8 Name" content="">
     <meta name="text:Link 8 URL" content=""> 
 
-    <meta name="font:Title Font" content="Helvetica Neue"/>
-    <meta name="font:Body Font" content="Arial, Helvetica, sans-serif"/>
+    <meta name="font:Title Font" content="Helvetica Neue">
+    <meta name="font:Body Font" content="Arial, Helvetica, sans-serif">
+    <meta name="font:Chat Font" content="Square Serif">
 
     <meta name="image:Background Image" content="">
     <meta name="image:Mobile Background Image" content="">
@@ -78,6 +80,9 @@
     <meta name="color:Ask Border Color" content="#a9259d">
     <meta name="color:Ask Background Color" content="#ffafcc">
     <meta name="color:Asker Barrier Color" content="#a9259d">
+
+    <meta name="color:Chat Background Color" content="#ffafcc">
+    <meta name="color:Chat Odd Background Color" content="#bde0fe">
     
     <meta name="color:Tag Background Color" content="#ff0">
     <meta name="color:Tag Background Hover Color" content="#fff">
@@ -86,6 +91,8 @@
     <meta name="color:Mobile Sidebar Link Color" content="#222">
     <meta name="color:Mobile Sidebar Link Hover Background Color" content="#fff">
     <meta name="color:Mobile Sidebar Border Color" content="#a9259d">
+
+
 
     <!-- LIKE AND REBLOG BUTTON COLORS -->
     <meta name="select:Like and Reblog Colors" content="black" title="Black">
@@ -114,6 +121,9 @@
     <meta name="color:Dark Ask Background Color" content="#000">
     <meta name="color:Dark Asker Barrier Color" content="#888">
     
+    <meta name="color:Dark Chat Background Color" content="#000">
+    <meta name="color:Dark Chat Odd Background Color" content="#333">
+    
     <meta name="color:Dark Tag Background Color" content="#333333">
     <meta name="color:Dark Tag Background Hover Color" content="#000">
 
@@ -126,6 +136,11 @@
     <meta name="select:Dark Like and Reblog Colors" content="white" title="White">
     <meta name="select:Dark Like and Reblog Colors" content="grey" title="Grey">
     <meta name="select:Dark Like and Reblog Colors" content="black" title="Black">
+
+    <meta name="select:Font Size" content="16px" title="16px (Default)">    
+    <meta name="select:Font Size" content="14px" title="14">
+    <meta name="select:Font Size" content="18px" title="18">
+    <meta name="select:Font Size" content="20px" title="20">
     
     <!-- / VARIABLES -->
 
@@ -164,6 +179,9 @@
             --ask-border-color: {color:Ask Border Color};
             --ask-background-color: {color:Ask Background Color};
             --ask-barrier-color: {color:Asker Barrier Color};
+            
+            --chat-background-color: {color:Chat Background Color};
+            --chat-odd-background-color: {color:Chat Odd Background Color};
         	
         	--blockquote-color: rgba({RGBcolor:Text Color}, 0.4);
 
@@ -204,6 +222,9 @@
             --ask-border-color: {color:Dark Ask Border Color};
             --ask-background-color: {color:Dark Ask Background Color};
             --ask-barrier-color: {color:Dark Ask Barrier Color};
+            
+            --chat-background-color: {color:Dark Chat Background Color};
+            --chat-odd-background-color: {color:Dark Chat Odd Background Color};
         	
         	--blockquote-color: rgba({RGBcolor:Dark Text Color}, 0.4);
         	
@@ -229,6 +250,7 @@
         :root {
             --title-font: {font:Title Font};
             --body-font: {font:Body Font};
+            --chat-font: {font:Chat Font};
             
             --avatar-border: 2px solid var(--avatar-border-color);
             
@@ -236,7 +258,7 @@
             
             --mobile-header-height: 10vh;
             --mobile-header-height-pushdown: calc(10vh + 54px);
-	        --mobile-nav-height: 60px;
+	        --mobile-nav-height: 7vh;
         }
         
         .like_button_list > * { 
@@ -290,7 +312,7 @@
         html {
             color: var(--text-color);
             visibility: hidden;
-            font-size: 14px;
+            font-size: {select:Font Size};
         }
         
         html.loaded {
@@ -311,6 +333,10 @@
         .loaded main {
             opacity: 1;
             transition: opacity 1s;
+        }
+        
+        .main-wrapper {
+            margin-bottom: var(--mobile-nav-height);
         }
         
         .intro-info {
@@ -375,11 +401,19 @@
         
         /* ELEMENTS HIDING ON MOBILE */
 
+        .actions {
+            display: flex;
+            align-items; center;
+            justify-items: flex-end;
+        }
+
         .actions > * {
         	background: none;
         	border: none;
+            display: flex;
+            align-items: center;
         }
-        
+
         .actions .material-icons {
             font-size: 2em;
         }
@@ -690,10 +724,14 @@
 			flex-direction: column;
 		}
 		
+		.slideshow .row .image:hover {
+		    cursor: pointer;
+		}
+		
 		.slideshow .image figcaption {
 		    text-align: center;
 		    padding: 5px;
-		    border: 1px solid var(--post-border-color);
+		    border-bottom: 1px solid var(--post-border-color);
 		}
 
 		.slideshow .row .image:first-child {
@@ -825,6 +863,159 @@
             text-align: justify;
         }
         
+        /* LINK STYLING */
+        .link-wrapper > a {
+            display: flex;
+            justify-content: center;
+            padding-bottom: 10px;
+            margin-top: 0;
+            padding: 0;
+            background-color: var(--clickthrough-background-color);
+        }
+        
+        .link-wrapper > a:hover {
+            text-decoration: none;
+        }
+        
+        .link-thumbnail {
+            flex-grow: 1;
+            flex-basis: 20%;
+            display: flex;
+            align-items: center;
+        }
+        
+        .link-details {
+            flex-grow: 3;
+            padding: 0 10px;
+        }
+        
+        .link-details > * {
+            color: var(--text-color);
+        }
+        
+        .link-details .link-title {
+            font-size: 1.75em;
+            text-align: center;
+            padding-bottom: 5px;
+            padding-top: 5px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid var(--ask-border-color);
+            font-weight: bold;
+        }
+        
+        .link-source {
+            color: var(--link-color);
+            font-weight: bold;
+        }
+        
+        .link-source:hover {
+            text-decoration: underline;
+        }
+        
+        /* CHAT STYLING */
+        
+        .conversation {
+            margin: 10px 0;
+            background-color: var(--chat-background-color);
+        }
+        
+        .chat-lines {
+            padding: 5px;
+            list-style: none;
+        }
+        
+        .chat-item {
+            padding: 5px 10px;
+        }
+        
+        .chat-item.chat-odd {
+            background-color: var(--chat-odd-background-color);
+        }
+        
+        .chat-item > * {
+            font-family: var(--chat-font);
+        }
+        
+        .chat-label {
+            font-weight: bold;
+        }
+        
+        /* AUDIO STYLING */
+        .post.audio .audio-wrapper {
+            margin: 10px;
+            margin-top: 0;
+            padding-top: 10px;
+        }
+        
+        .post.audio .audio-embed {
+            text-align: center;
+            margin: 10px;
+        }
+        
+        .playbutton {
+           position:relative;
+           margin-top:45px;
+           margin-left:44px;
+           z-index:9;
+           width:33px;
+           height:30px;
+           overflow:hidden;
+        }
+        
+        .albumart img {
+           position:relative;
+           margin-top:-75px;
+           margin-left:0px
+           height:120px;
+           width:120px;
+        }    
+        
+        .trackinfo {
+           margin-bottom:10px;
+           background:var(--clickthrough-background-color);
+           top:-4px;
+           position:relative;
+           margin-left:120px;
+           height:120px;
+           margin-top:-120px;
+        }
+        
+        .trackname {
+           position:relative;
+           padding-top:30px;
+           text-align:center;
+           font-size:14px;
+           text-transform:uppercase;
+           font-weight: bold;
+           letter-spacing:2px;
+        }  
+        
+        .artist {
+           text-align:center;
+           font-size:12px;
+           text-transform:uppercase;
+           letter-spacing:4px;
+        }
+        
+        .album {
+           text-align:center;
+           font-style: italic;
+           letter-spacing:4px;
+        }  
+        
+        .playcount {
+           font-weight: bold;
+           margin-top:5px;
+           text-align:center;
+           letter-spacing:2px;
+        }
+        
+        /* VIDEO STYLING */
+        .video-embed {
+            text-align: center;
+            margin-top: 5px;
+        }
+        
         /* POST FOOTER STYLING */
         .post-footer {
         	background-color: var(--post-footer-color);
@@ -859,7 +1050,7 @@
         
         .post-meta li {
             list-style: none;
-            margin-right: 5px;
+            margin-right: 10px;
             display: flex;
             align-items: center;
         }
@@ -920,16 +1111,11 @@
         	text-decoration: none;
         }
         
-        .pages-mobile {
-        	padding-bottom: var(--mobile-nav-height);
-        }
-        
         .pages-wrapper {
-        	margin-bottom: 15px;
         	display: flex;
         	justify-content: space-around;
         	align-items: center;
-        	padding: 0 5vw;
+        	padding: 0 5vw 15px 5vw;
         }
         
         .pages-wrapper .pagination {
@@ -1127,12 +1313,12 @@
                             <div class="material-icons">light_mode</div>
                         </button>
                         {/block:IfEnableDarkMode}
-                        <a href="https://skyetrick-streamerluck.tumblr.com/" class="credit" role="button">
-                            <div class="material-icons">code</div>
+                        <a href="https://skyetrick-streamerluck.tumblr.com/" class="credit" role="button" aria-label="credit link">
+                            <div class="material-icons" aria-disabled="true">code</div>{Username}
                         </a>
-                        <button class="follow" role="button">
+                        <a href="{BlogURL}" class="follow" role="button">
                             <div>Follow</div>
-                        </button>
+                        </a>
                     </div>
                 </div>
                 <div class="tagline">
@@ -1352,13 +1538,65 @@
                             </div>
                             {/block:AudioEmbed}
                             {block:AudioPlayer}
-                            <div class="audio-player" style="display: flex;">
+                            <div class="audio-player-wrapper">
+                                <div class="playbutton">{AudioPlayerGrey}</div>
                                 {block:AlbumArt}
-                                <img alt="{Album}" src="{AlbumArtURL}">
-                                {/block:AlbumArt}
-                                {AudioPlayer}
+                                <div class="albumart">
+                                    <img src="{AlbumArtURL}">
+                                </div>{/block:AlbumArt}
+                                <div class="trackinfo">
+                                    <div class="trackname">
+                                    {block:TrackName}
+                                        {TrackName}
+                                    {/block:TrackName}
+                                    </div>
+                                    <div class="artist">
+                                    {block:Artist}{Artist}{/block:Artist}
+                                    </div>
+                                    <div class="album">
+                                    {block:Album}{Album}{/block:Album}
+                                    </div>
+                                    {block:PlayCount}
+                                    <div class="playcount">
+                                    Played: {PlayCount} times
+                                    </div>
+                                    {/block:PlayCount}
+                                </div>
+
                             </div>
+                            {block:Caption}
+                            <div class="caption">
+                                {Caption}
+                            </div>
+                            {/block:Caption}
                             {/block:AudioPlayer}
+                            
+                            {block:ExternalAudio}
+                            <div class="link-wrapper">
+                                <a {ExternalAudioURL} href="{URL}">
+                                    {block:AlbumArt}
+                                    <div class="link-thumbnail">
+                                        <img src="{AlbumArtURL}" alt="{block:TrackName}{TrackName}{/block:TrackName}" />
+                                    </div>
+                                    {/block:AlbumArt}
+                                    <div class="link-details">
+                                        {block:Artist}
+                                        <div class="link-title">{Artist}</div>
+                                        {/block:Artist}
+                                        {block:Album}
+                                        <div class="link-exerpt">{Album}</div>
+                                        {/block:Album}
+                                        {block:Artist}
+                                        <div class="link-author">{lang:Artist}</div>
+                                        {/block:Artist}
+                                        {block:TrackName}
+                                        <div class="link-host">From: <span class="link-source">{TrackName}</span> </div>{/block:TrackName}
+                                        
+                                    </div>
+    
+                                </a>
+                            </div>
+                            {/block:ExternalAudio}
                         </div>
                         {/block:Audio}
 
@@ -1405,13 +1643,13 @@
                                     <div class="post-reblog-wrapper">
                                         {block:IsDeactivated}
                                         <div class="reblog-avatar">
-                                            <img src="{ReblogParentPortraitURL-96}" alt="{Username} Profle Picture">
+                                            <img src="{PortraitURL-64}" alt="{Username} Profle Picture">
                                         </div>
                                         <span class="inactive reblog-username">{Username}</span>
                                         {/block:IsDeactivated}
                                         {block:IsActive}
                                         <a href="{Permalink}" class="reblog-avatar">
-                                            <img src="{ReblogParentPortraitURL-96}" alt="{Username} Profle Picture">
+                                            <img src="{PortraitURL-64}" alt="{Username} Profle Picture">
                                         </a>
                                         <a class="active reblog-username" href="{Permalink}">{Username}</a>
                                         {/block:IsActive}
@@ -1537,7 +1775,6 @@
                 </div>
             </div>
             {/block:Pagination}
-
         </div> <!-- / MAIN-WRAPPER -->
     </main> <!-- / MAIN -->
 
@@ -1674,33 +1911,56 @@
         
         <script>
             function colorMode() {
-                if (localStorage.getItem("dark") === null) {
-                    let dark = false;
+                
+                const cookiesEnabled = navigator.cookieEnabled;
+                
+                function storeMode(darkMode) {
+                    if (cookiesEnabled) localStorage.setItem("dark", darkMode);
+                }
+                
+                let dark = cookiesEnabled ? localStorage.getItem("dark") === "true" : false;
+
+                function setMode() {
+                    $(".scheme div").text(dark ? "dark_mode" : "light_mode");
+                    $(":root").toggleClass("dark-mode", dark)
                     
+                    storeMode(dark);
+                }
+                
+                if (dark === null) {
+                    dark = false;
+
                     {block:IfDarkModeByDefault}
-                    let d = true;
+                    
+                    dark = true;
+                    
                     {/block:IfDarkModeByDefault}
-                    localStorage.setItem("dark", false);
+                    
+                    {block:IfNotDarkModeByDefault}
+                    dark = window.matchMedia("(prefers-color-scheme: dark)").matches
+                    {/block:IfNotDarkModeByDefault}
+
                 }
-        
-                let darkDefault = localStorage.getItem("dark") === "true";
-        
+                
                 {block:IfNotEnableDarkMode}
-                darkDefault = false;
+                dark = false;
                 {/block:IfNotEnableDarkMode}
-        
-                function setMode(lightMode) {
-                    $(".scheme div").text(lightMode ? "light_mode" : "dark_mode");
-                    $(":root").toggleClass("dark-mode", !lightMode);
-                }
-        
-                setMode(!darkDefault);
-        
+                
+                setMode(dark);
+
+                {block:IfEnableDarkMode}
                 $(".scheme").click(function () {
-                    darkDefault = !darkDefault;
-                    setMode(!darkDefault);
-                    localStorage.setItem("dark", darkDefault);
+                    dark = !dark;
+                    setMode();
                 });
+                
+                window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
+                    dark = event.matches;
+                    console.log("matching", dark)
+                    setMode()
+                    })
+                {/block:IfEnableDarkMode}
+                
             }
         
             function scaleTags() {
@@ -1724,11 +1984,22 @@
             
             function openLightbox(e) {
                 const featured = $(this).parent();
+                
+                const maxWidth = $(window).width() * 0.85;
+                let viewWidth = featured.data( 'full-width' );
+                let viewHeight = featured.data( 'full-height' );
+                
+                if (viewWidth > maxWidth) {
+                    const scale = maxWidth / viewWidth;
+                    viewWidth *= scale;
+                    viewHeight *= scale;
+                }
+                
                 Tumblr.Lightbox.init(
                     [
                         {
-                            width: featured.data( "full-width" ),
-                            height: featured.data( "full-height" ),
+                            width: viewWidth,
+                            height: viewHeight,
                             low_res: featured.data( "full-url" ),
                             high_res: featured.data( "orig-url" ),
                             caption: $(this).attr("alt"),
@@ -1774,18 +2045,28 @@
             function startSlideshow(e) {
 
                 const imageList = $(this).closest( '.slideshow' ).find( 'img' )
+                const maxWidth = $(window).width() * 0.8;
                 
                 const image = $(this).find('img')
                 
                 const index = $(this).data("index");
                 
                 const t = imageList.map(function(i) {
-                    const figure = $(imageList[i]).parent()
+                    const figure = $(imageList[i]).parent();
+                    
+                    let viewWidth = figure.data( 'full-width' );
+                    let viewHeight = figure.data( 'full-height' );
+                    
+                    if (viewWidth > maxWidth) {
+                        const scale = maxWidth / viewWidth;
+                        viewWidth *= scale;
+                        viewHeight *= scale;
+                    }
 
                     return {
                         caption: figure.find('figcaption').text().trim(),
-                        width: figure.data( "full-width" ),
-                        height: figure.data( "full-height" ),
+                        width: viewWidth,//figure.data( "full-width" ),
+                        height: viewHeight,
                         low_res: figure.data( "full-url" ),
                         high_res: figure.data( "orig-url" ),
                     }
@@ -1809,6 +2090,16 @@
                 $( '#sidebar' ).click(disableCheck);
                 $( '.slideshow' ).each(setPhotosetLayout);
                 $( '.slideshow .image' ).click(startSlideshow);
+                
+                $( ' .follow ' ).each(function (event) {
+                    try {
+                        const blog = "{blogURL}".match(/(?<=https:\/\/)(.*)(?=.tumblr.com)/)[0];
+                        const followLink = "https://tumblr.com/follow/" + blog;
+                        $(this).attr("href", followLink );
+                    } catch {
+                        $(this).attr("href", "/")
+                    }
+                })
             }
         
             document.addEventListener("DOMContentLoaded", main);
