@@ -4,7 +4,7 @@
     AUTHOR: © SKYE TRICKSTER (Vincent)
     TUMBLR: @mxstball
     GITHUB: @skye-trickster
-    VERSION: 1.0.0
+    VERSION: 0.6.0
     RELEASE DATE: 
     GET THE THEME: 
     TEXT ICON CREDIT: GOOGLE MATERIAL
@@ -28,7 +28,7 @@
     <meta name="text:Status" content="Pokémon Scarlet">
     <meta name="text:Status URL" content="https://scarletviolet.pokemon.com/en-us/">
     <meta name="text:Subtitle" content="Swayshock">
-    <meta name="text:Description" content="This is a description."
+    <meta name="text:Description" content="This is a description.">
     
     <meta name="text:Updates Title" content="Updates">
     <meta name="text:Updates Link" content="">
@@ -417,10 +417,6 @@
         	border: none;
             display: flex;
             align-items: center;
-        }
-
-        .actions .material-icons {
-            font-size: 2em;
         }
         
         .actions > button:hover {
@@ -1334,7 +1330,9 @@
         		
                 --desktop-intro-height: 15vh;
         		--desktop-sidebar-width: 25vw;
-        		--desktop-nav-height: 5vh;
+        		--desktop-nav-height: 54px;
+        		--desktop-pushdown-height: 54px;
+        		--desktop-nav-height-pushdown: calc(var(--desktop-pushdown-height) + var(--desktop-nav-height));
         		--scrollbar-width: 10px;
         		--actions-background-color: yellow;
         	}
@@ -1431,24 +1429,29 @@
         		display: flex;
         		white-space: nowrap;
         		min-height: 2em;
-        	}
-        
-        	.aux-wrapper {
-        		display: flex;
         		align-items: center;
         	}
         
         	.status {
         		margin-right: 10px;
+        		display: flex;
+        		align-items: center;
+        	}
+        	
+        	.status > a {
+        	    margin-left: 5px;
         	}
         
         	.taglist-common {
         		overflow-x: auto;
         		overflow-y: hidden;
+        		display: flex;
+        		align-items: center;
+        		height: 100%;
         	}
         
         	.taglist-common .tag-item {
-        		margin: 0;
+        		margin: 3px;
         	}
         
         	.actions {
@@ -1457,8 +1460,9 @@
         		height: 100%;
         	}
         
-        	.actions > *[role="button"]:hover {
+        	.actions > *:hover {
         		cursor: pointer;
+        		text-decoration: none;
         	}
         
         	.actions > * {
@@ -1516,6 +1520,10 @@
         		min-height: var(--desktop-nav-height);
         		z-index: 10;
         	}
+        	
+        	.tmblr-iframe-pushdown .navigation {
+        	    top: var(--desktop-pushdown-height);
+        	}
         
         	.navigation .material-icons {
         		display: none;
@@ -1564,6 +1572,10 @@
         		left: 0;
         		padding-top: 0;
         	}
+        	
+        	.tmblr-iframe-pushdown main {
+        	    top: var(--desktop-nav-height-pushdown);
+        	}
         
         	.side-flip main {
         		right: 0;
@@ -1603,6 +1615,10 @@
         		bottom: var(--desktop-intro-height);
         		top: var(--desktop-nav-height);
         	}
+        	
+            .tmblr-iframe-pushdown .background {
+        	    top: var(--desktop-nav-height-pushdown);
+        	}
         
         	.side-flip .background {
         		right: 0;
@@ -1610,7 +1626,7 @@
         	}
         
         	.featured-icon {
-        		display: flex;
+        		display: none;
         		width: 25vw;
         		max-width: 300px;
         		position: fixed;
@@ -1640,19 +1656,7 @@
         
         	.featured-icon img {
         		width: 100%;
-        	}
-        
-        	.featured-icon:hover {
-        		z-index: -10;
-        		transition: 1s;
-        	}
-        
-        	.featured-icon:hover img {
-        		-webkit-user-select: none;
-        		user-select: none;
-        		pointer-events: none;
-        		opacity: 0.1;
-        		transition: opacity 1s;
+        		opacity: 0;
         	}
         
         	.posts {
@@ -1777,6 +1781,7 @@
         	}
         
         	.update-title {
+        	    display: block;
         		text-align: center;
         		margin-bottom: 10px;
         		padding-bottom: 5px;
@@ -1830,6 +1835,8 @@
         		flex-wrap: wrap;
         		justify-content: space-evenly;
         	}
+        	
+        	
         
         	/* TWO COLUMNS */
         	#sidebar .categories ul li {
@@ -1861,7 +1868,11 @@
         		border: 2px solid var(--desktop-wrapper-color);
         	}
         
+            /* SIDE ACTIONS */
+        
         	#sidebar .side-actions {
+        	    display: flex;
+        	    flex-direction: column;
         		padding: 5px 5px 5vh 5px;
         		width: 100%;
         		text-align: center;
@@ -1912,10 +1923,7 @@
         			--desktop-sidebar-width: 300px;
         		}
         
-        		.featured-icon {
-        			z-index: -20;
-        			right: var(--desktop-sidebar-width);
-        		}
+
         
         		.side-flip .featured-icon {
         			right: 0;
@@ -1930,9 +1938,7 @@
         			z-index: -20;
         		}
         
-        		.featured-icon:hover img {
-        			opacity: 1;
-        		}
+
         
         		.posts {
         			width: 700px; /*1000px*/
@@ -1940,16 +1946,12 @@
         			padding-top: 2vh;
         			margin-left: 15%;
         		}
-                /*
-        		.post {
-        			display: flex;
-        			flex-direction: row;
+        		
+        		.post-flip .posts {
+        		    margin-left: auto;
+        		    margin-right: 15%;
         		}
-        
-        		.post-flip .post {
-        			flex-direction: row-reverse;
-        		}*/
-        
+
         		.post-body,
         		.note-wrapper {
         			border-radius: 4px;
@@ -1987,31 +1989,7 @@
         			user-select: auto;
         			pointer-events: auto;
         		}
-        
-                /*
-        		.post-tags {
-        			opacity: 0;
-        			-webkit-user-select: none;
-        			user-select: none;
-        			pointer-events: none;
-        			white-space: initial;
-        			text-align: left;
-        			padding: 0;
-        			margin: 0;
-        			overflow: auto;
-        			transition: 1s;
-        			text-align: start;
-        		}
-                
-        		.post-flip .post-tags {
-        			text-align: end;
-        		}
-        
-        		.post-tags .tag-item {
-        			display: block;
-        			padding-bottom: 5px;
-        		}
-                    */
+
         		.pages-mobile {
         			width: 700px;
         			margin: auto;
@@ -2022,6 +2000,17 @@
         			width: 700px;
         		}
 
+        	}
+        	
+        	@media all and (min-width: 1475px) {
+        	    .featured-icon {
+        	        display: flex;
+                    z-index: -20;
+        	    }
+        		.featured-icon img {
+        			opacity: 1;
+        			transition: 1s;
+        		}
         	}
     		@media all and (min-width: 1750px) {
     		    .posts {
@@ -2598,8 +2587,10 @@
                     </div>
                     {block:IfUpdatesTitle}
                     
-                    <div class="update-details"></div>
-                    <p>{text:Updates Text}</p>
+                    <div class="update-details">
+                        <p>{text:Updates Text}</p>                        
+                    </div>
+
                 </div>
                 {/block:IfUpdatesText}
                 <nav class="categories">
@@ -2737,7 +2728,6 @@
                 
                 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
                     dark = event.matches;
-                    console.log("matching", dark)
                     setMode()
                     })
                 {/block:IfEnableDarkMode}
