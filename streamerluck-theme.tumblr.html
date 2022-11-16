@@ -19,7 +19,7 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{Title}{block:TagPage} - Tagged: {URLSafeTag}{/block:TagPage}{block:PostTitle} - {PostTitle}{/block:PostTitle}</title>
+    <title>{Title}{block:SearchPage} - {URLSafeSearchQuery}{/block:SearchPage}{block:TagPage} - Tagged: {URLSafeTag}{/block:TagPage}{block:PostTitle} - {PostTitle}{/block:PostTitle}</title>
 
 
     <!-- VARIABLES -->
@@ -63,14 +63,21 @@
     <meta name="text:Common Tag 2" content="tag2">    
     <meta name="text:Common Tag 3" content="tag3">
 
+    <!-- FONTS -->
     <meta name="font:Title Font" content="Helvetica Neue">
     <meta name="font:Body Font" content="Arial, Helvetica, sans-serif">
     <meta name="font:Chat Font" content="Square Serif">
+    <meta name="select:Font Size" content="16px" title="16px (Default)">    
+    <meta name="select:Font Size" content="14px" title="14">
+    <meta name="select:Font Size" content="18px" title="18">
+    <meta name="select:Font Size" content="20px" title="20">
 
+    <!-- IMAGES -->
     <meta name="image:Background Image" content="">
     <meta name="image:Mobile Background Image" content="">
     <meta name="image:Featured Icon" content="">
 
+    <!-- COLORS: LIGHT MODE -->
     <meta name="color:Background Color" content="#cdb4db">
     <meta name="color:Text Color" content="#000">
     <meta name="color:Link Color" content="#4d36c4">
@@ -83,6 +90,13 @@
     <meta name="color:Post Footer Color" content="#bde0fe">
     <meta name="color:Photo Clickthrough Background Color" content="#aaa">
     <meta name="color:Photo Clickthrough Color" content="#000">
+
+    <meta name="color:Desktop Sidebar Color" content="#ffc8dd">
+    <meta name="color:Actions Background Color" content="#ff0">
+    <meta name="color:Actions Hover Background Color" content="#ff8">
+    <meta name="color:Actions Desktop Color" content="#000">
+    <meta name="color:Actions Active Background Color" content="#fff">
+    <meta name="color:Actions Border Color" content="#000">
     
     <meta name="color:Ask Border Color" content="#a9259d">
     <meta name="color:Ask Background Color" content="#ffafcc">
@@ -98,19 +112,36 @@
     <meta name="color:Mobile Sidebar Link Color" content="#222">
     <meta name="color:Mobile Sidebar Link Hover Background Color" content="#fff">
     <meta name="color:Mobile Sidebar Border Color" content="#a9259d">
+    
+    <meta name="color:Desktop Sidebar Border Color" content="#a9259d">
+    <meta name="color:Desktop Sidebar Link Color" content="darkblue">
 
-
+    <meta name="color:Search Background Color" content="#a2d2ff">
+    <meta name="color:Search Text Color" content="black">
+    <meta name="color:Search Border Color" content="#a9259d">
+    <meta name="color:Search Placeholder Color" content="#444">
 
     <!-- LIKE AND REBLOG BUTTON COLORS -->
-    <meta name="if:Black Like and Reblog Button" content="0">
-
     <meta name="if:Enable Dark Mode" content="1">
     <meta name="if:Dark Mode By Default" content="0">
+    <meta name="if:Black Like and Reblog Button" content="0">
+    <meta name="if:Dark Mode Black Like and Reblog Button" content="0">
+   
+    <!-- SHADOWS -->
+    <meta name="if:Desktop Nav Shadow" content="0">
+    <meta name="if:Desktop Action Shadow" content="0">
+    <meta name="if:Dark Desktop Nav Shadow" content="1">
+    <meta name="if:Dark Desktop Action Shadow" content="0">
     <meta name="if:Text Shadow" content="1">
     <meta name="if:Dark Text Shadow" content="0">
-    <meta name="if:Flip Sidebar" content="0">
-    <meta name="if:Flip Post Orientation" content="0">
+    <meta name="if:Reblog Avatar Shadow" content="1">
+    <meta name="if:Dark Reblog Avatar Shadow" content="1">
+    <meta name="if:Post Shadow" content="1">
+    <meta name="if:Dark Post Shadow" content="1">
+    <meta name="if:Tag Shadow" content="1">
+    <meta name="if:Dark Tag Shadow" content="1">
 
+    <!-- COLORS: LIGHT MODE -->
     <meta name="color:Dark Background Color" content="#441d6e">
     <meta name="color:Dark Text Color" content="#fff">
     <meta name="color:Dark Link Color" content="#ff0">
@@ -123,6 +154,11 @@
     <meta name="color:Dark Post Footer Color" content="#2b069a">
     <meta name="color:Dark Photo Clickthrough Background Color" content="#333">
     <meta name="color:Dark Photo Clickthrough Color" content="#fff">
+    <meta name="color:Dark Actions Background Color" content="#ff0">
+    <meta name="color:Dark Actions Hover Background Color" content="#ff8">
+    <meta name="color:Dark Actions Desktop Color" content="#000">
+    <meta name="color:Dark Actions Active Background Color" content="#fff">
+    <meta name="color:Dark Actions Border Color" content="#000">
     
     <meta name="color:Dark Ask Border Color" content="#000">
     <meta name="color:Dark Ask Background Color" content="#000">
@@ -138,15 +174,22 @@
     <meta name="color:Dark Mobile Sidebar Link Color" content="#eee">
     <meta name="color:Dark Mobile Sidebar Link Hover Background Color" content="#666">
     <meta name="color:Dark Mobile Sidebar Border Color" content="#000">
-    
-    <!-- DARK MODE LIKE AND REBLOG BUTTON COLORS -->
-    <meta name="if:Dark Mode Black Like and Reblog Button" content="0">
 
-    <meta name="select:Font Size" content="16px" title="16px (Default)">    
-    <meta name="select:Font Size" content="14px" title="14">
-    <meta name="select:Font Size" content="18px" title="18">
-    <meta name="select:Font Size" content="20px" title="20">
+    <meta name="color:Dark Desktop Sidebar Color" content="#18181b">
     
+    <meta name="color:Dark Desktop Sidebar Border Color" content="black">
+    <meta name="color:Dark Desktop Sidebar Link Color" content="yellow">
+
+    <meta name="color:Dark Search Background Color" content="#aaa">
+    <meta name="color:Dark Search Text Color" content="black">
+    <meta name="color:Dark Search Border Color" content="grey">
+    <meta name="color:Dark Search Placeholder Color" content="#222">
+
+    <!-- EXTRA TOGGLES -->
+    <meta name="if:Flip Sidebar" content="0">
+    <meta name="if:Flip Post Orientation" content="0">
+    <meta name="if:Two Column Side Links" content="0">
+    <meta name="if:Stretch Background" content="1">
     <!-- / VARIABLES -->
 
 
@@ -171,7 +214,6 @@
             
             --intro-background-color: {color:Profile Intro Color};
             
-            
         	--post-background-color: {color:Post Background Color};
         	--post-border-color: {color:Post Border Color};
         	--post-footer-color: {color:Post Footer Color};
@@ -189,11 +231,28 @@
             --chat-odd-background-color: {color:Chat Odd Background Color};
         	
         	--blockquote-color: rgba({RGBcolor:Text Color}, 0.4);
-
+            
+            
+            --test-shadow: none;
+            --mobile-side-shadow: none;
+            --post-shadow: none;
+            --reblog-avatar-shadow: none;
+            --tag-shadow: none;
+            
         	{block:IfTextShadow}
         	--text-shadow: -2px 2px black;
         	--mobile-side-shadow: -2px 3px 3px black;
         	{/block:IfTextShadow}
+        	--post-shadow: none;
+        	{block:IfReblogAvatarShadow}
+        	--reblog-avatar-shadow: -2px 2px 2px black;
+        	{/block:IfReblogAvatarShadow}
+            {block:IfPostShadow}
+        	--post-shadow: 0px 3px 3px black;
+        	{/block:IfPostShadow}
+        	{block:IfTagShadow}
+        	--tag-shadow: 0 2px 2px black;
+        	{/block:IfTagShadow}
         	
         	--tag-background-color: {color:Tag Background Color};
         	--tag-background-color-hover: {color:Tag Background Hover Color};
@@ -235,10 +294,22 @@
         	
         	--text-shadow: none;
         	--mobile-side-shadow: none;
+            --post-shadow: none;
+            --reblog-avatar-shadow: none;
+            --tag-shadow: none;
         	{block:IfDarkTextShadow}
         	--text-shadow: -2px 2px black;
         	--mobile-side-shadow: -2px 3px 3px black;
-        	{block:IfDarkTextShadow}
+        	{/block:IfDarkTextShadow}
+        	{block:IfDarkReblogAvatarShadow}
+        	--reblog-avatar-shadow: -2px 2px 2px black;
+        	{/block:IfDarkReblogAvatarShadow}
+            {block:IfDarkPostShadow}
+        	--post-shadow: 0px 3px 3px black;
+        	{/block:IfDarkPostShadow}
+        	{block:IfDarkTagShadow}
+        	--tag-shadow: 0 2px 2px black;
+        	{/block:IfDarkTagShadow}
         	
         	--tag-background-color: {color:Dark Tag Background Color};
         	--tag-background-color-hover: {color:Dark Tag Background Hover Color};
@@ -258,8 +329,6 @@
             --chat-font: {font:Chat Font};
             
             --avatar-border: 2px solid var(--avatar-border-color);
-            
-        	--reblog-avatar-shadow: -2px 2px 2px black;
             
             --mobile-header-height: 10vh;
             --mobile-header-height-pushdown: calc(10vh + 54px);
@@ -500,7 +569,10 @@
             left: 0;
             right: 0;
             z-index: -100;
-            background-size: 100%;
+            background-size: cover;
+            {block:IfStretchBackground}
+            background-size: 100% 100%;
+            {/block:IfStretchBackground}
             background-image: url('{image:Mobile Background Image}')
         }
         
@@ -532,7 +604,7 @@
         	background-color: var(--post-background-color);
         	border-top: 3px solid var(--post-border-color);
         	border-bottom: 3px solid var(--post-border-color);
-        	box-shadow: 0px 3px 3px black;
+        	box-shadow: var(--post-shadow);
         }
         
         .post:first-child > .post-body {
@@ -1104,7 +1176,7 @@
         	border-radius: 24px;
         	font-size: 1em;
         	margin-left: 10px;
-        	box-shadow: 0 2px 2px black;
+        	box-shadow: var(--tag-shadow);
         }
         
         .tag-item a:first-child {
@@ -1307,62 +1379,72 @@
         @media all and (min-width: 700px) and (min-height: 600px) {
             
             :root {
-        		--desktop-nav-shadow-color: transparent;
-        		--desktop-wrapper-color: #ffc8dd;
-        		--side-border-color: #a9259d;
-        
-        		--sidebar-link-color: darkblue;
-        
-        		--sidebar-shadow-color: #aaa;
-        
-        		--search-background-color: #a2d2ff;
-        		--search-color: black;
-        		--search-border-color: #a9259d;
-        		--search-placeholder-color: #444;
-        
-        		--actions-shadow-color: black;
-        		--actions-click-color: black;
-        		--actions-click-border-color: black;
-        		--actions-click-background-color: white;
-        		--actions-hover-background-color: #ff8;
+                --desktop-nav-shadow: none;
+                {block:IfDesktopNavShadow}
+        		--desktop-nav-shadow: -2px 2px 2px black;
+        		{block:IfDesktopNavShadow}
+        		--actions-shadows: none;
+        		{block:IfDesktopActionShadow}
+        		--actions-shadows: -2px 2px 2px black;
+        		{/block:IfDesktopActionShadow}
+        		
+        		--desktop-wrapper-color: {color:Desktop Sidebar Color};
+        		--side-border-color: {color:Desktop Sidebar Border Color};
+        		--sidebar-link-color: {color:Desktop Sidebar Link Color};
+        		
+        		--search-background-color: {color:Search Background Color};
+        		--search-color: {color:Search Text Color};
+        		--search-border-color: {color:Search Border Color};
+        		--search-placeholder-color: {color:Search Placeholder Color};
+
+        		--actions-color: {color:Actions Desktop Color};
+        		--actions-click-border-color: {color:Actions Border Color};
+        		--actions-click-background-color: {color:Actions Active Background Color};
+        		--actions-hover-background-color: {color:Actions Hover Background Color};
         
         		--scrollbar-background-color: rgba(255, 255, 255, 0.2);
         		
-                --desktop-intro-height: 15vh;
+                --desktop-intro-height: 125px;
         		--desktop-sidebar-width: 25vw;
         		--desktop-nav-height: 54px;
         		--desktop-pushdown-height: 54px;
         		--desktop-nav-height-pushdown: calc(var(--desktop-pushdown-height) + var(--desktop-nav-height));
         		--scrollbar-width: 10px;
-        		--actions-background-color: yellow;
+        		--actions-background-color: {color:Actions Background Color};
         	}
             
         	:root.dark-mode {
 
         
-        		--desktop-nav-shadow-color: black;
+        		--desktop-nav-shadow: none;
+                {block:IfDarkDesktopNavShadow}
+        		--desktop-nav-shadow: -2px 2px 2px black;
+        		{block:IfDarkDesktopNavShadow}
         
-        		--desktop-wrapper-color: #18181b;
+        		--desktop-wrapper-color: {color:Dark Desktop Sidebar Color};
+
+        		--side-border-color: {color:Dark Desktop Sidebar Border Color};
+        		--sidebar-link-color: {color:Dark Desktop Sidebar Link Color};
         
-        		--side-border-color: black;
-        		--sidebar-shadow-color: black;
-        		--sidebar-link-color: var(--link-color);
-        
-        		--search-background-color: #aaa;
-        		--search-color: black;
-        		--search-border-color: grey;
-        		--search-placeholder-color: #222;
-        
+        		--search-background-color: {color:Dark Search Background Color};
+        		--search-color: {color:Dark Search Text Color};
+        		--search-border-color: {color:Dark Search Border Color};
+        		--search-placeholder-color: {color:Dark Search Placeholder Color};
+
         		--scrollbar-background-color: rgba(0, 0, 0, 0.2);
-        		--actions-background-color: yellow;
-        		--actions-color: black;
-        		--actions-shadow-color: transparent;
-        		--actions-click-color: black;
-        		--actions-click-border-color: black;
-        		--actions-click-background-color: white;
-        		--actions-hover-background-color: #ff8;
-        
+
+        		--actions-background-color: {color:Dark Actions Background Color};
+        		--actions-color: {color:Dark Actions Desktop Color};
         		
+        		--actions-shadows: none;
+        		{block:IfDarkDesktopActionShadow}
+        		--actions-shadows: -2px 2px 2px black;
+        		{/block:IfDarkDesktopActionShadow}
+
+        		--actions-click-color: {color:Dark Actions Desktop Color};
+        		--actions-click-border-color: {color:Dark Actions Border Color};
+        		--actions-click-background-color: {color:Dark Actions Active Background Color};
+        		--actions-hover-background-color: {color:Dark Actions Hover Background Color};
         	}
         
 
@@ -1447,7 +1529,6 @@
         		overflow-y: hidden;
         		display: flex;
         		align-items: center;
-        		height: 100%;
         	}
         
         	.taglist-common .tag-item {
@@ -1473,7 +1554,7 @@
         		min-height: 0;
         		background-color: var(--actions-background-color);
         		color: var(--actions-color);
-        		box-shadow: -2px 2px 2px var(--actions-shadow-color);
+        		box-shadow: var(--actions-shadows);
         		border: 1px solid var(--actions-background-color);
         		border-radius: 5px;
         		text-align: center;
@@ -1515,7 +1596,7 @@
         		top: 0px;
         		bottom: initial;
         		height: var(--desktop-nav-height);
-        		box-shadow: -2px 2px 2px var(--desktop-nav-shadow-color);
+        		box-shadow: var(--desktop-nav-shadow);
         		border-bottom: 1px solid var(--side-border-color);
         		min-height: var(--desktop-nav-height);
         		z-index: 10;
@@ -1591,12 +1672,13 @@
         		padding-bottom: 15px;
         	}
         
-        	.main-wrapper::-webkit-scrollbar {
+        	*::-webkit-scrollbar {
         		width: var(--scrollbar-width);
+        		height: var(--scrollbar-width);
         		background-color: var(--scrollbar-background-color);
         	}
         
-        	.main-wrapper::-webkit-scrollbar-thumb {
+        	*::-webkit-scrollbar-thumb {
         		background-color: var(--post-border-color);
         		border-radius: 2px;
         		border: 1px solid var(--side-border-color);
@@ -1608,9 +1690,12 @@
         	}
         	
         	.background {
-        		background-image: {image:Background Image};
+        		background-image: url('{image:Background Image}');
         		background-size: cover;
         		background-repeat: no-repeat;
+        		{block:IfStretchBackground}
+        		background-size: 100% 100%;
+        		{/block:IfStretchBackground}
         		right: var(--desktop-sidebar-width);
         		bottom: var(--desktop-intro-height);
         		top: var(--desktop-nav-height);
@@ -1674,7 +1759,6 @@
         	}
         
         	.pages-mobile {
-        		margin-right: 25vw;
         		margin-top: 15px;
         		padding-bottom: 0;
         	}
@@ -1715,7 +1799,7 @@
         		bottom: 0;
         		left: initial;
         		width: var(--desktop-sidebar-width);
-        		border-left: 2px solid var(--side-border-color);
+        		border-left: 1px solid var(--side-border-color);
         	}
         
         	.side-flip #sidebar {
@@ -1790,7 +1874,7 @@
         	}
         
         	#sidebar nav {
-        		padding: 5px 0;
+        		padding: 5px;
         		display: flex;
         		flex-direction: column;
         		border-top-color: var(--side-border-color);
@@ -1800,10 +1884,11 @@
         		display: block;
         		text-transform: uppercase;
         		text-align: center;
-        		padding-right: 5px;
+        		padding: 0 5px;
         		font-size: 1.5em;
-        		text-shadow: -2px 3px 3px var(--sidebar-shadow-color);
         		border: none;
+        		width: 100%;
+        		border-bottom: 1px solid var(--side-border-color);
         	}
         
         	#sidebar nav ul {
@@ -1813,7 +1898,7 @@
         		text-align: left;
         		margin: 0;
         		width: 100%;
-        		padding: 5px;
+        		padding: 5px 0;
         	}
         
         	#sidebar nav li {
@@ -1839,9 +1924,11 @@
         	
         
         	/* TWO COLUMNS */
+        	{block:IfTwoColumnSideLinks}
         	#sidebar .categories ul li {
         		flex-basis: 50%;
         	}
+        	{/block:IfTwoColumnSideLinks}
         
         	#sidebar .side-links {
         		overflow: auto;
@@ -1913,7 +2000,7 @@
         
         	@media all and (min-height: 1000px) {
         		:root {
-        			--desktop-intro-height: 150px;
+        			--desktop-intro-height: 125px;
         			--desktop-nav-height: 50px;
         		}
         	}
@@ -1977,10 +2064,6 @@
         			margin-right: 0;
         		}
         
-        		.post-flip .pages-mobile {
-        			width: 700px;
-        		}
-        
         		.post:hover .post-tags {
         			display: block;
         			opacity: 1;
@@ -1994,6 +2077,7 @@
         			width: 700px;
         			margin: auto;
         			padding: 0;
+        			margin-left: 15%;
         		}
         
         		.pages-wrapper {
@@ -2014,6 +2098,10 @@
         	}
     		@media all and (min-width: 1750px) {
     		    .posts {
+    		        margin: auto;
+    		    }
+    		    
+    		    .pages-mobile {
     		        margin: auto;
     		    }
     		}
@@ -2733,31 +2821,6 @@
                 {/block:IfEnableDarkMode}
                 
             }
-            /*
-            function scaleTags() {
-                if (window.innerWidth >= 1250) {
-                    
-                    const posts = document.getElementsByClassName("post");
-                    for (var i of posts) {
-                        let body = i.getElementsByClassName("post-body")[0];
-                        let tagList = i.querySelector(".post-tags");
-        
-                        if (tagList) {
-                            console.log(i, body, tagList);
-                            tagList.style.maxHeight = `${body.clientHeight}px`;
-
-                            $(body).bind("heightChange", function() {
-                                console.log('hello');
-                            })
-                        }
-                    }
-                } else {
-                    const tagList = document.getElementsByClassName("post-tags");
-                    for (const tag of tagList) {
-                        tag.style.maxHeight = "";
-                    }
-                }
-            }*/
             
             function openLightbox(e) {
                 const featured = $(this).parent();
@@ -2856,10 +2919,8 @@
             function main() {
                 const root = document.getElementsByTagName("html")[0];
                 root.classList.add("loaded");
-        
-                //scaleTags();
+                
                 colorMode();
-                //window.addEventListener("resize", scaleTags);
                 
                 $(".high-res .featured-image").click(openLightbox)
                 $("#link-list").click(toggleSidebar);
