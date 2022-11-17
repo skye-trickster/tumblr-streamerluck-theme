@@ -190,6 +190,7 @@
     <meta name="if:Flip Post Orientation" content="0">
     <meta name="if:Two Column Side Links" content="0">
     <meta name="if:Stretch Background" content="1">
+    <meta name="if:Follow Button" content="1">
     <!-- / VARIABLES -->
 
 
@@ -262,6 +263,9 @@
         	--side-link-color: {color:Mobile Sidebar Link Color};
         	--sidebar-link-background-color: {color:Mobile Sidebar Link Hover Background Color};
         	--sidebar-border-color: {color:Mobile Sidebar Border Color};
+            --actions-background-color: {color:Actions Background Color};
+            --actions-hover-background-color: {color:Actions Hover Background Color};
+        	--actions-click-background-color: {color:Actions Active Background Color};
         }
         
         /* DARK MODE */ 
@@ -320,6 +324,9 @@
         	--side-link-color: {color:Dark Mobile Sidebar Link Color};
         	--sidebar-link-background-color: {color:Dark Mobile Sidebar Link Hover Background Color};
         	--sidebar-border-color: {color:Dark Mobile Sidebar Border Color};
+            --actions-background-color: {color:Dark Actions Background Color};
+        	--actions-hover-background-color: {color:Dark Actions Hover Background Color};
+        	--actions-click-background-color: {color:Dark Actions Active Background Color};
         }
 
         /* ALL VARIANTS */ 
@@ -330,9 +337,18 @@
             
             --avatar-border: 2px solid var(--avatar-border-color);
             
-            --mobile-header-height: 10vh;
-            --mobile-header-height-pushdown: calc(10vh + 54px);
+            --mobile-header-height: 60px;
+            --mobile-header-height-pushdown: calc(var(--mobile-header-height) + 54px);
 	        --mobile-nav-height: 7vh;
+        }
+        
+        /* MOBILE STYLING */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: {font:Body Font};
+            color: var(--text-color);
         }
         
         .like_button_list > * { 
@@ -362,16 +378,7 @@
         main .material-icons {
             font-size: 1em;
         }
-        
-        * {
-            
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: {font:Body Font};
-            color: var(--text-color);
-        }
-        
+
         a {
             color: var(--link-color);
             text-decoration: none;
@@ -380,6 +387,10 @@
         a:hover {
         	color: var(--link-hover-color);
         	text-decoration: underline;
+            -webkit-transition: 1s color;
+            -moz-transition: 1s color;
+            -ms-transition: 1s color;
+            -o-transition: 1s color;
         	transition: 1s;
         }
         
@@ -387,11 +398,22 @@
             color: var(--text-color);
             visibility: hidden;
             font-size: {select:Font Size};
+            background-color:  {color:Background Color};
+        }
+        
+        @media all and (prefers-color-scheme: dark) {
+            html {
+                background-color: {color:Dark Background Color}
+            }
         }
         
         html.loaded {
             visibility: visible;
             background-color: var(--background-color);
+            -webkit-transition: 1s background-color;
+            -moz-transition: 1s background-color;
+            -ms-transition: 1s background-color;
+            -o-transition: 1s background-color;
             transition: background-color 1s;
         }
         
@@ -406,6 +428,10 @@
         
         .loaded main {
             opacity: 1;
+            -webkit-transition: 1s;
+            -moz-transition: 1s;
+            -ms-transition: 1s;
+            -o-transition: 1s;
             transition: opacity 1s;
         }
         
@@ -477,15 +503,16 @@
 
         .actions {
             display: flex;
-            align-items; center;
-            justify-items: flex-end;
         }
-
+        
         .actions > * {
         	background: none;
         	border: none;
             display: flex;
             align-items: center;
+        }
+        .actions *:hover {
+            text-decoration: none;
         }
         
         .actions > button:hover {
@@ -495,12 +522,21 @@
         }
         
         .actions .material-icons {
-        	color: var(--link-color);
+        	color: var(--actions-background-color);
         }
         
         .actions .material-icons:hover {
-        	color: var(--link-hover-color);
+            text-decoration: none;
+        	color: var(--actions-hover-background-color);
+            -webkit-transition: 1s;
+            -moz-transition: 1s;
+            -ms-transition: 1s;
+            -o-transition: 1s;
         	transition: 1s;
+        }
+        
+        .actions .material-icons:active {
+            color: var(--actions-click-background-color);
         }
         
         .tagline,
@@ -1209,12 +1245,20 @@
         	color: var(--text-color);
         	padding: 5px 10px;
         	box-shadow: 0px 2px 2px black;
+            -webkit-transition: 0s;
+            -moz-transition: 0s;
+            -ms-transition: 0s;
+            -o-transition: 0s;
         	transition: 0s;
         }
         
         .pages-wrapper .pagination:active {
         	background-color: var(--post-border-color);
         	color: var(--link-color);
+            -webkit-transition: 0s;
+            -moz-transition: 0s;
+            -ms-transition: 0s;
+            -o-transition: 0s;
         	transition: 0s;
         }
         
@@ -1399,8 +1443,8 @@
 
         		--actions-color: {color:Actions Desktop Color};
         		--actions-click-border-color: {color:Actions Border Color};
-        		--actions-click-background-color: {color:Actions Active Background Color};
-        		--actions-hover-background-color: {color:Actions Hover Background Color};
+
+        		
         
         		--scrollbar-background-color: rgba(255, 255, 255, 0.2);
         		
@@ -1410,7 +1454,7 @@
         		--desktop-pushdown-height: 54px;
         		--desktop-nav-height-pushdown: calc(var(--desktop-pushdown-height) + var(--desktop-nav-height));
         		--scrollbar-width: 10px;
-        		--actions-background-color: {color:Actions Background Color};
+
         	}
             
         	:root.dark-mode {
@@ -1433,7 +1477,7 @@
 
         		--scrollbar-background-color: rgba(0, 0, 0, 0.2);
 
-        		--actions-background-color: {color:Dark Actions Background Color};
+
         		--actions-color: {color:Dark Actions Desktop Color};
         		
         		--actions-shadows: none;
@@ -1443,8 +1487,6 @@
 
         		--actions-click-color: {color:Dark Actions Desktop Color};
         		--actions-click-border-color: {color:Dark Actions Border Color};
-        		--actions-click-background-color: {color:Dark Actions Active Background Color};
-        		--actions-hover-background-color: {color:Dark Actions Hover Background Color};
         	}
         
 
@@ -1548,22 +1590,15 @@
         
         	.actions > * {
         		display: flex;
-        		align-items: center;
         		height: 70%;
-        		min-width: 0;
-        		min-height: 0;
         		background-color: var(--actions-background-color);
         		color: var(--actions-color);
         		box-shadow: var(--actions-shadows);
         		border: 1px solid var(--actions-background-color);
         		border-radius: 5px;
-        		text-align: center;
-        		min-height: 0;
-        		min-width: 0;
         		margin: 0 3px;
         		padding: 3px 10px;
         		font-weight: bold;
-        		transition: 0s;
         	}
         
         	.actions > *:hover {
@@ -1632,6 +1667,10 @@
         
         	.navigation ul li:last-child {
         		padding-right: 0px;
+        	}
+        	
+        	.navigation ul li:hover {
+        	    text-decoration: underline;
         	}
         
         	.navigation li a {
@@ -2067,6 +2106,10 @@
         		.post:hover .post-tags {
         			display: block;
         			opacity: 1;
+                    -webkit-transition: 1s;
+                    -moz-transition: 1s;
+                    -ms-transition: 1s;
+                    -o-transition: 1s;
         			transition: 1s;
         			-webkit-user-select: auto;
         			user-select: auto;
@@ -2147,9 +2190,11 @@
                         <a href="https://skyetrick-streamerluck.tumblr.com/" class="credit" role="button" aria-label="credit link">
                             <div class="material-icons" aria-disabled="true">code</div>{Username}
                         </a>
+                        {block:IfFollowButton}
                         <a href="{BlogURL}" class="follow" role="button">
                             <div>Follow</div>
                         </a>
+                        {/block:IfFollowButton}
                     </div>
                 </div>
                 <div class="tagline">
@@ -2769,6 +2814,8 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         
+        <!-- Minified functions for lightboxes and photosets-->
+        <script src="https://static.tumblr.com/7ijwq6x/9wsrlg7kv/functions1.min.js"></script>
         <script>
             function colorMode() {
                 
@@ -2820,100 +2867,6 @@
                     })
                 {/block:IfEnableDarkMode}
                 
-            }
-            
-            function openLightbox(e) {
-                const featured = $(this).parent();
-                
-                const maxWidth = $(window).width() * 0.85;
-                let viewWidth = featured.data( 'full-width' );
-                let viewHeight = featured.data( 'full-height' );
-                
-                if (viewWidth > maxWidth) {
-                    const scale = maxWidth / viewWidth;
-                    viewWidth *= scale;
-                    viewHeight *= scale;
-                }
-                
-                Tumblr.Lightbox.init(
-                    [
-                        {
-                            width: viewWidth,
-                            height: viewHeight,
-                            low_res: featured.data( "full-url" ),
-                            high_res: featured.data( "orig-url" ),
-                            caption: $(this).attr("alt"),
-                        }
-                ]);
-                $( 'body' ).toggleClass( 'tumblr_lightbox_active' );
-                
-                return false;
-            }
-            
-        	function toggleSidebar(e) {
-        	    const enabled = $( '#sidebar' ).hasClass( 'enabled' );
-        		$( '#sidebar' ).toggleClass( 'enabled', !enabled );
-        		$( 'html' ).toggleClass( 'mobile-disabled', !enabled );
-        	}
-        	
-        	function disableCheck(event) {
-        	    if (event.target === this) toggleSidebar(event);
-        	}
-        	
-            function setPhotosetLayout(e) {
-    			const show = $(this)
-    
-    			function addRow(columns) {
-    				const d = $("<div></div>").appendTo(show).addClass("row");
-    				return d;
-    			}
-    			
-    			const layout = JSON.stringify(show.data("layout")).split("").map(x => parseInt(x));
-    			let row = 0, column = 0;
-    			count = 0
-    			let div = addRow(layout[row])
-    			$(this).children(".image").each(function(e) {
-    				if (column >= layout[row]) {
-    					div = addRow(layout[++row]);
-    					column = 0;
-    				}
-                    $(this).data("index", ++count);
-    				$(this).appendTo(div);
-    				column++;
-    			})
-    		}
-            function startSlideshow(e) {
-
-                const imageList = $(this).closest( '.slideshow' ).find( 'img' )
-                const maxWidth = $(window).width() * 0.8;
-                
-                const image = $(this).find('img')
-                
-                const index = $(this).data("index");
-                
-                const t = imageList.map(function(i) {
-                    const figure = $(imageList[i]).parent();
-                    
-                    let viewWidth = figure.data( 'full-width' );
-                    let viewHeight = figure.data( 'full-height' );
-                    
-                    if (viewWidth > maxWidth) {
-                        const scale = maxWidth / viewWidth;
-                        viewWidth *= scale;
-                        viewHeight *= scale;
-                    }
-
-                    return {
-                        caption: figure.find('figcaption').text().trim(),
-                        width: viewWidth,//figure.data( "full-width" ),
-                        height: viewHeight,
-                        low_res: figure.data( "full-url" ),
-                        high_res: figure.data( "orig-url" ),
-                    }
-                })
-
-                Tumblr.Lightbox.init( t, index ? index : 0 );
-                $( 'body' ).toggleClass( 'tumblr_lightbox_active' );
             }
         
             function main() {
