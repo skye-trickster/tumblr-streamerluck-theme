@@ -19,7 +19,7 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{Title}{block:SearchPage} - {URLSafeSearchQuery}{/block:SearchPage}{block:TagPage} - Tagged: {URLSafeTag}{/block:TagPage}{block:PostTitle} - {PostTitle}{/block:PostTitle}</title>
+    <title>{Title}{block:SearchPage} - {URLSafeSearchQuery}{/block:SearchPage}{block:TagPage} - {URLSafeTag}{/block:TagPage}{block:PostTitle} - {PostTitle}{/block:PostTitle}</title>
 
 
     <!-- VARIABLES -->
@@ -2417,7 +2417,7 @@
                                     <div class="link-author">{lang:By PostAuthorName 2}</div>
                                     {/block:Author}
                                     {block:Host}
-                                    <div class="link-host">From: <span class="link-source">{Host}</span> </div>
+                                    <div class="link-host"><span class="link-source">{Host}</span> </div>
                                     {/block:Host}
                                 </div>
 
@@ -2468,7 +2468,7 @@
                                     </div>
                                     {block:PlayCount}
                                     <div class="playcount">
-                                    Played: {PlayCount} times
+                                    {PlayCountWithLabel}
                                     </div>
                                     {/block:PlayCount}
                                 </div>
@@ -2500,7 +2500,7 @@
                                         <div class="link-author">{lang:Artist}</div>
                                         {/block:Artist}
                                         {block:TrackName}
-                                        <div class="link-host">From: <span class="link-source">{TrackName}</span> </div>{/block:TrackName}
+                                        <div class="link-host"><span class="link-source">{TrackName}</span> </div>{/block:TrackName}
                                         
                                     </div>
     
