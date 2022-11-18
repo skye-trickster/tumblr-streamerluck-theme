@@ -16,8 +16,8 @@ function openLightbox(e) {
             {
                 width: viewWidth,
                 height: viewHeight,
-                low_res: featured.data( "full-url" ),
-                high_res: featured.data( "orig-url" ),
+                low_res: featured.data( "orig-url" ),
+                high_res: featured.data( "full-url" ),
                 caption: $(this).attr("alt"),
             }
     ]);
