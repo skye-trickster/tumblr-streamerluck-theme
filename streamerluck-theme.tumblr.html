@@ -4,8 +4,8 @@
     AUTHOR: © SKYE TRICKSTER (Vincent)
     TUMBLR: @mxstball
     GITHUB: @skye-trickster
-    VERSION: 1.0.1
-    RELEASE DATE: 18 NOVEMBER 2022
+    VERSION: 1.0.1a
+    RELEASE DATE: 3 DECEMBER 2022
     GET THE THEME: https://skyetrick-streamerluck.tumblr.com/
     TEXT ICON CREDIT: GOOGLE MATERIAL
     
@@ -500,9 +500,11 @@
             font-weight: bold;
         }
         
+        {block:IfStatus}
         .status-name::after {
             content: ":";
         }
+        {/block:IfStatus}
         
         /* ELEMENTS HIDING ON MOBILE */
 
@@ -1574,9 +1576,19 @@
         		align-items: center;
         	}
         	
-        	.status > a {
-        	    margin-left: 5px;
+        	{block:IfNotStatusName}
+        	{block:IfNotStatus}
+        	.status {
+        	    display: none;
         	}
+        	{/block:IfNotStatus}
+        	{/block:IfNotStatusName}
+        	
+        	{block:IfStatusName}
+        	.status-description::before {
+        	    content: "\00a0";
+        	}
+        	{/block:IfStatusName}
         
         	.taglist-common {
         		overflow-x: auto;
@@ -1788,6 +1800,11 @@
         
         	.featured-icon figure {
         		display: flex;
+        		justify-content: flex-end;
+        	}
+        	
+        	.post-flip .featured-icon figure {
+        	    justify-content: flex-start;
         	}
         
         	.featured-icon img {
@@ -2182,12 +2199,12 @@
             margin: 0.5em 0;
         }
         
-        .post-body ul {
+        .post-body ul, .post-body ol {
             margin-block-start: 0.5em;
             margin-block-end: 0.5em;
         }
         
-        .post-body ul li {
+        .post-body ul li, .post-body ol li {
             list-style-position: outside;
         }
         
@@ -2258,14 +2275,14 @@
                 </div>
                 <div class="auxillary">
                     <span class="status">
+                        {block:IfStatusName}
                         <span class="status-name">{text:Status Name}</span>
+                        {/block:IfStatusName}
                         {block:IfStatusURL}
-                        <a href="{text:Status URL}" title="{text: Status}">
-                            {text:Status}
-                        </a>
+                        <a class="status-description" href="{text:Status URL}" title="{text: Status}">{text:Status}</a>
                         {block:IfStatusURL}
                         {block:IfNotStatusURL}
-                        <span>{text:Status}</span>
+                        <span class="status-description">{text:Status}</span>
                         {block:IfNotStatusURL}
                     </span>
                     <div class="taglist-common">
