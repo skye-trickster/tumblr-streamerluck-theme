@@ -4,8 +4,6 @@ This is a streamlined theme that's intended for
 
 ## [Click Here for a Static Example](https://skyetrick-streamerluck.tumblr.com/)
 
----
-
 ## Introduction
 This is the second theme created by me
 
