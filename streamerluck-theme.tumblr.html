@@ -4,8 +4,8 @@
     AUTHOR: © SKYE TRICKSTER (Vincent)
     TUMBLR: @mxstball
     GITHUB: @skye-trickster
-    VERSION: 1.0.1c
-    RELEASE DATE: 18 DECEMBER 2022
+    VERSION: 1.0.1d
+    RELEASE DATE: 22 DECEMBER 2022
     GET THE THEME: https://skyetrick-streamerluck.tumblr.com/
     TEXT ICON CREDIT: GOOGLE MATERIAL
     
@@ -2265,7 +2265,7 @@
                             <div class="material-icons" aria-disabled="true">code</div>{Username}
                         </a>
                         {block:IfFollowButton}
-                        <a href="{BlogURL}" class="follow" role="button">
+                        <a href="https://tumblr.com/follow/{Name}" class="follow" role="button">
                             <div>Follow</div>
                         </a>
                         {/block:IfFollowButton}
@@ -2949,18 +2949,6 @@
                 {/block:IfEnableDarkMode}
                 
             }
-            
-            function setFollowButton(e) {
-                try {
-                    let blog = "{blogURL}";
-                    blog = blog.replace("https://", "")
-                    blog = blog.substring(0, blog.indexOf(".tumblr.com"));
-                    const followLink = "https://tumblr.com/follow/" + blog;
-                    $(this).attr("href", followLink );
-                } catch {
-                    $(this).attr("href", "/")
-                }
-            }
         
             $(document).ready(function () {
                 $("html").addClass("loaded")
@@ -2973,8 +2961,6 @@
                 $( '#sidebar' ).click(disableCheck);
                 $( '.slideshow' ).each(setPhotosetLayout);
                 $( '.slideshow .image' ).click(startSlideshow);
-                
-                $( ' .follow ' ).each(setFollowButton)
             })
         </script>
 
