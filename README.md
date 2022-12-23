@@ -8,6 +8,22 @@ This is a streamlined theme that's intended for themes on Tumblr.com
 This is the second theme created by me
 
 ## Features
+- Responsive to mobile and desktop
+- Custom subtitle and sidebar title
+- Detailed customizable colors
+- Two modes — light mode and dark mode
+- Each mode has separate color pickers.
+- Up to 8 extra links (with 2 columns) and an updates tag in the sidebar
+- Up to 3 common tags
+- A follow button in the desktop footer
+- Optional background image for mobile and desktop
+- A status in the footer to quickly show what you’re playing / doing
+
+## Credits:
+
+- Icons done by Google Material
+- Lightbox inspired by [@shythemes](https://shythemes.tumblr.com/)
+- Audio Player inspired by [@octomoosey](https://octomoosey.tumblr.com/)
 
 ## Instructions for Installation
 1. Please read the [License](./LICENSE) and the [Terms of Use](#terms-of-use) before choosing the use this theme.
