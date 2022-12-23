@@ -1,6 +1,6 @@
 # Streamerluck Theme
 
-This is a streamlined theme that's intended for 
+This is a streamlined theme that's intended for themes on Tumblr.com
 
 ## [Click Here for a Static Example](https://skyetrick-streamerluck.tumblr.com/)
 
