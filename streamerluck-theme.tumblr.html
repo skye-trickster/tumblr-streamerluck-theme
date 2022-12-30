@@ -4,8 +4,8 @@
     AUTHOR: © SKYE TRICKSTER (Vincent)
     TUMBLR: @mxstball
     GITHUB: @skye-trickster
-    VERSION: 1.0.1d
-    RELEASE DATE: 22 DECEMBER 2022
+    VERSION: 1.0.2
+    RELEASE DATE: 30 DECEMBER 2022
     GET THE THEME: https://skyetrick-streamerluck.tumblr.com/
     TEXT ICON CREDIT: GOOGLE MATERIAL
     
@@ -2279,12 +2279,14 @@
                         {block:IfStatusName}
                         <span class="status-name">{text:Status Name}</span>
                         {/block:IfStatusName}
+                        {block:IfStatus}
                         {block:IfStatusURL}
                         <a class="status-description" href="{text:Status URL}" title="{text: Status}">{text:Status}</a>
-                        {block:IfStatusURL}
+                        {/block:IfStatusURL}
                         {block:IfNotStatusURL}
                         <span class="status-description">{text:Status}</span>
-                        {block:IfNotStatusURL}
+                        {/block:IfNotStatusURL}
+                        {/block:IfStatus}
                     </span>
                     <div class="taglist-common">
                         {block:IfCommonTag1}
@@ -2343,7 +2345,7 @@
                 <li>
                     <a href="/archive">
                         <i class="material-icons">folder</i>
-                        <span class="nav-link">Archive</span>
+                        <span class="nav-link">{lang:Archive}</span>
                     </a>
                 </li>
             </ul>
