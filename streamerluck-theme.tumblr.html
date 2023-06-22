@@ -12,6 +12,7 @@
     Credits:
         - Lightbox tutorial by shythemes: https://shythemes.tumblr.com/post/140444996328/tutorial-lightboxes
         - Audio Player tutorial by octomoosey: https://octomoosey.tumblr.com/post/165373017577/hi-g-im-in-the-process-of-creating-my-own-theme
+        - NPF Format rendering by eggdesign: https://npftemplate.tumblr.com/ 
     
     Please do not remove the credit.
 -->
@@ -26,7 +27,7 @@
     <!-- VARIABLES -->
     <meta name="text:Tagline" content="Caught in my Electroweb">
     <meta name="text:Status Name" content="Playing">
-    <meta name="text:Status" content="Pokémon Scarlet">
+    <meta name="text:Status" content="Pokemon Scarlet">
     <meta name="text:Status URL" content="https://scarletviolet.pokemon.com/en-us/">
     <meta name="text:Subtitle" content="Swayshock">
     <meta name="text:Description" content="This is a description.">
@@ -193,6 +194,8 @@
     <meta name="if:Stretch Background" content="1">
     <meta name="if:Follow Button" content="1">
     <meta name="if:Hide Mobile Header" content="0">
+    <meta name="if:Show Image Border" content="1">
+    <meta name="if:Show Npf Rendering" content="1">
     <!-- / VARIABLES -->
     {/block:Hidden}
 
@@ -750,7 +753,9 @@
         }
         
         .post-content figure img {
+            {block:IfShowImageBorder}
         	border: 1px solid var(--post-border-color);
+        	{/block:IfShowImageBorder}
         	object-fit: contain;
         	max-width: 100%;
         }
@@ -779,8 +784,6 @@
         	margin: 5px;
         	display: flex;
         }
-        
-        
         
         .post.photo .featured {
         	display: flex;
@@ -1150,6 +1153,11 @@
             margin-top: 5px;
         }
         
+        /* NPF STYLING */
+        .npf-post .post-body > .photoset {
+            margin: 0;
+        }
+        
         /* POST FOOTER STYLING */
         .post-footer {
         	background-color: var(--post-footer-color);
@@ -1217,6 +1225,7 @@
         
         .tag-item {
         	display: inline-block;
+        	margin-left: 5px;
         }
         
         .tag-item a {
@@ -1226,11 +1235,10 @@
         	display: inline-block;
         	border-radius: 24px;
         	font-size: 1em;
-        	margin-left: 10px;
         	box-shadow: var(--tag-shadow);
         }
         
-        .tag-item a:first-child {
+        .tag-item:first-child {
         	margin-left: 0px;
         }
         
@@ -2450,7 +2458,6 @@
                                     data-orig-url="{PhotoURL-500}"
                                 >
                                     <img
-                                        loading="lazy"
                                         alt="{PhotoAlt}"
                                         src="{PhotoURL-500}"
                                     >
@@ -2965,6 +2972,91 @@
                 $( '.slideshow .image' ).click(startSlideshow);
             })
         </script>
+        
+        {block:IfShowNpfRendering}
+        <!-- NPF Rendering -->
+        <script>
+            // remove empty p tags
+            for (const p of document.querySelectorAll('p')) {
+                if (p.innerHTML.trim() === '') {
+                    p.remove()
+                }
+            }
+            // create posts array
+            let posts = [];
+            {block:Posts}
+                posts.push({ npf: JSON.parse({JSNPF}), id: {JSPostId}});
+            {/block:Posts}
+            
+            function updateTypes(type, article) {
+                article.classList.remove('text');
+                const postName = type;
+                article.classList.add(postName, 'npf-post');
+            }
+            
+            for (const post of posts) {
+                let npf = post.npf;
+                let article = document.getElementById(`${post.id}`);
+                let content = article.querySelector(".post-body");
+                const photoCandidate = false;
+                if (content != null && article.classList.contains('text')) {
+                    switch(npf.trail[0]?.content[0]?.type ?? npf.content[0].type) {
+                        case 'image':
+                            if (article.querySelector(".npf_row")) {
+                                const parent = content.querySelectorAll(".npf_row")[0].parentElement;
+                                const elements = [];
+                                const photoset = document.createElement("div");
+                                photoset.classList.add("photoset");
+                                content.prepend(photoset);
+
+                                let current = parent.firstElementChild;
+
+                                // gather all of the photoset items in the first row; break when there's not one.
+                                while(current?.classList.contains("npf_row")) {
+                                    elements.push(current);
+                                    current = current.nextElementSibling;
+                                }
+                                
+                                photoset.append(...elements);
+
+                                // set post type to photoset if there are multiple photos in the photoset; otherwise, it's a singular photo
+                                if (photoset.querySelectorAll('.npf_col').length > 1) {
+                                    updateTypes('photoset', article);
+                                }
+                                else {
+                                    updateTypes('photo', article);
+                                }
+                                
+                                // TODO(skye): change photoset rows and column classes to make your own custom photoset
+                                // TODO(skye): add attribution to photosets
+
+                                // clean up any potential stray reblog headers
+                                let reblogHeader = article.querySelector('.reblog-header')
+                                let reblogBody = article.querySelector('.reblog-body')
+                                if (reblogHeader?.nextElementSibling === reblogBody && reblogBody?.childElementCount === 0) {
+                                    reblogHeader.remove()
+                                    reblogBody.remove()
+                                }
+                            }
+                            break;
+                        case 'video':
+                            updateTypes('video', article);
+                            let video = article.querySelector('figure');
+                            content.prepend(video);
+                            break;
+                        case 'link':
+                            updateTypes('link', article);
+                            break;
+                        case 'audio':
+                            updateTypes('audio', article);
+                            break;
+                        case 'quote':
+                            updateTypes('quote', article);
+                    }
+                }
+            }
+        </script>
+        {/block:IfShowNpfRendering}
 
         <noscript>This page requires JavaScript.</noscript>
 
