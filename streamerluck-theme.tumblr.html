@@ -790,7 +790,7 @@
         
         /* PHOTO TYPE */
         .post.photo .photo-header {
-        	margin: 5px;
+        	margin-bottom: 5px;
         	display: flex;
         }
         
@@ -806,6 +806,7 @@
         	{/block:IfNotShowFeaturedImageBorder}
         	margin: 0px auto;
         	flex-direction: column;
+        	width: 100%;
         }
         
         .post.photo .featured img {
@@ -817,6 +818,9 @@
             padding: 3px;
             text-align: center;
             border-top: 2px solid var(--post-border-color);
+			{block:IfNotShowFeaturedImageBorder}
+        	border-bottom: 2px solid var(--post-border-color);
+        	{/block:IfNotShowFeaturedImageBorder}
         }
         
         .post.photo .click-through a {
@@ -1319,6 +1323,11 @@
             white-space: nowrap;
             padding: 3px;
             text-overflow: ellipsis;
+        }
+        
+        
+        .npf-photoset .click-through a:hover {
+            text-decoration: underline;
         }
         
         /* POST FOOTER STYLING */
