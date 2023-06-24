@@ -4,7 +4,7 @@
     AUTHOR: © SKYE TRICKSTER (Vincent)
     TUMBLR: @mxstball
     GITHUB: @skye-trickster
-    VERSION: 1.0.5
+    VERSION: 2.0.0
     RELEASE DATE: 24 JUNE 2023
     GET THE THEME: https://skyetrick-streamerluck.tumblr.com/
     TEXT ICON CREDIT: GOOGLE MATERIAL
@@ -25,6 +25,14 @@
     {block:Hidden}
 
     <!-- VARIABLES -->
+    
+    <!-- NPF RENDERING -->
+    <meta name="if:Show Npf Rendering" content="1">
+    <!-- /NPF RENDERING -->
+    
+    <meta name="text:Custom Ask Label" content="Ask">
+    <meta name="text:Custom Submit Label" content="Submit">
+    <meta name="text:Custom Pages Label" content="Links">
     <meta name="text:Tagline" content="Caught in my Electroweb">
     <meta name="text:Status Name" content="Playing">
     <meta name="text:Status" content="Pokemon Scarlet">
@@ -35,7 +43,7 @@
     <meta name="text:Updates Title" content="Updates">
     <meta name="text:Updates Link" content="">
     <meta name="text:Updates Text" content="Feel free to place updates here">
-    
+
     <meta name="text:Custom Links Title" content="Categories">
     <meta name="text:Link 1 Name" content="">
     <meta name="text:Link 1 URL" content="">
@@ -59,7 +67,7 @@
     <meta name="text:Link 7 URL" content="">
     
     <meta name="text:Link 8 Name" content="">
-    <meta name="text:Link 8 URL" content=""> 
+    <meta name="text:Link 8 URL" content="">
     
     <meta name="text:Common Tag 1" content="tag1">
     <meta name="text:Common Tag 2" content="tag2">    
@@ -197,7 +205,6 @@
     <meta name="if:Full Width Photosets" content="1">
     <meta name="if:Show Featured Image Border" content="0">
     <meta name="if:Show Body Image Border" content="1">
-    <meta name="if:Show Npf Rendering" content="1">
     <!-- / VARIABLES -->
     {/block:Hidden}
 
@@ -2085,6 +2092,10 @@
         		flex-direction: column;
         		border-bottom: 2px solid var(--side-border-color);
         	}
+        	
+        	.information > * {
+        	    flex-shrink: 0;
+        	}
         
         	#sidebar .details {
         		display: block;
@@ -2106,6 +2117,14 @@
         		font-size: 1.2em;
         		border-bottom: 1px solid var(--side-border-color);
         	}
+
+            {block:IfNotUpdatesText}
+            {block:IfNotUpdatesTitle}
+            #sidebar .updates {
+                display: none;
+            }
+            {/block:IfNotUpdatesTitle}
+            {/block:IfNotUpdatesText}
         
         	#sidebar nav {
         		padding: 5px;
@@ -2148,6 +2167,10 @@
         		color: var(--sidebar-link-color);
         		text-shadow: none;
         	}
+        	
+        	#sidebar .categories, #sidebar .side-links {
+        	    flex-shrink: 1;
+        	}
         
         	#sidebar .categories ul {
         		display: flex;
@@ -2161,6 +2184,29 @@
         		flex-basis: 50%;
         	}
         	{/block:IfTwoColumnSideLinks}
+        	
+        	{block:IfNotCustomLinksTitle}
+        	{block:IfNotLink1Name}
+        	{block:IfNotLink2Name}
+        	{block:IfNotLink3Name}
+        	{block:IfNotLink4Name}
+        	{block:IfNotLink5Name}
+        	{block:IfNotLink6Name}
+        	{block:IfNotLink7Name}
+        	{block:IfNotLink8Name}
+        	#sidebar .categories {
+        	    display: none;
+        	}
+        	{/block:IfNotLink8Name}
+        	{/block:IfNotLink7Name}
+        	{/block:IfNotLink6Name}
+        	{/block:IfNotLink5Name}
+        	{/block:IfNotLink4Name}
+        	{/block:IfNotLink3Name}
+        	{/block:IfNotLink2Name}
+        	{/block:IfNotLink1Name}
+        	{/block:IfNotCustomLinksTitle}
+
         
         	#sidebar .side-links {
         		overflow: auto;
@@ -2488,19 +2534,34 @@
                     <a class="nav-disabled {block:AskEnabled}nav-enabled
 {/block:AskEnabled}" href="/ask">
                         <i class="material-icons">question_mark</i>
-                        <span class="nav-link">Ask</span></a>
+                        {block:IfCustomAskLabel}
+                        <span class="nav-link">{text:Custom Ask Label}</span>
+                        {/block:IfCustomAskLabel}
+                        {block:IfNotCustomAskLabel}
+                        <span class="nav-link">{AskLabel}</span>
+                        {/block:IfNotCustomAskLabel}
                 </li>
                 <li id="link-list">
                     <a class="links" role="button">
                         <i class="material-icons">add_circle</i>
-                        <span class="nav-link">Links</span>
+                        {block:IfCustomPagesLabel}
+                        <span class="nav-link">{text:Custom Pages Label}</span>
+                        {/block:IfCustomPagesLabel}
+                        {block:IfNotCustomPagesLabel}
+                        <span class="nav-link">{lang:Pages}</span>
+                        {/block:IfNotCustomPagesLabel}
                     </a>
                 </li>
                 <li>
                     <a class="nav-disabled {block:SubmissionsEnabled}nav-enabled{/block:SubmissionsEnabled}"
                         href="/submit">
                         <span class="material-icons">email</span>
-                        <span class="nav-link">Submit</span>
+                        {block:IfCustomSubmitLabel}
+                        <span class="nav-link">{text:Custom Submit Label}</span>
+                        {/block:IfCustomSubmitLabel}
+                        {block:IfNotCustomSubmitLabel}
+                        <span class="nav-link">{SubmitLabel}</span>
+                        {/block:IfNotCustomSubmitLabel}
                     </a>
                 </li>
                 <li>
@@ -3043,7 +3104,12 @@
                 </nav>
                 {block:HasPages}
                 <nav class="side-links">
-                    <h3>Links</h3>
+                    {block:IfCustomPagesLabel}
+                    <h3 class="nav-link">{text:Custom Pages Label}</h3>
+                    {/block:IfCustomPagesLabel}
+                    {block:IfNotCustomPagesLabel}
+                    <h3 class="nav-link">{lang:Pages}</h3>
+                    {/block:IfNotCustomPagesLabel}
                     <ul>
                         {block:Pages}
                         <li>
