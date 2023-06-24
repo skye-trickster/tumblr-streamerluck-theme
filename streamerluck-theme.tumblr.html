@@ -4,7 +4,7 @@
     AUTHOR: © SKYE TRICKSTER (Vincent)
     TUMBLR: @mxstball
     GITHUB: @skye-trickster
-    VERSION: 1.0.4
+    VERSION: 1.0.5
     RELEASE DATE: 24 JUNE 2023
     GET THE THEME: https://skyetrick-streamerluck.tumblr.com/
     TEXT ICON CREDIT: GOOGLE MATERIAL
@@ -791,7 +791,8 @@
         	display: flex;
         	justify-content: center;
         	{block:IfShowFeaturedImageBorder}
-        	border: 1px solid var(--post-border-color);
+        	border: 2px solid var(--post-border-color);
+        	border-radius: 3px;
         	{/block:IfShowFeaturedImageBorder}
 			{block:IfNotShowFeaturedImageBorder}
         	border: none;
@@ -816,6 +817,10 @@
             text-decoration: none;
             display: block;
             font-weight: bold;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 3px;
+            text-overflow: ellipsis;
         }
         
         .post.photo .click-through a:hover {
@@ -887,21 +892,33 @@
 			height: 100%;
 			object-fit: cover;
 			{block:IfShowFeaturedImageBorder}
-        	border: 1px solid var(--post-border-color);
+        	border: 2px solid var(--post-border-color);
+        	border-radius: 3px;
         	{/block:IfShowFeaturedImageBorder}
 			{block:IfNotShowFeaturedImageBorder}
         	border: none;
         	{/block:IfNotShowFeaturedImageBorder}
 		}
 		
-		.post-body > .slideshow img {
-			{block:IfShowFeaturedImageBorder}
-        	border: 1px solid var(--post-border-color);
-        	{/block:IfShowFeaturedImageBorder}
-			{block:IfNotShowFeaturedImageBorder}
-        	border: none;
-        	{/block:IfNotShowFeaturedImageBorder}
+		{block:IfFullWidthPhotosets}
+	    {block:IfShowFeaturedImageBorder}
+		.photoset > .slideshow .row:first-child img {
+		    border-top: none;
+		    border-top-left-radius: 0;
+		    border-top-right-radius: 0;
 		}
+		.photoset > .slideshow .row .image:first-child img {
+		    border-left: none;
+		    border-top-left-radius: 0;
+		    border-bottom-left-radius: 0;
+		}
+		.photoset > .slideshow .row .image:last-child img {
+		    border-right: none;
+		    border-top-right-radius: 0;
+		    border-bottom-right-radius: 0;
+		}
+		{/block:IfFullWidthPhotosets}
+	    {/block:IfShowFeaturedImageBorder}
 		
 		.photoset .caption {
 		    margin-top: 10px;
@@ -1182,6 +1199,11 @@
         /* NPF STYLING */
         .npf-photoset {
             margin: 0;
+            margin-bottom: 5px;
+            
+            display: flex;
+            flex-direction: column;
+            row-gap: 5px;
         }
 
         {block:IfNotFullWidthPhotosets}
@@ -1202,14 +1224,94 @@
             width: 100%;
         }
         
-        .npf-photoset img {
-            width: 100%;
-			{block:IfShowFeaturedImageBorder}
-        	border: 1px solid var(--post-border-color);
+        .npf-photoset figure {
+            {block:IfShowFeaturedImageBorder}
+        	border: 2px solid var(--post-border-color);
+        	border-radius: 3px;
         	{/block:IfShowFeaturedImageBorder}
 			{block:IfNotShowFeaturedImageBorder}
         	border: none;
         	{/block:IfNotShowFeaturedImageBorder}
+        }
+
+        {block:IfShowFeaturedImageBorder}        
+        .npf-post-photo .npf-photoset .row:first-child figure {
+            border-top: none;
+            border-top-right-radius: 0;
+            border-top-left-radius: 0;
+        }
+        
+        .npf-post-photo .npf-photoset .row > .col:first-child figure {
+            border-left: none;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        
+        .npf-post-photo .npf-photoset .row > .col:last-child figure {
+            border-right: none;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        {/block:IfShowFeaturedImageBorder}
+        
+        {block:IfFullWidthPhotosets}
+        {block:IfShowFeaturedImageBorder}        
+        .npf-post-photoset .npf-photoset .row:first-child figure {
+            border-top: none;
+            border-top-right-radius: 0;
+            border-top-left-radius: 0;
+        }
+        
+        .npf-post-photoset .npf-photoset .row > .col:first-child figure {
+            border-left: none;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        
+        .npf-post-photoset .npf-photoset .row > .col:last-child figure {
+            border-right: none;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        {/block:IfShowFeaturedImageBorder}
+        {/block:IfFullWidthPhotosets}
+        
+        .npf-photoset a.post_media_photo_anchor {
+            display: flex;
+        }
+        
+        .npf-photoset img {
+            width: 100%;
+        }
+        
+        .npf-photoset .click-through {
+            background-color: var(--clickthrough-background-color);
+            padding: 3px;
+            text-align: center;
+        	border-top: 2px solid var(--post-border-color);
+        	
+			{block:IfNotShowFeaturedImageBorder}
+        	border: 2px solid var(--post-border-color);
+        	{/block:IfNotShowFeaturedImageBorder}
+        }
+        
+        .npf-photoset .row > .col:first-child .click-through {
+            border-left: none;
+        }
+        
+        .npf-photoset .row > .col:last-child .click-through {
+            border-right: none;
+        }
+        
+        .npf-photoset .click-through a {
+            color: var(--clickthrough-color);
+            text-decoration: none;
+            display: block;
+            font-weight: bold;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 3px;
+            text-overflow: ellipsis;
         }
         
         /* POST FOOTER STYLING */
@@ -2174,8 +2276,6 @@
     		.note-wrapper {
     			border-radius: 4px;
     			border: 2px solid var(--post-border-color);
-    			/*width: 700px;
-    			margin-right: 15px;*/
     		}
     
     		.post:first-child > .post-body {
@@ -2795,8 +2895,8 @@
 
             </article>
 
-            <!-- POST NOTES -->
             {block:PostNotes}
+            <!-- POST NOTES -->
             <div class="note-info">
                 <div class="note-wrapper">
                     {block:NoteCount}
@@ -3039,9 +3139,73 @@
         {block:IfShowNpfRendering}
         <!-- NPF Rendering -->
         <script>
+        
+            /// Updates the post type for an NPF post
+            function updateTypes(type, article) {
+                article.classList.remove("text");
+                const postName = "npf-post-" + type;
+                article.classList.add(postName, "npf-post");
+            }
+            
+            /// rename photoset row and column classes for custom rendering
+            function renamePhotosetClasses(photoset) {
+                const rows = photoset.querySelectorAll(".npf_row");
+                rows.forEach(row => row.classList.replace("npf_row", "row"));
+                const cols = photoset.querySelectorAll(".npf_col");
+                cols.forEach(col => col.classList.replace("npf_col", "col"));
+            }
+            
+            /// returns a list of NPF image objects
+            function getNPFImages(npf) {
+                const imageList = [];
+                
+                for (const trail of npf.trail) {
+                    for (const content of trail.content) {
+                        if (content.type === "image") {
+                            imageList.push(content);
+                        }
+                    }
+                }
+                for (const content of npf.content) {
+                    if (content.type === "image") {
+                        imageList.push(content);
+                    }
+                }
+
+                return imageList;
+            }
+            
+            /// function for customizing images based on NPF format
+            function customizeImages(npf, content) {
+                const npfImageList = getNPFImages(npf);
+                if (npfImageList.length === 0) return;
+                const htmlImageList = content.querySelectorAll("figure .post_media_photo");
+
+                for (const index in npfImageList) {
+                    const img = npfImageList[index];
+                    const htmlImg = htmlImageList[index];
+                    
+                    // create attribution object for images with attribution
+                    if(img?.attribution && htmlImg) {
+                        const url = img.attribution.url;
+                        const figure = htmlImg.parentElement.parentElement;
+                        let innerText = img.attribution.display_text ?? url;
+                        
+                        const link = document.createElement("a");
+                        link.innerText = innerText;
+                        link.href = url;
+                        
+                        const attribution = document.createElement("figcaption");
+                        attribution.classList.add("click-through");
+                        attribution.append(link);
+                        figure.append(attribution);
+                    }
+                }
+            }
+        
             // remove empty p tags
-            for (const p of document.querySelectorAll('p')) {
-                if (p.innerHTML.trim() === '') {
+            for (const p of document.querySelectorAll("p")) {
+                if (p.innerHTML.trim() === "") {
                     p.remove()
                 }
             }
@@ -3051,27 +3215,15 @@
                 posts.push({ npf: JSON.parse({JSNPF}), id: {JSPostId}});
             {/block:Posts}
             
-            function updateTypes(type, article) {
-                article.classList.remove('text');
-                const postName = 'npf-post-' + type;
-                article.classList.add(postName, 'npf-post');
-            }
-            
-            function renamePhotosetClasses(photoset) {
-                const rows = photoset.querySelectorAll('.npf_row');
-                rows.forEach(row => row.classList.replace('npf_row', 'row'));
-                const cols = photoset.querySelectorAll('.npf_col');
-                cols.forEach(col => col.classList.replace('npf_col', 'col'));
-            }
-            
             for (const post of posts) {
                 let npf = post.npf;
                 let article = document.getElementById(`${post.id}`);
                 let content = article.querySelector(".post-body");
-                const photoCandidate = false;
-                if (content != null && article.classList.contains('text')) {
+
+                if (content != null && article.classList.contains("text")) {
+                    customizeImages(npf, content);
                     switch(npf.trail[0]?.content[0]?.type ?? npf.content[0].type) {
-                        case 'image':
+                        case "image":
                             if (article.querySelector(".npf_row")) {
                                 const parent = content.querySelectorAll(".npf_row")[0].parentElement;
                                 const elements = [];
@@ -3088,39 +3240,38 @@
                                 }
                                 
                                 photoset.append(...elements);
-                                
                                 renamePhotosetClasses(photoset, true);
 
                                 // set post type to photoset if there are multiple photos in the photoset; otherwise, it's a singular photo
-                                if (photoset.querySelectorAll('.col').length > 1) {
-                                    updateTypes('photoset', article);
+                                if (photoset.querySelectorAll(".col").length > 1) {
+                                    updateTypes("photoset", article);
                                 }
                                 else {
-                                    updateTypes('photo', article);
+                                    updateTypes("photo", article);
                                 }
 
                                 // clean up any potential stray reblog headers
-                                let reblogHeader = article.querySelector('.reblog-header')
-                                let reblogBody = article.querySelector('.reblog-body')
+                                let reblogHeader = article.querySelector(".reblog-header")
+                                let reblogBody = article.querySelector(".reblog-body")
                                 if (reblogHeader?.nextElementSibling === reblogBody && reblogBody?.childElementCount === 0) {
                                     reblogHeader.remove()
                                     reblogBody.remove()
                                 }
                             }
                             break;
-                        case 'video':
-                            updateTypes('video', article);
-                            let video = article.querySelector('figure');
+                        case "video":
+                            updateTypes("video", article);
+                            let video = article.querySelector("figure");
                             content.prepend(video);
                             break;
-                        case 'link':
-                            updateTypes('link', article);
+                        case "link":
+                            updateTypes("link", article);
                             break;
-                        case 'audio':
-                            updateTypes('audio', article);
+                        case "audio":
+                            updateTypes("audio", article);
                             break;
-                        case 'quote':
-                            updateTypes('quote', article);
+                        case "quote":
+                            updateTypes("quote", article);
                     }
                 }
             }
