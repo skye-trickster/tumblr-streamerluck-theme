@@ -4,14 +4,15 @@
     AUTHOR: © SKYE TRICKSTER (Vincent)
     TUMBLR: @mxstball
     GITHUB: @skye-trickster
-    VERSION: 1.0.2
-    RELEASE DATE: 30 DECEMBER 2022
+    VERSION: 2.0.0
+    RELEASE DATE: 24 JUNE 2023
     GET THE THEME: https://skyetrick-streamerluck.tumblr.com/
     TEXT ICON CREDIT: GOOGLE MATERIAL
     
     Credits:
         - Lightbox tutorial by shythemes: https://shythemes.tumblr.com/post/140444996328/tutorial-lightboxes
         - Audio Player tutorial by octomoosey: https://octomoosey.tumblr.com/post/165373017577/hi-g-im-in-the-process-of-creating-my-own-theme
+        - NPF Format rendering by eggdesign: https://npftemplate.tumblr.com/ 
     
     Please do not remove the credit.
 -->
@@ -24,9 +25,17 @@
     {block:Hidden}
 
     <!-- VARIABLES -->
+    
+    <!-- NPF RENDERING -->
+    <meta name="if:Show Npf Rendering" content="1">
+    <!-- /NPF RENDERING -->
+    
+    <meta name="text:Custom Ask Label" content="Ask">
+    <meta name="text:Custom Submit Label" content="Submit">
+    <meta name="text:Custom Pages Label" content="Links">
     <meta name="text:Tagline" content="Caught in my Electroweb">
     <meta name="text:Status Name" content="Playing">
-    <meta name="text:Status" content="Pokémon Scarlet">
+    <meta name="text:Status" content="Pokemon Scarlet">
     <meta name="text:Status URL" content="https://scarletviolet.pokemon.com/en-us/">
     <meta name="text:Subtitle" content="Swayshock">
     <meta name="text:Description" content="This is a description.">
@@ -34,7 +43,7 @@
     <meta name="text:Updates Title" content="Updates">
     <meta name="text:Updates Link" content="">
     <meta name="text:Updates Text" content="Feel free to place updates here">
-    
+
     <meta name="text:Custom Links Title" content="Categories">
     <meta name="text:Link 1 Name" content="">
     <meta name="text:Link 1 URL" content="">
@@ -58,7 +67,7 @@
     <meta name="text:Link 7 URL" content="">
     
     <meta name="text:Link 8 Name" content="">
-    <meta name="text:Link 8 URL" content=""> 
+    <meta name="text:Link 8 URL" content="">
     
     <meta name="text:Common Tag 1" content="tag1">
     <meta name="text:Common Tag 2" content="tag2">    
@@ -193,6 +202,9 @@
     <meta name="if:Stretch Background" content="1">
     <meta name="if:Follow Button" content="1">
     <meta name="if:Hide Mobile Header" content="0">
+    <meta name="if:Full Width Photosets" content="1">
+    <meta name="if:Show Featured Image Border" content="0">
+    <meta name="if:Show Body Image Border" content="1">
     <!-- / VARIABLES -->
     {/block:Hidden}
 
@@ -750,7 +762,9 @@
         }
         
         .post-content figure img {
+            {block:IfShowBodyImageBorder}
         	border: 1px solid var(--post-border-color);
+        	{/block:IfShowBodyImageBorder}
         	object-fit: contain;
         	max-width: 100%;
         }
@@ -776,19 +790,23 @@
         
         /* PHOTO TYPE */
         .post.photo .photo-header {
-        	margin: 5px;
+        	margin-bottom: 5px;
         	display: flex;
         }
-        
-        
         
         .post.photo .featured {
         	display: flex;
         	justify-content: center;
+        	{block:IfShowFeaturedImageBorder}
         	border: 2px solid var(--post-border-color);
         	border-radius: 3px;
+        	{/block:IfShowFeaturedImageBorder}
+			{block:IfNotShowFeaturedImageBorder}
+        	border: none;
+        	{/block:IfNotShowFeaturedImageBorder}
         	margin: 0px auto;
         	flex-direction: column;
+        	width: 100%;
         }
         
         .post.photo .featured img {
@@ -800,6 +818,9 @@
             padding: 3px;
             text-align: center;
             border-top: 2px solid var(--post-border-color);
+			{block:IfNotShowFeaturedImageBorder}
+        	border-bottom: 2px solid var(--post-border-color);
+        	{/block:IfNotShowFeaturedImageBorder}
         }
         
         .post.photo .click-through a {
@@ -807,6 +828,10 @@
             text-decoration: none;
             display: block;
             font-weight: bold;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 3px;
+            text-overflow: ellipsis;
         }
         
         .post.photo .click-through a:hover {
@@ -830,13 +855,17 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin: 10px;
         }
         
         .slideshow {
 			display: flex;
-			max-width: 500px;
 			flex-direction: column;
+			{block:IfFullWidthPhotosets}
+			width: 100%;
+            {/block:IfFullWidthPhotosets}
+            {block:IfNotFullWidthPhotosets}
+            max-width: 500px;
+            {/block:IfNotFullWidthPhotosets}
 		}
 
 		.slideshow .row {
@@ -871,8 +900,36 @@
 
 		.slideshow img {
 			width: 100%;
+			height: 100%;
 			object-fit: cover;
+			{block:IfShowFeaturedImageBorder}
+        	border: 2px solid var(--post-border-color);
+        	border-radius: 3px;
+        	{/block:IfShowFeaturedImageBorder}
+			{block:IfNotShowFeaturedImageBorder}
+        	border: none;
+        	{/block:IfNotShowFeaturedImageBorder}
 		}
+		
+		{block:IfFullWidthPhotosets}
+	    {block:IfShowFeaturedImageBorder}
+		.photoset > .slideshow .row:first-child img {
+		    border-top: none;
+		    border-top-left-radius: 0;
+		    border-top-right-radius: 0;
+		}
+		.photoset > .slideshow .row .image:first-child img {
+		    border-left: none;
+		    border-top-left-radius: 0;
+		    border-bottom-left-radius: 0;
+		}
+		.photoset > .slideshow .row .image:last-child img {
+		    border-right: none;
+		    border-top-right-radius: 0;
+		    border-bottom-right-radius: 0;
+		}
+		{/block:IfFullWidthPhotosets}
+	    {/block:IfShowFeaturedImageBorder}
 		
 		.photoset .caption {
 		    margin-top: 10px;
@@ -1150,6 +1207,129 @@
             margin-top: 5px;
         }
         
+        /* NPF STYLING */
+        .npf-photoset {
+            margin: 0;
+            margin-bottom: 5px;
+            
+            display: flex;
+            flex-direction: column;
+            row-gap: 5px;
+        }
+
+        {block:IfNotFullWidthPhotosets}
+        .npf-post-photoset .npf-photoset {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        {/block:IfNotFullWidthPhotosets}
+        
+        .npf-photoset .row {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            column-gap: 5px;
+        }
+        
+        .npf-photoset .col {
+            width: 100%;
+        }
+        
+        .npf-photoset figure {
+            {block:IfShowFeaturedImageBorder}
+        	border: 2px solid var(--post-border-color);
+        	border-radius: 3px;
+        	{/block:IfShowFeaturedImageBorder}
+			{block:IfNotShowFeaturedImageBorder}
+        	border: none;
+        	{/block:IfNotShowFeaturedImageBorder}
+        }
+
+        {block:IfShowFeaturedImageBorder}        
+        .npf-post-photo .npf-photoset .row:first-child figure {
+            border-top: none;
+            border-top-right-radius: 0;
+            border-top-left-radius: 0;
+        }
+        
+        .npf-post-photo .npf-photoset .row > .col:first-child figure {
+            border-left: none;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        
+        .npf-post-photo .npf-photoset .row > .col:last-child figure {
+            border-right: none;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        {/block:IfShowFeaturedImageBorder}
+        
+        {block:IfFullWidthPhotosets}
+        {block:IfShowFeaturedImageBorder}        
+        .npf-post-photoset .npf-photoset .row:first-child figure {
+            border-top: none;
+            border-top-right-radius: 0;
+            border-top-left-radius: 0;
+        }
+        
+        .npf-post-photoset .npf-photoset .row > .col:first-child figure {
+            border-left: none;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        
+        .npf-post-photoset .npf-photoset .row > .col:last-child figure {
+            border-right: none;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        {/block:IfShowFeaturedImageBorder}
+        {/block:IfFullWidthPhotosets}
+        
+        .npf-photoset a.post_media_photo_anchor {
+            display: flex;
+        }
+        
+        .npf-photoset img {
+            width: 100%;
+        }
+        
+        .npf-photoset .click-through {
+            background-color: var(--clickthrough-background-color);
+            padding: 3px;
+            text-align: center;
+        	border-top: 2px solid var(--post-border-color);
+        	
+			{block:IfNotShowFeaturedImageBorder}
+        	border: 2px solid var(--post-border-color);
+        	{/block:IfNotShowFeaturedImageBorder}
+        }
+        
+        .npf-photoset .row > .col:first-child .click-through {
+            border-left: none;
+        }
+        
+        .npf-photoset .row > .col:last-child .click-through {
+            border-right: none;
+        }
+        
+        .npf-photoset .click-through a {
+            color: var(--clickthrough-color);
+            text-decoration: none;
+            display: block;
+            font-weight: bold;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 3px;
+            text-overflow: ellipsis;
+        }
+        
+        
+        .npf-photoset .click-through a:hover {
+            text-decoration: underline;
+        }
+        
         /* POST FOOTER STYLING */
         .post-footer {
         	background-color: var(--post-footer-color);
@@ -1204,6 +1384,7 @@
         .post-reblog {
         	display: inline;
         	font-size: 1em;
+        	margin-inline: 2px;
         }
         
         /* POST TAGS STYLING */
@@ -1217,6 +1398,7 @@
         
         .tag-item {
         	display: inline-block;
+        	margin-left: 5px;
         }
         
         .tag-item a {
@@ -1226,11 +1408,10 @@
         	display: inline-block;
         	border-radius: 24px;
         	font-size: 1em;
-        	margin-left: 10px;
         	box-shadow: var(--tag-shadow);
         }
         
-        .tag-item a:first-child {
+        .tag-item:first-child {
         	margin-left: 0px;
         }
         
@@ -1920,6 +2101,10 @@
         		flex-direction: column;
         		border-bottom: 2px solid var(--side-border-color);
         	}
+        	
+        	.information > * {
+        	    flex-shrink: 0;
+        	}
         
         	#sidebar .details {
         		display: block;
@@ -1941,6 +2126,14 @@
         		font-size: 1.2em;
         		border-bottom: 1px solid var(--side-border-color);
         	}
+
+            {block:IfNotUpdatesText}
+            {block:IfNotUpdatesTitle}
+            #sidebar .updates {
+                display: none;
+            }
+            {/block:IfNotUpdatesTitle}
+            {/block:IfNotUpdatesText}
         
         	#sidebar nav {
         		padding: 5px;
@@ -1983,14 +2176,16 @@
         		color: var(--sidebar-link-color);
         		text-shadow: none;
         	}
+        	
+        	#sidebar .categories, #sidebar .side-links {
+        	    flex-shrink: 1;
+        	}
         
         	#sidebar .categories ul {
         		display: flex;
         		flex-wrap: wrap;
         		justify-content: space-evenly;
         	}
-        	
-        	
         
         	/* TWO COLUMNS */
         	{block:IfTwoColumnSideLinks}
@@ -1998,6 +2193,29 @@
         		flex-basis: 50%;
         	}
         	{/block:IfTwoColumnSideLinks}
+        	
+        	{block:IfNotCustomLinksTitle}
+        	{block:IfNotLink1Name}
+        	{block:IfNotLink2Name}
+        	{block:IfNotLink3Name}
+        	{block:IfNotLink4Name}
+        	{block:IfNotLink5Name}
+        	{block:IfNotLink6Name}
+        	{block:IfNotLink7Name}
+        	{block:IfNotLink8Name}
+        	#sidebar .categories {
+        	    display: none;
+        	}
+        	{/block:IfNotLink8Name}
+        	{/block:IfNotLink7Name}
+        	{/block:IfNotLink6Name}
+        	{/block:IfNotLink5Name}
+        	{/block:IfNotLink4Name}
+        	{/block:IfNotLink3Name}
+        	{/block:IfNotLink2Name}
+        	{/block:IfNotLink1Name}
+        	{/block:IfNotCustomLinksTitle}
+
         
         	#sidebar .side-links {
         		overflow: auto;
@@ -2113,8 +2331,6 @@
     		.note-wrapper {
     			border-radius: 4px;
     			border: 2px solid var(--post-border-color);
-    			/*width: 700px;
-    			margin-right: 15px;*/
     		}
     
     		.post:first-child > .post-body {
@@ -2327,19 +2543,34 @@
                     <a class="nav-disabled {block:AskEnabled}nav-enabled
 {/block:AskEnabled}" href="/ask">
                         <i class="material-icons">question_mark</i>
-                        <span class="nav-link">Ask</span></a>
+                        {block:IfCustomAskLabel}
+                        <span class="nav-link">{text:Custom Ask Label}</span>
+                        {/block:IfCustomAskLabel}
+                        {block:IfNotCustomAskLabel}
+                        <span class="nav-link">{AskLabel}</span>
+                        {/block:IfNotCustomAskLabel}
                 </li>
                 <li id="link-list">
                     <a class="links" role="button">
                         <i class="material-icons">add_circle</i>
-                        <span class="nav-link">Links</span>
+                        {block:IfCustomPagesLabel}
+                        <span class="nav-link">{text:Custom Pages Label}</span>
+                        {/block:IfCustomPagesLabel}
+                        {block:IfNotCustomPagesLabel}
+                        <span class="nav-link">{lang:Pages}</span>
+                        {/block:IfNotCustomPagesLabel}
                     </a>
                 </li>
                 <li>
                     <a class="nav-disabled {block:SubmissionsEnabled}nav-enabled{/block:SubmissionsEnabled}"
                         href="/submit">
                         <span class="material-icons">email</span>
-                        <span class="nav-link">Submit</span>
+                        {block:IfCustomSubmitLabel}
+                        <span class="nav-link">{text:Custom Submit Label}</span>
+                        {/block:IfCustomSubmitLabel}
+                        {block:IfNotCustomSubmitLabel}
+                        <span class="nav-link">{SubmitLabel}</span>
+                        {/block:IfNotCustomSubmitLabel}
                     </a>
                 </li>
                 <li>
@@ -2447,12 +2678,21 @@
                                     data-full-width="{PhotoWidth-HighRes}"
                                     data-full-height="{PhotoHeight-HighRes}"
                                     data-full-url="{PhotoURL-HighRes}"
-                                    data-orig-url="{PhotoURL-500}"
+                                    {block:IfFullWidthPhotosets}
+                                    data-orig-url="{PhotoUrl-HighRes}"
+                                    {/block:IfFullWidthPhotosets}
+                                    {block:IfNotFullWidthPhotosets}
+                                    data-orig-url="{PhotoUrl-500}"
+                                    {/block:IfNotFullWidthPhotosets}
                                 >
                                     <img
-                                        loading="lazy"
                                         alt="{PhotoAlt}"
-                                        src="{PhotoURL-500}"
+                                        {block:IfFullWidthPhotosets}
+                                        src="{PhotoUrl-HighRes}"
+                                        {/block:IfFullWidthPhotosets}
+                                        {block:IfNotFullWidthPhotosets}
+                                        src="{PhotoUrl-500}"
+                                        {/block:IfNotFullWidthPhotosets}
                                     >
                                     {block:Caption}
                                     <figcaption>
@@ -2725,8 +2965,8 @@
 
             </article>
 
-            <!-- POST NOTES -->
             {block:PostNotes}
+            <!-- POST NOTES -->
             <div class="note-info">
                 <div class="note-wrapper">
                     {block:NoteCount}
@@ -2873,7 +3113,12 @@
                 </nav>
                 {block:HasPages}
                 <nav class="side-links">
-                    <h3>Links</h3>
+                    {block:IfCustomPagesLabel}
+                    <h3 class="nav-link">{text:Custom Pages Label}</h3>
+                    {/block:IfCustomPagesLabel}
+                    {block:IfNotCustomPagesLabel}
+                    <h3 class="nav-link">{lang:Pages}</h3>
+                    {/block:IfNotCustomPagesLabel}
                     <ul>
                         {block:Pages}
                         <li>
@@ -2965,6 +3210,148 @@
                 $( '.slideshow .image' ).click(startSlideshow);
             })
         </script>
+        
+        {block:IfShowNpfRendering}
+        <!-- NPF Rendering -->
+        <script>
+        
+            /// Updates the post type for an NPF post
+            function updateTypes(type, article) {
+                article.classList.remove("text");
+                const postName = "npf-post-" + type;
+                article.classList.add(postName, "npf-post");
+            }
+            
+            /// rename photoset row and column classes for custom rendering
+            function renamePhotosetClasses(photoset) {
+                const rows = photoset.querySelectorAll(".npf_row");
+                rows.forEach(row => row.classList.replace("npf_row", "row"));
+                const cols = photoset.querySelectorAll(".npf_col");
+                cols.forEach(col => col.classList.replace("npf_col", "col"));
+            }
+            
+            /// returns a list of NPF image objects
+            function getNPFImages(npf) {
+                const imageList = [];
+                
+                for (const trail of npf.trail) {
+                    for (const content of trail.content) {
+                        if (content.type === "image") {
+                            imageList.push(content);
+                        }
+                    }
+                }
+                for (const content of npf.content) {
+                    if (content.type === "image") {
+                        imageList.push(content);
+                    }
+                }
+
+                return imageList;
+            }
+            
+            /// function for customizing images based on NPF format
+            function customizeImages(npf, content) {
+                const npfImageList = getNPFImages(npf);
+                if (npfImageList.length === 0) return;
+                const htmlImageList = content.querySelectorAll("figure .post_media_photo");
+
+                for (const index in npfImageList) {
+                    const img = npfImageList[index];
+                    const htmlImg = htmlImageList[index];
+                    
+                    // create attribution object for images with attribution
+                    if(img?.attribution && htmlImg) {
+                        const url = img.attribution.url;
+                        const figure = htmlImg.parentElement.parentElement;
+                        let innerText = img.attribution.display_text ?? url;
+                        
+                        const link = document.createElement("a");
+                        link.innerText = innerText;
+                        link.href = url;
+                        
+                        const attribution = document.createElement("figcaption");
+                        attribution.classList.add("click-through");
+                        attribution.append(link);
+                        figure.append(attribution);
+                    }
+                }
+            }
+        
+            // remove empty p tags
+            for (const p of document.querySelectorAll("p")) {
+                if (p.innerHTML.trim() === "") {
+                    p.remove()
+                }
+            }
+            // create posts array
+            let posts = [];
+            {block:Posts}
+                posts.push({ npf: JSON.parse({JSNPF}), id: {JSPostId}});
+            {/block:Posts}
+            
+            for (const post of posts) {
+                let npf = post.npf;
+                let article = document.getElementById(`${post.id}`);
+                let content = article.querySelector(".post-body");
+
+                if (content != null && article.classList.contains("text")) {
+                    customizeImages(npf, content);
+                    switch(npf.trail[0]?.content[0]?.type ?? npf.content[0].type) {
+                        case "image":
+                            if (article.querySelector(".npf_row")) {
+                                const parent = content.querySelectorAll(".npf_row")[0].parentElement;
+                                const elements = [];
+                                const photoset = document.createElement("div");
+                                photoset.classList.add("npf-photoset");
+                                content.prepend(photoset);
+
+                                let current = parent.firstElementChild;
+
+                                // gather all of the photoset items in the first row; break when there's not one.
+                                while(current?.classList.contains("npf_row")) {
+                                    elements.push(current);
+                                    current = current.nextElementSibling;
+                                }
+                                
+                                photoset.append(...elements);
+                                renamePhotosetClasses(photoset, true);
+
+                                // set post type to photoset if there are multiple photos in the photoset; otherwise, it's a singular photo
+                                if (photoset.querySelectorAll(".col").length > 1) {
+                                    updateTypes("photoset", article);
+                                }
+                                else {
+                                    updateTypes("photo", article);
+                                }
+
+                                // clean up any potential stray reblog headers
+                                let reblogHeader = article.querySelector(".reblog-header")
+                                let reblogBody = article.querySelector(".reblog-body")
+                                if (reblogHeader?.nextElementSibling === reblogBody && reblogBody?.childElementCount === 0) {
+                                    reblogHeader.remove()
+                                    reblogBody.remove()
+                                }
+                            }
+                            break;
+                        case "video":
+                            updateTypes("video", article);
+                            let video = article.querySelector("figure");
+                            content.prepend(video);
+                            break;
+                        case "link":
+                            updateTypes("link", article);
+                            break;
+                        case "audio":
+                            updateTypes("audio", article);
+                            break;
+                        case "quote":
+                            updateTypes("quote", article);
+                    }
+                }
+            }
+        </script>
+        {/block:IfShowNpfRendering}
 
         <noscript>This page requires JavaScript.</noscript>
 
