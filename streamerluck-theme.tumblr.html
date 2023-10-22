@@ -4,7 +4,7 @@
     AUTHOR: © SKYE TRICKSTER (Vincent)
     TUMBLR: @mxstball
     GITHUB: @skye-trickster
-    VERSION: 2.0.1
+    VERSION: 2.0.1a
     RELEASE DATE: 22 OCTOBER 2023
     GET THE THEME: https://skyetrick-streamerluck.tumblr.com/
     TEXT ICON CREDIT: GOOGLE MATERIAL
@@ -91,6 +91,7 @@
     <meta name="color:Background Color" content="#cdb4db">
     <meta name="color:Text Color" content="#000">
     <meta name="color:Link Color" content="#4d36c4">
+    <meta name="color:Disabled Link Color" content="grey">
     <meta name="color:Link Blend Color" content="#4d36c4">
     <meta name="color:Link Hover Color" content="#000033">
     <meta name="color:Profile Intro Color" content="#ffafcc">
@@ -156,6 +157,7 @@
     <meta name="color:Dark Background Color" content="#441d6e">
     <meta name="color:Dark Text Color" content="#fff">
     <meta name="color:Dark Link Color" content="#ff0">
+    <meta name="color:Dark Disabled Link Color" content="grey">
     <meta name="color:Dark Link Blend Color" content="#ff0">
     <meta name="color:Dark Link Hover Color" content="#cccc00">
     <meta name="color:Dark Profile Intro Color" content="#0e0e10">
@@ -225,6 +227,7 @@
             --background-color: {color:Background Color};
             --text-color: {color:Text Color};
             --link-color: {color:Link Color};
+            --link-disabled-color: {color:Disabled Link Color};
             --link-blend-color: {color:Link Blend Color};
             --link-hover-color: {color:Link Hover Color};
 
@@ -290,6 +293,7 @@
             --background-color: {color:Dark Background Color};
             --text-color: {color:Dark Text Color};
             --link-color: {color:Dark Link Color};
+            --link-disabled-color: {color:Dark Disabled Link Color};
             --link-blend-color: {color:Dark Link Blend Color};
             --link-hover-color: {color:Dark Link Hover Color};
             
@@ -607,12 +611,12 @@
         }
         
         .navigation .nav-disabled a {
-        	color: grey;
+        	color: var(--link-disabled-color);
         	pointer-events: none;
         }
         
         .navigation .nav-disabled .nav-link {
-            color: grey;
+            color: var(--link-disabled-color);
         }
         
         .nav-disabled:hover {
@@ -620,7 +624,7 @@
         }
         
         .nav-disabled .material-icons {
-            color: grey;
+            color: var(--link-disabled-color);
         }
         
         .navigation .nav-enabled a {
