@@ -4,8 +4,8 @@
     AUTHOR: © SKYE TRICKSTER (Vincent)
     TUMBLR: @mxstball
     GITHUB: @skye-trickster
-    VERSION: 2.0.0
-    RELEASE DATE: 24 JUNE 2023
+    VERSION: 2.0.1
+    RELEASE DATE: 22 OCTOBER 2023
     GET THE THEME: https://skyetrick-streamerluck.tumblr.com/
     TEXT ICON CREDIT: GOOGLE MATERIAL
     
@@ -91,6 +91,7 @@
     <meta name="color:Background Color" content="#cdb4db">
     <meta name="color:Text Color" content="#000">
     <meta name="color:Link Color" content="#4d36c4">
+    <meta name="color:Link Blend Color" content="#4d36c4">
     <meta name="color:Link Hover Color" content="#000033">
     <meta name="color:Profile Intro Color" content="#ffafcc">
     <meta name="color:Avatar Border Color" content="#333">
@@ -155,6 +156,7 @@
     <meta name="color:Dark Background Color" content="#441d6e">
     <meta name="color:Dark Text Color" content="#fff">
     <meta name="color:Dark Link Color" content="#ff0">
+    <meta name="color:Dark Link Blend Color" content="#ff0">
     <meta name="color:Dark Link Hover Color" content="#cccc00">
     <meta name="color:Dark Profile Intro Color" content="#0e0e10">
     <meta name="color:Dark Avatar Border Color" content="#fff">
@@ -223,6 +225,7 @@
             --background-color: {color:Background Color};
             --text-color: {color:Text Color};
             --link-color: {color:Link Color};
+            --link-blend-color: {color:Link Blend Color};
             --link-hover-color: {color:Link Hover Color};
 
             --avatar-border-color: {color:Avatar Border Color};
@@ -287,6 +290,7 @@
             --background-color: {color:Dark Background Color};
             --text-color: {color:Dark Text Color};
             --link-color: {color:Dark Link Color};
+            --link-blend-color: {color:Dark Link Blend Color};
             --link-hover-color: {color:Dark Link Hover Color};
             
             --avatar-border-color: {color:Dark Avatar Border Color};
@@ -602,17 +606,29 @@
         	color: var(--link-blend-color);
         }
         
-        .navigation .nav-disabled {
+        .navigation .nav-disabled a {
         	color: grey;
         	pointer-events: none;
         }
         
-        .navigation .nav-enabled {
+        .navigation .nav-disabled .nav-link {
+            color: grey;
+        }
+        
+        .nav-disabled:hover {
+        	text-decoration: none;
+        }
+        
+        .nav-disabled .material-icons {
+            color: grey;
+        }
+        
+        .navigation .nav-enabled a {
         	color: var(--text-color);
         	pointer-events: initial;
         }
         
-        .navigation li a:hover {
+        .navigation li a:hover * {
         	color: var(--link-color);
         	cursor: pointer;
         }
@@ -1877,12 +1893,21 @@
         	
         	.navigation ul li:hover {
         	    text-decoration: underline;
+        	    color: var(--link-color);
+        	}
+        	
+            .navigation ul li.nav-disabled:hover {
+        	    text-decoration: none;
+        	}
+        	
+        	.navigation ul li.nav-enabled:hover {
+        	    text-decoration: underline;
         	}
         
         	.navigation li a {
         		text-align: left;
         	}
-        
+
         	#link-list {
         		display: none;
         	}
@@ -2539,9 +2564,8 @@
                         <span class="nav-link">{lang:Home}</span>
                     </a>
                 </li>
-                <li>
-                    <a class="nav-disabled {block:AskEnabled}nav-enabled
-{/block:AskEnabled}" href="/ask">
+                <li class="{block:AskDisabled}nav-disabled{/block:AskDisabled}{block:AskEnabled}nav-enabled{/block:AskEnabled}">
+                    <a href="/ask">
                         <i class="material-icons">question_mark</i>
                         {block:IfCustomAskLabel}
                         <span class="nav-link">{text:Custom Ask Label}</span>
@@ -2549,6 +2573,7 @@
                         {block:IfNotCustomAskLabel}
                         <span class="nav-link">{AskLabel}</span>
                         {/block:IfNotCustomAskLabel}
+                    </a>
                 </li>
                 <li id="link-list">
                     <a class="links" role="button">
@@ -2561,9 +2586,8 @@
                         {/block:IfNotCustomPagesLabel}
                     </a>
                 </li>
-                <li>
-                    <a class="nav-disabled {block:SubmissionsEnabled}nav-enabled{/block:SubmissionsEnabled}"
-                        href="/submit">
+                <li class="nav-disabled {block:SubmissionsEnabled}nav-enabled{/block:SubmissionsEnabled} {block:SubmissionsDisabled}test{/block:SubmissionsDisabled}">
+                    <a href="/submit">
                         <span class="material-icons">email</span>
                         {block:IfCustomSubmitLabel}
                         <span class="nav-link">{text:Custom Submit Label}</span>
